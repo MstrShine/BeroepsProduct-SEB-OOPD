@@ -1,10 +1,11 @@
 package com.seb.beroepsproduct.scenes;
 
+import com.seb.beroepsproduct.Main;
+
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
-import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.scenes.interactables.buttons.SceneChangeButton;
 
 import javafx.scene.paint.Color;
@@ -33,7 +34,7 @@ public class TitleScreen extends StaticScene {
 		titleEntity.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
 		addEntity(titleEntity);
 		
-		var startButton = new SceneChangeButton(new Coordinate2D(getWidth() /2, getHeight() / 2), "Start Game", Color.BLUE, "Roboto", 30, 1, main);
+		var startButton = new SceneChangeButton(new Coordinate2D(getWidth() /2, getHeight() / 2), "Start Game", Color.BLUE, Color.PURPLE, "Roboto", 30, 1, main);
 		startButton.setAnchorPoint(AnchorPoint.BOTTOM_CENTER);
 		addEntity(startButton);
 	}

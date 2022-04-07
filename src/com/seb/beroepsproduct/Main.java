@@ -5,7 +5,7 @@ import java.awt.GraphicsEnvironment;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
-import com.seb.beroepsproduct.scenes.TitleScreen;
+import com.seb.beroepsproduct.scenes.*;
 
 public class Main extends YaegerGame {
 
@@ -30,6 +30,8 @@ public class Main extends YaegerGame {
 	@Override
 	public void setupScenes() {
 		addScene(0, new TitleScreen(this));
+		addScene(1, new GameScreen());
+		addScene(2, new EndGameScreen());
 	}
 
 }
