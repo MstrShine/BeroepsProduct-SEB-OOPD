@@ -2,9 +2,11 @@ package com.seb.beroepsproduct.entities.characters;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
-public abstract class Character extends DynamicSpriteEntity implements ICharacter{
+public abstract class Character extends DynamicSpriteEntity implements ICharacter, Collided, Collider {
 	
 	protected int health;
 	

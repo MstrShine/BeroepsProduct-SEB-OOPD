@@ -2,6 +2,7 @@ package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.seb.beroepsproduct.entities.characters.Enemy;
 
@@ -25,6 +26,12 @@ public class Robot extends Enemy {
 
 	@Override
 	public void Move(Direction direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCollision(Collider collidingObject) {
 		// TODO Auto-generated method stub
 		
 	}

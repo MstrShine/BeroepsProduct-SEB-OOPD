@@ -4,12 +4,15 @@ import java.util.Set;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
+import com.seb.beroepsproduct.entities.characters.Enemy;
+import com.seb.beroepsproduct.entities.characters.enemies.Robot;
 
 import javafx.scene.input.KeyCode;
 
@@ -83,6 +86,15 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			setAnchorLocationX(getSceneWidth() - getWidth() - 1);
 		default:
 			break;
+		}
+	}
+
+	@Override
+	public void onCollision(Collider collidingObject) {
+		Enemy enemy;
+		if(collidingObject instanceof Robot) {
+			enemy = (Robot)collidingObject;
+			enemy.Hit(10);
 		}
 	}
 }  
