@@ -85,4 +85,4 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			break;
 		}
 	}
-}
+}  
