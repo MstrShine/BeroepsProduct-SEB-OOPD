@@ -1,20 +1,26 @@
 package com.seb.beroepsproduct.entities.characters.player;
 
+import java.awt.GraphicsEnvironment;
 import java.util.Set;
+//import java.lang.Math;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
 
 import javafx.scene.input.KeyCode;
 
-public class Player extends Character implements KeyListener, SceneBorderTouchingWatcher {
-
+public class Player extends Character implements MouseMovedListener, KeyListener, SceneBorderTouchingWatcher {
+	double directionPlayer;
+	
 	public Player(Coordinate2D startLocation, int health) {
 		super("sprites/player1.gif", startLocation, health);
+		directionPlayer = 0;
+		//setRotationSpeed(rotation);
 	}
 
 	@Override
@@ -75,4 +81,13 @@ public class Player extends Character implements KeyListener, SceneBorderTouchin
 			break;
 		}
 	}
-}
+
+	@Override
+	public void onMouseMoved(Coordinate2D mouseXY) {
+		//werkt nog niet mooi want geen goede schermgrootte ingevoerd, volgens mij is de spriteentity ook niet vanuit midden maar linksboven getekend
+		//3.14 ook niet de echte waarde van pi 
+		// GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth() voor schermgrootte?
+		directionPlayer =  (180/3.14* (Math.atan2(800 - mouseXY.getX(), 400  - mouseXY.getY()))+90);
+		setRotate(directionPlayer);
+	}
+}  
