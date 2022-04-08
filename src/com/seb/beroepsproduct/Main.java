@@ -33,5 +33,5 @@ public class Main extends YaegerGame {
 		addScene(1, new GameScreen());
 		addScene(2, new EndGameScreen());
 	}
-
+	
 }

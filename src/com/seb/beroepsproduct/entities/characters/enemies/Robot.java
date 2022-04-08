@@ -1,13 +1,14 @@
 package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Direction;
 import com.seb.beroepsproduct.entities.characters.Enemy;
 
 public class Robot extends Enemy {
 
 	public Robot(int health, int speed) {
-		super("", new Coordinate2D() ,health);
+		super("", new Coordinate2D(), new Size(10, 10), health);
 		// TODO Auto-generated constructor stub
 	}
 
