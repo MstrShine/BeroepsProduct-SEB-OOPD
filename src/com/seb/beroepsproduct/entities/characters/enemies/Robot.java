@@ -10,9 +10,14 @@ public class Robot extends Enemy {
 
 	public Robot(int health, int speed) {
 		super("", new Coordinate2D(), new Size(10, 10), health);
-		// TODO Auto-generated constructor stub
+		this.damage = 10;
 	}
-
+	
+	@Override
+	public int getDamage() {
+		return damage;
+	}
+	
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
@@ -35,5 +40,4 @@ public class Robot extends Enemy {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

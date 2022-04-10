@@ -17,11 +17,11 @@ import com.seb.beroepsproduct.entities.characters.enemies.Robot;
 import javafx.scene.input.KeyCode;
 
 public class Player extends Character implements KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
-	
+
 	public Player(Coordinate2D startLocation, int health) {
 		super("sprites/player1.gif", startLocation, new Size(150, 150), health);
 	}
-	
+
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
@@ -36,12 +36,13 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	public void Move(Direction direction) {
 		setMotion(1, direction);
 	}
-	
+
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
-		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75), mouseXY.getY() - (getLocationInScene().getY() + 75));
+		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
+				mouseXY.getY() - (getLocationInScene().getY() + 75));
 		var directionPlayer = Math.toDegrees(radian) - 90;
-		
+
 		setRotate(directionPlayer);
 	}
 
@@ -70,8 +71,6 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	public void notifyBoundaryTouching(SceneBorder border) {
-		setSpeed(0);
-
 		switch (border) {
 		case TOP:
 			setAnchorLocationY(1);
@@ -92,9 +91,9 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	@Override
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
-		if(collidingObject instanceof Robot) {
-			enemy = (Robot)collidingObject;
-			enemy.Hit(10);
+		if (collidingObject instanceof Robot) {
+			enemy = (Robot) collidingObject;
+			this.Hit(enemy.getDamage());
 		}
 	}
-}  
+}
