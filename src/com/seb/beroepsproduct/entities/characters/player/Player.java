@@ -13,15 +13,38 @@ import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.Robot;
+import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 
 import javafx.scene.input.KeyCode;
 
 public class Player extends Character implements KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
-	public Player(Coordinate2D startLocation, int health) {
-		super("sprites/player1.gif", startLocation, new Size(150, 150), health);
+	double directionPlayer;
+	int PlayerLevel;
+	
+	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
+		super(startLocation, new Size(150, 150), health);
+		this.PlayerLevel = PlayerLevel;
+	}
+	
+	public int getPlayerLevel() {
+		return PlayerLevel;
 	}
 
+	public void setPlayerLevel(int playerLevel) {
+		PlayerLevel = playerLevel;
+	}
+
+	@Override
+	protected void setupEntities() {
+		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100,-100), -90);
+		addEntity(pSpriteGun);
+		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100,-100), 0);
+		addEntity(pSprite);
+
+	}
+	
+	
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
@@ -41,9 +64,18 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	public void onMouseMoved(Coordinate2D mouseXY) {
 		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
 				mouseXY.getY() - (getLocationInScene().getY() + 75));
-		var directionPlayer = Math.toDegrees(radian) - 90;
-
+		directionPlayer = Math.toDegrees(radian) - 90;
 		setRotate(directionPlayer);
+	}
+
+	
+	
+	public double getDirectionPlayer() {
+		return directionPlayer;
+	}
+
+	public void setDirectionPlayer(double directionPlayer) {
+		this.directionPlayer = directionPlayer;
 	}
 
 	@Override
@@ -96,4 +128,6 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			this.Hit(enemy.getDamage());
 		}
 	}
+
+
 }
