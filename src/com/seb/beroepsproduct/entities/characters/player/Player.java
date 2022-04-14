@@ -11,6 +11,7 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
+import com.seb.beroepsproduct.entities.characters.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
@@ -38,14 +39,15 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	public void setPlayerLevel(int playerLevel) {
 		PlayerLevel = playerLevel;
 	}
-
+	
 	@Override
 	protected void setupEntities() {
 		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
 		addEntity(pSpriteGun);
 		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100, -100), 0);
 		addEntity(pSprite);
-
+		this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
+		addEntity(this.text);
 	}
 
 	@Override
@@ -148,7 +150,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	@Override
 	public String GetHealth() {
 		// TODO Auto-generated method stub
-		return null;
+		return ""+health;
 	}
 
 }

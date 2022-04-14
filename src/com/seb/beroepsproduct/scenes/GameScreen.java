@@ -13,6 +13,7 @@ import com.seb.beroepsproduct.entities.map.Door;
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
 
 	public Player player1;
+	public Robot robot;
 	
 	@Override
 	public void setupScene() {
@@ -30,6 +31,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
 		addEntity(door);
 		
 		var robot = new Robot(player1, 500);
+		this.robot = robot;
 		addEntity(robot);
 	}
 
@@ -37,6 +39,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
 	public void setupEntitySpawners() {
 		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
+		
+		var shooter2 = new BulletShooter(robot, 5);
+		addEntitySpawner(shooter2);
 	}
 
 }
