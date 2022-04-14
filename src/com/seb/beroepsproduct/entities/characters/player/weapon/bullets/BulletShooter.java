@@ -10,7 +10,7 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 
 import javafx.scene.input.KeyCode;
 
-public class BulletShooter extends EntitySpawner implements KeyListener{
+public class BulletShooter extends EntitySpawner {
 
 	private int nBullets;
 	private Player player;
@@ -27,19 +27,13 @@ public class BulletShooter extends EntitySpawner implements KeyListener{
 	@Override
 	protected void spawnEntities() {
 		// spawn(new bullet(randomLocation(), 2) );
-		if (shooting) {
+		if (player.isShooting()) {
 			for (int i = 0; i < nBullets; i++) {
 				spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 20, i));
 			}
 		}
 	}
 
-	@Override
-	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-		if (pressedKeys.contains(KeyCode.SPACE)) {
-			this.shooting = true;
-		}
-	}
 
 	// private Coordinate2D randomLocation() {
 	// double x = new Random().nextInt((int) 1600);

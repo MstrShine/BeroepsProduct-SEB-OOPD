@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities.characters.enemies;
+package com.seb.beroepsproduct.entities.characters.enemies.robot;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
@@ -6,8 +6,9 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
-import com.seb.beroepsproduct.entities.characters.Enemy;
 import com.seb.beroepsproduct.entities.characters.CharacterHealthText;
+import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
+import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 
 import javafx.scene.paint.Color;
@@ -15,9 +16,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Robot extends Enemy {
-	
-	public Robot(int health, int speed) {
-		super(new Coordinate2D(), new Size(10, 10), health);
+
+	public Robot(Player player, int health) {
+		super(new Coordinate2D(), new Size(10, 10), player, health);
 		this.damage = 10;
 	}
 
@@ -29,7 +30,7 @@ public class Robot extends Enemy {
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
-		if(this.health <= 0) {
+		if (this.health <= 0) {
 			this.Die();
 		}
 	}
@@ -49,7 +50,7 @@ public class Robot extends Enemy {
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collidingObject instanceof Bullet) {
-			var bullet = (Bullet)collidingObject;
+			var bullet = (Bullet) collidingObject;
 			Hit(bullet.getDamage());
 			text.update();
 		}
@@ -57,7 +58,7 @@ public class Robot extends Enemy {
 
 	@Override
 	protected void setupEntities() {
-		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(100, 200));
+		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(100, 200), new Size(150,150));
 		addEntity(robotSprite);
 		/*
 		 * var robotText = new TextEntity( this.getLocationInScene() //new
@@ -75,5 +76,10 @@ public class Robot extends Enemy {
 	public String GetHealth() {
 		var string = "" + this.health;
 		return string;
+	}
+
+	@Override
+	public void setupTimers() {
+		this.createEnemyTimer();
 	}
 }

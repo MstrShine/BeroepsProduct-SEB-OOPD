@@ -3,7 +3,7 @@ package com.seb.beroepsproduct.entities.characters;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.DynamicTextEntity;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
-import com.seb.beroepsproduct.entities.characters.enemies.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

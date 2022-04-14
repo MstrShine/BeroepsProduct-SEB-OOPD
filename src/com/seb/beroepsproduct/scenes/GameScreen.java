@@ -4,8 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.seb.beroepsproduct.entities.characters.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
+import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
 import com.seb.beroepsproduct.entities.map.Door;
@@ -29,7 +29,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
 		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);
 		
-		var robot = new Robot(500,0);
+		var robot = new Robot(player1, 500);
 		addEntity(robot);
 	}
 

@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.CircleEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
-import com.seb.beroepsproduct.entities.characters.Enemy;
+import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 import javafx.scene.paint.Color;
@@ -33,7 +33,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	@Override
 	public void setupTimers() {
 		// TODO Auto-generated method stub
-		var bullettimer = new BulletTimer(this, 300);
+		var bullettimer = new BulletTimer(this, 100);
 		addTimer(bullettimer);
 	}
 	

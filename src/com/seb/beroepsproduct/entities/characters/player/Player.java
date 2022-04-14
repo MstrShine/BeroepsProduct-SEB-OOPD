@@ -11,8 +11,8 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
-import com.seb.beroepsproduct.entities.characters.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
+import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 
 import javafx.scene.input.KeyCode;
@@ -21,12 +21,16 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	double directionPlayer;
 	private int PlayerLevel;
-	
+	private boolean shooting;
+	private double speed;
+
 	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
 		super(startLocation, new Size(150, 150), health);
 		this.PlayerLevel = PlayerLevel;
+		shooting = false;
+		speed = 3;
 	}
-	
+
 	public int getPlayerLevel() {
 		return PlayerLevel;
 	}
@@ -37,14 +41,13 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	protected void setupEntities() {
-		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100,-100), -90);
+		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
 		addEntity(pSpriteGun);
-		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100,-100), 0);
+		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100, -100), 0);
 		addEntity(pSprite);
 
 	}
-	
-	
+
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
@@ -52,12 +55,12 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	public void Move(double direction) {
-		setMotion(1, direction);
+		setMotion(speed, direction);
 	}
 
 	@Override
 	public void Move(Direction direction) {
-		setMotion(1, direction);
+		setMotion(speed, direction);
 	}
 
 	@Override
@@ -68,8 +71,6 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		setRotate(directionPlayer);
 	}
 
-	
-	
 	public double getDirectionPlayer() {
 		return directionPlayer;
 	}
@@ -80,6 +81,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+		shootWeapon(pressedKeys);
 		if (pressedKeys.contains(KeyCode.A) && pressedKeys.contains(KeyCode.W)) {
 			Move(225d);
 		} else if (pressedKeys.contains(KeyCode.A) && pressedKeys.contains(KeyCode.S)) {
@@ -96,9 +98,23 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			Move(Direction.DOWN);
 		} else if (pressedKeys.contains(KeyCode.D)) {
 			Move(Direction.RIGHT);
+		} else if (pressedKeys.contains(KeyCode.SPACE)) {
+			shooting = true;
 		} else if (pressedKeys.isEmpty()) {
 			setSpeed(0);
 		}
+	}
+
+	private void shootWeapon(Set<KeyCode> pressedKeys) {
+		if (pressedKeys.contains(KeyCode.SPACE)) {
+			this.shooting = true;
+		} else {
+			this.shooting = false;
+		}
+	}
+
+	public boolean isShooting() {
+		return shooting;
 	}
 
 	@Override
@@ -134,6 +150,5 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }
