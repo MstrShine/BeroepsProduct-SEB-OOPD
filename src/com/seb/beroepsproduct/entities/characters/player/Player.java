@@ -42,8 +42,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100,-100), 0);
 		addEntity(pSprite);
 
-	}
-	
+	}	
 	
 	@Override
 	public void Hit(int damage) {
@@ -127,6 +126,12 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			enemy = (Robot) collidingObject;
 			this.Hit(enemy.getDamage());
 		}
+	}
+
+	@Override
+	public String GetHealth() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

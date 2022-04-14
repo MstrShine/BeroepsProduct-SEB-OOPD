@@ -4,9 +4,9 @@ import com.github.hanyaeger.api.Timer;
 
 public class BulletTimer extends Timer {
 
-	private bullet bullet;
+	private Bullet bullet;
 	
-	protected BulletTimer(bullet bullet, long intervalInMs) {
+	protected BulletTimer(Bullet bullet, long intervalInMs) {
 		super(intervalInMs);
 		this.bullet = bullet;
 		// TODO Auto-generated constructor stub

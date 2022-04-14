@@ -9,24 +9,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class textEntity extends DynamicTextEntity {
+public class CharacterHealthText extends DynamicTextEntity {
 
 	//private String robotHealth;
-	private Robot robot;
+	private Character character;
 	
-	public textEntity(Robot robot, Coordinate2D initialLocation) {
+	public CharacterHealthText(Character character, Coordinate2D initialLocation) {
 		super(initialLocation);
+		this.character = character;
 	    setFont(Font.font("Roboto",FontWeight.NORMAL, 30));
 	    setFill(Color.YELLOW);
-	    //this.robot = robot;
-	    //robotHealth = ""+robot.health;
-	    setText(robot.robotHealth);
-	    // TODO Auto-generated constructor stub
+	    setText(character.GetHealth());
 	}
 	
-	  void update(){
-		setText(robot.robotHealth);
-		System.out.println("ik update nu");
+	  public void update(){
+		setText(this.character.GetHealth());
 	}
 	
 }

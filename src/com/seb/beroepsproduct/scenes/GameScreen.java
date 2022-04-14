@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.seb.beroepsproduct.entities.characters.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
-import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.bulletshooter;
+import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
 import com.seb.beroepsproduct.entities.map.Door;
 
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
@@ -35,7 +35,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer{
 
 	@Override
 	public void setupEntitySpawners() {
-		var shooter = new bulletshooter(player1, 20);
+		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
 	}
 

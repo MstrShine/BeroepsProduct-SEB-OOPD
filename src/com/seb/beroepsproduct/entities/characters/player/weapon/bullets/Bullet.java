@@ -10,18 +10,22 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 
 import javafx.scene.paint.Color;
 
-public class bullet extends DynamicCircleEntity implements TimerContainer, Collider{
+public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider{
 
-	protected bullet(Player player, Coordinate2D initialLocation, double speed, int i) {
+	private int damage;
+	
+	protected Bullet(Player player, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
 		setRadius(10);
 		setFill(Color.YELLOW);
 		setSpeed(speed);
 		var totalBulletAngle = 15 * player.getPlayerLevel();;
-		var direction = player.getDirectionPlayer()-(totalBulletAngle/2)+( (i+1)*15);
+		var direction = player.getDirectionPlayer()-(totalBulletAngle/2)+( (bulletOffset+1)*15);
 		setDirection(direction+90);
 		setupTimers();
 		// TODO Auto-generated constructor stub
+		
+		this.damage = 10;
 	}
 
 	@Override
@@ -31,6 +35,8 @@ public class bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		addTimer(bullettimer);
 	}
 	
-
+	public int getDamage() {
+		return this.damage;
+	}
 
 }
