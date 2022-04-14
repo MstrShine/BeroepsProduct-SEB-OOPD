@@ -20,7 +20,7 @@ import javafx.scene.input.KeyCode;
 public class Player extends Character implements KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
 	double directionPlayer;
-	int PlayerLevel;
+	private int PlayerLevel;
 	
 	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
 		super(startLocation, new Size(150, 150), health);
@@ -42,7 +42,8 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100,-100), 0);
 		addEntity(pSprite);
 
-	}	
+	}
+	
 	
 	@Override
 	public void Hit(int damage) {

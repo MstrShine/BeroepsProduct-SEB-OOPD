@@ -3,14 +3,16 @@ package com.seb.beroepsproduct.entities.characters.player.weapon.bullets;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
 import com.github.hanyaeger.api.TimerContainer;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.CircleEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
+import com.seb.beroepsproduct.entities.characters.Enemy;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 import javafx.scene.paint.Color;
 
-public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider{
+public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider, Collided{
 
 	private int damage;
 	
@@ -25,7 +27,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		setupTimers();
 		// TODO Auto-generated constructor stub
 		
-		this.damage = 10;
+		this.damage = 3;
 	}
 
 	@Override
@@ -37,6 +39,13 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	
 	public int getDamage() {
 		return this.damage;
+	}
+
+	@Override
+	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Enemy)
+		remove();
+		
 	}
 
 }
