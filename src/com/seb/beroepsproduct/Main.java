@@ -14,8 +14,11 @@ public class Main extends YaegerGame {
 	
 	public Main() {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of main screen
-		WIDTH = gd.getDisplayMode().getWidth() - 100;
-		HEIGHT = gd.getDisplayMode().getHeight() - 100;
+		var x = gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
+		var y = gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
+		System.out.println("x: " + x + " y: " + y);
+		WIDTH = (int)(gd.getDisplayMode().getWidth() * x - 100);
+		HEIGHT = (int)(gd.getDisplayMode().getHeight() * y - 100);
 	}
 	
 	public static void main(String[] args) {
