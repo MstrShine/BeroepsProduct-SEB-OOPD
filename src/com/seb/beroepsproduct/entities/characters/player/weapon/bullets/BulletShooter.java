@@ -16,7 +16,7 @@ public class BulletShooter extends EntitySpawner {
 
 	private int nBullets;
 	private Character character;
-	private boolean shooting;
+	//private boolean shooting;
 
 	public BulletShooter(Character character, long reloadSpeed) {
 		super(reloadSpeed);
@@ -24,7 +24,7 @@ public class BulletShooter extends EntitySpawner {
 		if (character instanceof Player) {
 			var player = (Player) character;
 			this.nBullets = player.getPlayerLevel();
-			shooting = false;
+		//	shooting = false;
 		}
 
 		// TODO Auto-generated constructor stub
