@@ -12,7 +12,8 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 	
 	protected int health;
 	
-	protected CharacterHealthText text;
+	//protected CharacterHealthText text;
+	public CharacterHealthText text;
 
 	public Character(Coordinate2D location, Size size, int health) {
 		super(location);
@@ -20,6 +21,13 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 	}
 	
 	protected void Die() {
-		this.remove();
+		//this.remove();
+		this.setVisible(false);
 	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	
+	
 }

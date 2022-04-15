@@ -154,10 +154,12 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 		Bullet bullet;
 		if (collidingObject instanceof Robot && vulnerable) {
 			enemy = (Robot) collidingObject;
-			this.Hit(enemy.getDamage());
-			text.update();
-			vulnerable = false;
-			setupTimers();
+			if (enemy.isVisible()) {
+				this.Hit(enemy.getDamage());
+				text.update();
+				vulnerable = false;
+				setupTimers();
+			}
 		}
 		if (collidingObject instanceof Bullet && vulnerable) {
 			bullet = (Bullet) collidingObject;

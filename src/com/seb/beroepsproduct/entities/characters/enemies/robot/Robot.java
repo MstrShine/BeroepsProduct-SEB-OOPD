@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Robot extends Enemy {
+
 	protected int damage;
 	
 	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage) {
