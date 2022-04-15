@@ -4,6 +4,8 @@ import java.util.Set;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.TimerContainer;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
@@ -13,23 +15,31 @@ import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
+import com.seb.beroepsproduct.entities.characters.enemies.EnemyTimer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
+import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 
 import javafx.scene.input.KeyCode;
 
-public class Player extends Character implements KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
+public class Player extends Character implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
 	double directionPlayer;
 	private int PlayerLevel;
 	private boolean shooting;
 	private double speed;
+	protected boolean vulnerable;
 
 	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
 		super(startLocation, new Size(150, 150), health);
 		this.PlayerLevel = PlayerLevel;
 		shooting = false;
 		speed = 3;
+		vulnerable = true;
+	}
+
+	public void setVulnerable(boolean vulnerable) {
+		this.vulnerable = vulnerable;
 	}
 
 	public int getPlayerLevel() {
@@ -39,7 +49,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	public void setPlayerLevel(int playerLevel) {
 		PlayerLevel = playerLevel;
 	}
-	
+
 	@Override
 	protected void setupEntities() {
 		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
@@ -141,16 +151,38 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	@Override
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
-		if (collidingObject instanceof Robot) {
+		Bullet bullet;
+		if (collidingObject instanceof Robot && vulnerable) {
 			enemy = (Robot) collidingObject;
 			this.Hit(enemy.getDamage());
+			text.update();
+			vulnerable = false;
+			setupTimers();
 		}
+		if (collidingObject instanceof Bullet && vulnerable) {
+			bullet = (Bullet) collidingObject;
+			if (bullet.character instanceof Enemy) {
+				this.Hit(bullet.getDamage());
+				text.update();
+				vulnerable = false;
+				setupTimers();
+			}
+		}
+
 	}
 
 	@Override
 	public String GetHealth() {
-		// TODO Auto-generated method stub
-		return ""+health;
+		return "" + health;
 	}
 
+	@Override
+	public void setupTimers() {
+		addTimer(new InvulnerabilityTimer(this, 50));
+		// this.createInvulnerabilityTimer();
+	}
+	/*
+	 * protected void createInvulnerabilityTimer() { addTimer(new
+	 * InvulnerabilityTimer(this, 50)); }
+	 */
 }

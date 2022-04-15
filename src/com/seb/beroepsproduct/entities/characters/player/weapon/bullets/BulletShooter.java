@@ -37,15 +37,19 @@ public class BulletShooter extends EntitySpawner {
 			var player = (Player) character;
 			if (player.isShooting()) {
 				for (int i = 0; i < nBullets; i++) {
-					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 20, i));
+					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 15, i));
 				}
 			}
 		}
 
 		if (character instanceof Robot) {
 			var robot = (Robot) character;
-			for (int i = 0; i < 9; i++) {
-				spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 10, i));
+			if (robot.isVisible()) {
+				for (int i = 0; i < 9; i++) {
+					//var bulletOrigin = new Coordinate2D( robot.getAnchorLocation().getX()+100, robot.getAnchorLocation().getY());
+					spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 10, i));
+					//spawn(new Bullet(robot, bulletOrigin, 10, i));
+				}
 			}
 		}
 

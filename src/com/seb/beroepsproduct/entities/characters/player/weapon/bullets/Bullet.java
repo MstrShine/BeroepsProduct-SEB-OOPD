@@ -17,7 +17,8 @@ import javafx.scene.paint.Color;
 public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider, Collided {
 
 	private int damage;
-	private Character character;
+	public Character character;
+	private Coordinate2D initialLocation;
 
 	protected Bullet(Character character, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
@@ -45,11 +46,19 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			this.damage = 10;
 		}
 	}
+	
+
+	protected double determineRadius(Character character) {
+		double bulletSize = 30 - (initialLocation.distance(character.getAnchorLocation())/20);
+		if (bulletSize < 0) {bulletSize = 0;}
+		return bulletSize;
+	}
+	
 
 	@Override
 	public void setupTimers() {
 		// TODO Auto-generated method stub
-		var bullettimer = new BulletTimer(this, 300);
+		var bullettimer = new BulletTimer(this, 500);
 		addTimer(bullettimer);
 	}
 

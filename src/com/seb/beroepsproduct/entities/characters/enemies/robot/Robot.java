@@ -16,9 +16,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Robot extends Enemy {
-
-	public Robot(Player player, int health) {
-		super(new Coordinate2D(), new Size(10, 10), player, health);
+	protected int damage;
+	
+	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage) {
+		super(spawnlocation, new Size(10, 10), player, health, damage);
 		this.damage = 10;
 	}
 
@@ -51,14 +52,16 @@ public class Robot extends Enemy {
 	public void onCollision(Collider collidingObject) {
 		if (collidingObject instanceof Bullet) {
 			var bullet = (Bullet) collidingObject;
-			Hit(bullet.getDamage());
-			text.update();
+				if (bullet.character instanceof Player) {
+					Hit(bullet.getDamage());
+					text.update();
+				}
 		}
 	}
 
 	@Override
 	protected void setupEntities() {
-		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(100, 200), new Size(150,150));
+		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(-75,-75), new Size(150,150));
 		addEntity(robotSprite);
 		/*
 		 * var robotText = new TextEntity( this.getLocationInScene() //new
@@ -68,7 +71,7 @@ public class Robot extends Enemy {
 		 * FontWeight.SEMI_BOLD, 80)); addEntity(robotText);
 		 */
 		// var textRobot = new textEntity(this, this.getAnchorLocation());
-		this.text = new CharacterHealthText(this, new Coordinate2D(100, 200));
+		this.text = new CharacterHealthText(this, new Coordinate2D(0,-75));
 		addEntity(this.text);
 	}
 

@@ -14,6 +14,8 @@ public class BulletTimer extends Timer {
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
+			//bullet.determineRadius(bullet.character);
+			//gaat kapot
 			bullet.remove();
 	}
 
