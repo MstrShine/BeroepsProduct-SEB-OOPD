@@ -5,12 +5,18 @@ import java.util.ArrayList;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.seb.beroepsproduct.entities.scoreTextEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
 import com.seb.beroepsproduct.entities.map.Door;
+
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
@@ -33,6 +39,14 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var player = new Player(new Coordinate2D(getWidth() / 2, getHeight() / 2), 100, 3);
 		player1 = player;
 		addEntity(player1);
+		
+		var scoreText = new TextEntity(new Coordinate2D(50,50), "score");
+	    scoreText.setFont(Font.font("Roboto",FontWeight.NORMAL, 30));
+	    scoreText.setFill(Color.WHITE);
+		addEntity(scoreText);
+		
+		var score = new scoreTextEntity(player1, new Coordinate2D(50, 90));
+		addEntity(score);
 
 		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);

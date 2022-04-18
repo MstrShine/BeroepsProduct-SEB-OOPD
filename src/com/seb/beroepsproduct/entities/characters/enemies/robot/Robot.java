@@ -18,10 +18,12 @@ import javafx.scene.text.FontWeight;
 public class Robot extends Enemy {
 
 	protected int damage;
+	protected Player player;
 	
 	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage) {
 		super(spawnlocation, new Size(10, 10), player, health, damage);
 		this.damage = 10;
+		this.player = player;
 	}
 
 	@Override
@@ -32,8 +34,10 @@ public class Robot extends Enemy {
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
-		if (this.health <= 0) {
+		if (this.health <= 0 && this.isVisible()) {
+			player.setScore(player.getScore()+ 100+( ( (int)this.getLevel()-1)*50) );
 			this.Die();
+			System.out.println(""+player.getScore());
 		}
 	}
 

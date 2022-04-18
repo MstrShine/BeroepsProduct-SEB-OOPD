@@ -11,6 +11,7 @@ import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTi
 public abstract class Enemy extends Character implements Collided, TimerContainer {
 
 	protected int damage;
+	protected double level;
 	private Player player;
 
 	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage) {
@@ -19,6 +20,7 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		this.damage = damage;
 		setSpeed(0.5);
 		setDirection(90);
+		level = 1;
 	}
 
 	abstract public int getDamage();
@@ -26,6 +28,15 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 
 	protected void createEnemyTimer() {
 		addTimer(new EnemyTimer(this, this.player, 50));
+	}
+
+	public double getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = 1 + Math.floor(player.getScore()/100);
+		//elke 100 punten die een speler haalt worden de tegenstanders sterker (1 level erbij)
 	}
 	
 

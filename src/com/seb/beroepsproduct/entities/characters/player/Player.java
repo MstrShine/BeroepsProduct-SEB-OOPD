@@ -29,6 +29,11 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 	private boolean shooting;
 	private double speed;
 	protected boolean vulnerable;
+	protected int score;
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
 		super(startLocation, new Size(150, 150), health);
@@ -36,6 +41,11 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 		shooting = false;
 		speed = 3;
 		vulnerable = true;
+		score = 0;
+	}
+
+	public int getScore() {
+		return score;
 	}
 
 	public void setVulnerable(boolean vulnerable) {
