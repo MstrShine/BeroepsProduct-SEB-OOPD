@@ -28,6 +28,10 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 	public void setHealth(int health) {
 		this.health = health;
 	}
+
+	public int getHealth() {
+		return health;
+	}
 	
 	
 }

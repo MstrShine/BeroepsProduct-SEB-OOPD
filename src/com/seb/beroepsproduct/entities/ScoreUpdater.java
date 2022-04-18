@@ -15,7 +15,6 @@ public class ScoreUpdater extends Timer {
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		entity.setScoreText();
-		System.out.println("ben aan updaten");
 	}
 
 }

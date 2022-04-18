@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.seb.beroepsproduct.entities.HealthDisplay;
 import com.seb.beroepsproduct.entities.scoreTextEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
@@ -36,9 +37,12 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupEntities() {
-		var player = new Player(new Coordinate2D(getWidth() / 2, getHeight() / 2), 100, 3);
+		var player = new Player(new Coordinate2D(getWidth() / 2, getHeight() / 2), 5, 3);
 		player1 = player;
 		addEntity(player1);
+		
+		var healthDisplay = new HealthDisplay(new Coordinate2D(getWidth()/2-400, 100), player1);
+		addEntity(healthDisplay);
 		
 		var scoreText = new TextEntity(new Coordinate2D(50,50), "score");
 	    scoreText.setFont(Font.font("Roboto",FontWeight.NORMAL, 30));

@@ -69,7 +69,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (character instanceof Player) {
-			if (collidingObject instanceof Enemy) {
+			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
 				remove();
 			}
 		}

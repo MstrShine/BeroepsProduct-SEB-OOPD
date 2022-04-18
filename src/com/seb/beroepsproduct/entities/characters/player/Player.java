@@ -22,7 +22,8 @@ import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 
 import javafx.scene.input.KeyCode;
 
-public class Player extends Character implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
+public class Player extends Character
+		implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
 	double directionPlayer;
 	private int PlayerLevel;
@@ -30,6 +31,7 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 	private double speed;
 	protected boolean vulnerable;
 	protected int score;
+	protected int maxHealth;
 
 	public void setScore(int score) {
 		this.score = score;
@@ -42,6 +44,15 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 		speed = 3;
 		vulnerable = true;
 		score = 0;
+		maxHealth = 7;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 
 	public int getScore() {
@@ -162,22 +173,27 @@ public class Player extends Character implements TimerContainer, Collided, KeyLi
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
 		Bullet bullet;
-		if (collidingObject instanceof Robot && vulnerable) {
-			enemy = (Robot) collidingObject;
-			if (enemy.isVisible()) {
-				this.Hit(enemy.getDamage());
-				text.update();
-				vulnerable = false;
-				setupTimers();
+		if (vulnerable) {
+
+			if (collidingObject instanceof Robot) {
+				enemy = (Robot) collidingObject;
+				if (enemy.isVisible()) {
+					// this.Hit(enemy.getDamage());
+					this.Hit(1);
+					text.update();
+					setVulnerable(false);
+					setupTimers();
+				}
 			}
-		}
-		if (collidingObject instanceof Bullet && vulnerable) {
-			bullet = (Bullet) collidingObject;
-			if (bullet.character instanceof Enemy) {
-				this.Hit(bullet.getDamage());
-				text.update();
-				vulnerable = false;
-				setupTimers();
+			if (collidingObject instanceof Bullet) {
+				bullet = (Bullet) collidingObject;
+				if (bullet.character instanceof Enemy) {
+					// this.Hit(bullet.getDamage());
+					this.Hit(1);
+					text.update();
+					setVulnerable(false);
+					setupTimers();
+				}
 			}
 		}
 
