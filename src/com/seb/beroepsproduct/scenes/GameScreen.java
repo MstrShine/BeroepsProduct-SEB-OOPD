@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.entities.HealthDisplay;
 import com.seb.beroepsproduct.entities.scoreTextEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
@@ -20,6 +21,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
+	
+	private Main main;
 
 	public Player player1;
 	//public Robot robot;
@@ -27,7 +30,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	private ArrayList<Robot> robots = new ArrayList<Robot>();
 	private int nRobots = 3; 
 	
-	
+	public GameScreen(Main main) {
+		this.main = main;
+	}
 
 	@Override
 	public void setupScene() {
@@ -52,7 +57,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var score = new scoreTextEntity(player1, new Coordinate2D(50, 90));
 		addEntity(score);
 
-		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
+		var door = new Door(main, new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);
 /*
 		var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10);

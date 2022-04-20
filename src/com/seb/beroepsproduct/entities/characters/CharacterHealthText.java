@@ -19,7 +19,7 @@ public class CharacterHealthText extends DynamicTextEntity {
 		super(initialLocation);
 		this.character = character;
 		this.initialHealth = character.GetHealth();
-	    setFont(Font.font("Roboto",FontWeight.NORMAL, 30));
+	    setFont(Font.font("Roboto",FontWeight.NORMAL, 20));
 	    setFill(Color.YELLOW);
 	    setHealthText();
 	}

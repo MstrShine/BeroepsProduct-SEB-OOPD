@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
+import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
@@ -73,17 +74,20 @@ public class Player extends Character
 
 	@Override
 	protected void setupEntities() {
-		var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
-		addEntity(pSpriteGun);
-		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-100, -100), 0);
+		//var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
+		//addEntity(pSpriteGun);
+		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-50,-50), 0, new Size(100,100));
 		addEntity(pSprite);
-		this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
-		addEntity(this.text);
+		//this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
+		//addEntity(this.text);
 	}
 
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
+	    var owSound = new SoundClip("OW.mp3");
+	    owSound.play();
+		
 	}
 
 	@Override

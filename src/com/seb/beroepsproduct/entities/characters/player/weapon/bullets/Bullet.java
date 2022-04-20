@@ -24,7 +24,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		super(initialLocation);
 		this.character = character;
 		if (character instanceof Player) {
-			setRadius(10);
+			setRadius(8);
 			setFill(Color.YELLOW);
 			setSpeed(speed);
 			var player = (Player) character;
@@ -37,7 +37,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		}
 
 		if (character instanceof Robot) {
-			setRadius(5);
+			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
 			// var robot = (Robot) character;
@@ -47,13 +47,13 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		}
 	}
 	
-
+/*
 	protected double determineRadius(Character character) {
 		double bulletSize = 30 - (initialLocation.distance(character.getAnchorLocation())/20);
 		if (bulletSize < 0) {bulletSize = 0;}
 		return bulletSize;
 	}
-	
+*/	
 
 	@Override
 	public void setupTimers() {

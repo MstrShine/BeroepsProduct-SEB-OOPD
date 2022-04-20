@@ -3,6 +3,7 @@ package com.seb.beroepsproduct.entities;
 import java.util.ArrayList;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
@@ -24,7 +25,7 @@ public class HealthDisplay extends DynamicCompositeEntity implements TimerContai
 		for (int i = 0; i<player.getMaxHealth(); i++) {
 			System.out.println(""+player.getMaxHealth());
 			//var heartSprite = new HeartSprite(new Coordinate2D (this.getAnchorLocation().getX()+180*i, this.getAnchorLocation().getY()));
-			var heartSprite = new HeartSprite(new Coordinate2D (0+i*180,0), player, i);
+			var heartSprite = new HeartSprite(new Coordinate2D (0+i*40,0), player, i, new Size(40,40));
 			hearts.add(heartSprite);
 		}
 		for (HeartSprite hrt : hearts) {addEntity(hrt);}
