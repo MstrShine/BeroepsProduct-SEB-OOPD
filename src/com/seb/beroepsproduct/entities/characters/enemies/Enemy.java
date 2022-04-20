@@ -35,8 +35,8 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 	}
 
 	public void setLevel() {
-		this.level = 1 + Math.floor(player.getScore()/100);
-		//elke 100 punten die een speler haalt worden de tegenstanders sterker (1 level erbij)
+		this.level = 1 + Math.floor(player.getScore()/200);
+		//elke 200 punten die een speler haalt worden de tegenstanders sterker (1 level erbij)
 	}
 	
 

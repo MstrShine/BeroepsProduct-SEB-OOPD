@@ -40,8 +40,11 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
+			var robot = (Robot) character;
+			var nBullets = 3 + robot.getLevel();
+			setSpeed(8+robot.getLevel()*2); //nu schiet robot harder per level
 			// var robot = (Robot) character;
-			setDirection(bulletOffset * 45);
+			setDirection(bulletOffset * 360/nBullets);
 			setupTimers();
 			this.damage = 10;
 		}

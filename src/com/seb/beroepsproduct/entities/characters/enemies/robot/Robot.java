@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class Robot extends Enemy {
+public class Robot extends Enemy{
 
 	protected int damage;
 	protected Player player;
