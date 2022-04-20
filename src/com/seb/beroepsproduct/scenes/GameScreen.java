@@ -14,6 +14,7 @@ import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
+import com.seb.beroepsproduct.entities.items.ItemDropper;
 import com.seb.beroepsproduct.entities.map.Door;
 
 import javafx.scene.paint.Color;
@@ -83,9 +84,12 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		for (Robot rbt : robots) {
 			var shooter2 = new BulletShooter(rbt, 500);
 			addEntitySpawner(shooter2);
+			var itemDropper = new ItemDropper(rbt, 200);
+			addEntitySpawner(itemDropper);
 		}
 		
-		
+		//TODO: Waarom moet de constructor ItemDropper nu per se een robot ontvangen terwijl de bulletshooter character accepteert/??????
+
 		
 		//var eSpawner = new EnemySpawner(player1, robot, pickEnemyLocation(player1), 500, 10, 3);
 		//addEntitySpawner(eSpawner);
