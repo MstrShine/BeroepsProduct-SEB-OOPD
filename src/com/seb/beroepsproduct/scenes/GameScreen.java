@@ -23,7 +23,6 @@ import javafx.scene.text.FontWeight;
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	
 	private Main main;
-
 	public Player player1;
 	//public Robot robot;
 	
@@ -67,7 +66,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 */
 		
 		for (int i = 0; i<nRobots; i++) {
-			var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10);
+			var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10, this);
 			robots.add(robot);
 		}
 		for (Robot rbt : robots) {addEntity(rbt);}
@@ -91,12 +90,25 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		//var eSpawner = new EnemySpawner(player1, robot, pickEnemyLocation(player1), 500, 10, 3);
 		//addEntitySpawner(eSpawner);
 	}
-
+	
+	/*
 	private Coordinate2D pickEnemyLocation(Player player) {
 		var xCoord = Math.random() * getWidth();
 		var yCoord = Math.random() * getHeight();
 		Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
 		return tempCoord;
+	}
+	*/
+	
+	public Coordinate2D pickEnemyLocation(Player player) {
+		boolean chosen = false;
+		while (!chosen) {
+		var xCoord = Math.random() * getWidth();
+		var yCoord = Math.random() * getHeight();
+		Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
+		if (tempCoord.distance(player.getAnchorLocation()) > 500){return tempCoord;}
+		}
+		return (new Coordinate2D(0,0));
 	}
 
 }

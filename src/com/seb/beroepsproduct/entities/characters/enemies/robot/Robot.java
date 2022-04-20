@@ -1,15 +1,21 @@
 package com.seb.beroepsproduct.entities.characters.enemies.robot;
 
+import java.util.List;
+
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
+import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
+import com.github.hanyaeger.api.scenes.YaegerScene;
 import com.seb.beroepsproduct.entities.characters.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
+import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,9 +25,11 @@ public class Robot extends Enemy{
 
 	protected int damage;
 	protected Player player;
+	protected GameScreen screen;
 	
-	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage) {
-		super(spawnlocation, new Size(10, 10), player, health, damage);
+	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
+		super(spawnlocation, new Size(10, 10), player, health, damage, screen);
+		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
 	}
