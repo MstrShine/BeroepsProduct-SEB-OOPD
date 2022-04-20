@@ -44,8 +44,10 @@ public class EnemyTimer extends Timer {
 				if (timestamp - respawnTimestamp > 5000000000d) {
 					enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() * 700));
 					//ik kon hier niet de functies getWidth/height gebruiken...
+					enemy.setLevel();
 					enemy.setVisible(true);
-					enemy.setHealth(500);
+					enemy.setMaxHealth(500+ (int)(enemy.level*50));
+					enemy.setHealth(enemy.getMaxHealth());
 					enemy.text.update();
 					respawnTimestamp = 0;
 				}

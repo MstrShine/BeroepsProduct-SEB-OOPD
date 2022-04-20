@@ -35,7 +35,7 @@ public class Robot extends Enemy {
 	public void Hit(int damage) {
 		this.health -= damage;
 		if (this.health <= 0 && this.isVisible()) {
-			player.setScore(player.getScore()+ 100+( ( (int)this.getLevel()-1)*50) );
+			player.setScore(player.getScore()+ 100+( ( (int)this.getLevel()-1)*10) );
 			this.Die();
 			System.out.println(""+player.getScore());
 		}
@@ -59,7 +59,7 @@ public class Robot extends Enemy {
 			var bullet = (Bullet) collidingObject;
 				if (bullet.character instanceof Player) {
 					Hit(bullet.getDamage());
-					text.update();
+					text.setHealthText();
 				}
 		}
 	}
@@ -68,6 +68,8 @@ public class Robot extends Enemy {
 	protected void setupEntities() {
 		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(-50,-50), new Size(100,100));
 		addEntity(robotSprite);
+		this.text = new CharacterHealthText(this, new Coordinate2D(-40,-60));
+		addEntity(this.text);
 		/*
 		 * var robotText = new TextEntity( this.getLocationInScene() //new
 		 * Coordinate2D(getWidth() / 2, getHeight() / 2) , ""+this.health );
@@ -76,8 +78,7 @@ public class Robot extends Enemy {
 		 * FontWeight.SEMI_BOLD, 80)); addEntity(robotText);
 		 */
 		// var textRobot = new textEntity(this, this.getAnchorLocation());
-		this.text = new CharacterHealthText(this, new Coordinate2D(-40,-60));
-		addEntity(this.text);
+
 	}
 
 	@Override

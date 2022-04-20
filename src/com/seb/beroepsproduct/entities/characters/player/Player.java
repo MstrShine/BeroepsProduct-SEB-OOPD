@@ -178,23 +178,22 @@ public class Player extends Character
 		Enemy enemy;
 		Bullet bullet;
 		if (vulnerable) {
-
 			if (collidingObject instanceof Robot) {
 				enemy = (Robot) collidingObject;
 				if (enemy.isVisible()) {
 					// this.Hit(enemy.getDamage());
 					this.Hit(1);
-					text.update();
+					//text.update();
 					setVulnerable(false);
 					setupTimers();
 				}
 			}
-			if (collidingObject instanceof Bullet) {
+			else if (collidingObject instanceof Bullet) {
 				bullet = (Bullet) collidingObject;
 				if (bullet.character instanceof Enemy) {
 					// this.Hit(bullet.getDamage());
 					this.Hit(1);
-					text.update();
+					//text.update();
 					setVulnerable(false);
 					setupTimers();
 				}

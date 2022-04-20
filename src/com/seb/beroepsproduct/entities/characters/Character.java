@@ -11,6 +11,7 @@ import com.seb.beroepsproduct.scenes.GameScreen;
 public abstract class Character extends DynamicCompositeEntity implements ICharacter, Collided, Collider {
 	
 	protected int health;
+	protected int maxHealth;
 	
 	//protected CharacterHealthText text;
 	public CharacterHealthText text;
@@ -18,6 +19,7 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 	public Character(Coordinate2D location, Size size, int health) {
 		super(location);
 		this.health = health;
+		this.maxHealth = health;
 	}
 	
 	protected void Die() {
@@ -27,6 +29,18 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+	
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+	
+	public String getMaxHealthString() {
+		return ""+maxHealth;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 
 	public int getHealth() {

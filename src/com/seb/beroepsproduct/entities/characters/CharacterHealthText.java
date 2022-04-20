@@ -13,12 +13,12 @@ public class CharacterHealthText extends DynamicTextEntity {
 
 	//private String robotHealth;
 	private Character character;
-	private String initialHealth;
+	//private String initialHealth;
 	
 	public CharacterHealthText(Character character, Coordinate2D initialLocation) {
 		super(initialLocation);
 		this.character = character;
-		this.initialHealth = character.GetHealth();
+		//this.initialHealth = character.GetHealth();
 	    setFont(Font.font("Roboto",FontWeight.NORMAL, 20));
 	    setFill(Color.YELLOW);
 	    setHealthText();
@@ -29,7 +29,7 @@ public class CharacterHealthText extends DynamicTextEntity {
 	}
 	  
 	  public void setHealthText() {
-		 setText(character.GetHealth() + " / " + this.initialHealth);
+		 setText(character.GetHealth() + " / " + character.getMaxHealthString());
 	  }
 	
 }

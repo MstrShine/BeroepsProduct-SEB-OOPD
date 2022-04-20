@@ -73,6 +73,11 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 				remove();
 			}
 		}
+		else if (character instanceof Enemy) {
+			if (collidingObject instanceof Player) {
+				remove();
+			}
+		}
 	}
 
 }
