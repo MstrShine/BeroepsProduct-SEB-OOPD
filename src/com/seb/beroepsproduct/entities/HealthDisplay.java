@@ -17,7 +17,6 @@ public class HealthDisplay extends DynamicCompositeEntity implements TimerContai
 	public HealthDisplay(Coordinate2D initialLocation, Player player) {
 		super(initialLocation);
 		this.player = player;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,8 +36,6 @@ public class HealthDisplay extends DynamicCompositeEntity implements TimerContai
 	@Override
 	public void setupTimers() {
 		addTimer(new HealthDisplayUpdater(this, 50, player));
-		// TODO Auto-generated method stub
-
 	}
 
 }

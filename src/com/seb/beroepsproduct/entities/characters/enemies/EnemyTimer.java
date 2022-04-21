@@ -19,7 +19,6 @@ public class EnemyTimer extends Timer {
 		this.enemy = enemy;
 		this.player = player;
 		this.screen = screen;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class EnemyTimer extends Timer {
 					// enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() *
 					// 700));
 					enemy.setAnchorLocation(screen.pickEnemyLocation(player));
-					// TODO!
+					// TODO
 					// hier reset ik de enemy met andere stats aan de hand van level
 					enemy.setLevel();
 					enemy.setVisible(true);

@@ -15,7 +15,6 @@ public class WeaponSprite extends SpriteEntity {
 		super(resource, initialLocation);
 		this.rotation = rotation;
 		setRotate(rotation);
-		// TODO Auto-generated constructor stub
 	}
 
 }

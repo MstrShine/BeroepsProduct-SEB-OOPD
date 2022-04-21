@@ -32,7 +32,6 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + ((bulletOffset + 1) * 15);
 			setDirection(direction + 90);
 			setupTimers();
-			// TODO Auto-generated constructor stub
 			this.damage = 3;
 		}
 
@@ -58,7 +57,6 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 	@Override
 	public void setupTimers() {
-		// TODO Auto-generated method stub
 		var bullettimer = new BulletTimer(this, 500);
 		addTimer(bullettimer);
 	}

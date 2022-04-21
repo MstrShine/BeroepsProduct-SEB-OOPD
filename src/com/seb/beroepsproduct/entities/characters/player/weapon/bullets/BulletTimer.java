@@ -9,11 +9,11 @@ public class BulletTimer extends Timer {
 	protected BulletTimer(Bullet bullet, long intervalInMs) {
 		super(intervalInMs);
 		this.bullet = bullet;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
+		// TODO:
 		// bullet.determineRadius(bullet.character);
 		// gaat kapot
 		bullet.remove();

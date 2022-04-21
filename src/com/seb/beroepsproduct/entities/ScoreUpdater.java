@@ -9,7 +9,6 @@ public class ScoreUpdater extends Timer {
 	protected ScoreUpdater(scoreTextEntity entity, long intervalInMs) {
 		super(intervalInMs);
 		this.entity = entity;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

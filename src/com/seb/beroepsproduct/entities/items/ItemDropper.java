@@ -1,5 +1,7 @@
 package com.seb.beroepsproduct.entities.items;
 
+import java.util.Random;
+
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.EntitySpawner;
@@ -13,40 +15,41 @@ public class ItemDropper extends EntitySpawner {
 		super(intervalInMs);
 		this.robot = rbt;
 		itemDropped = false;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void spawnEntities() {
 		if (!robot.isVisible() && !itemDropped) {
-			var randomNumber = Math.random();
+			var random = new Random();
+			var randomNumber = random.nextInt(1, 101); // lower bound inclusive, higher bound exclusive
+
 			boolean itemVisible;
 			var tempLoc = new Coordinate2D(robot.getAnchorLocation().getX() - 50,
 					robot.getAnchorLocation().getY() - 50);
 
-			if (randomNumber < 0.5) {
+			if (randomNumber <= 50) {
 				itemVisible = false;
 			} else {
 				itemVisible = true;
 			}
 
-			if (randomNumber < 0.7) {
+			if (randomNumber >= 1 && randomNumber < 70) { // ~70% kans op key
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
-			} else if (randomNumber < 0.8) {
+			}
+			if (randomNumber >= 70 && randomNumber < 80) { // ~10% kans op max health
 				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
-			} else if (randomNumber < 0.9) {
+			}
+			if (randomNumber >= 80 && randomNumber < 90) { // ~10% kans op health
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
-			} else if (randomNumber < 1) {
+			}
+			if (randomNumber >= 90 && randomNumber <= 100) { // ~10% kans op weapon upgrade
 				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
 			}
-
 		}
-		// TODO Auto-generated method stub
-
 	}
 
 	public void setItemDropped(boolean itemDropped) {

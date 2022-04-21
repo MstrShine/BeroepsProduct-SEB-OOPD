@@ -8,7 +8,6 @@ public class RobotSprite extends SpriteEntity {
 
 	protected RobotSprite(String resource, Coordinate2D initialLocation, Size size) {
 		super(resource, initialLocation, size);
-		// TODO Auto-generated constructor stub
 	}
 
 }

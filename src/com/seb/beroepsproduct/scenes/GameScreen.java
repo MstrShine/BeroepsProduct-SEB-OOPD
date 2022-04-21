@@ -36,7 +36,6 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupScene() {
-		// TODO Auto-generated method stub
 		setBackgroundImage("sprites/map.png", true);
 	}
 

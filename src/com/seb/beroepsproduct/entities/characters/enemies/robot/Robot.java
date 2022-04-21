@@ -51,14 +51,10 @@ public class Robot extends Enemy {
 
 	@Override
 	public void Move(double direction) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void Move(Direction direction) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

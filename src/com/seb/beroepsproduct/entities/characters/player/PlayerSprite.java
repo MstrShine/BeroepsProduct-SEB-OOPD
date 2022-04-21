@@ -9,7 +9,6 @@ public class PlayerSprite extends SpriteEntity {
 	protected PlayerSprite(String resource, Coordinate2D initialLocation, int rotation, Size size) {
 		super(resource, initialLocation, size);
 		setRotate(rotation);
-		// TODO Auto-generated constructor stub
 	}
 
 }

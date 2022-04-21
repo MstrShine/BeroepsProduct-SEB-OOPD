@@ -24,8 +24,6 @@ public class BulletShooter extends EntitySpawner {
 			var player = (Player) character;
 			this.nBullets = player.getPlayerLevel();
 		}
-
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

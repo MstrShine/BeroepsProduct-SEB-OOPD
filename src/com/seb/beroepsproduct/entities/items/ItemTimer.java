@@ -16,7 +16,6 @@ public class ItemTimer extends Timer {
 	public void onAnimationUpdate(long timestamp) {
 		maxHealthItem.itemDropper.setItemDropped(false);
 		maxHealthItem.remove();
-		// TODO Auto-generated method stub
 
 	}
 

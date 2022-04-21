@@ -16,7 +16,6 @@ public class HeartSprite extends DynamicSpriteEntity {
 		} else {
 			setCurrentFrameIndex(1);
 		}
-		// TODO Auto-generated constructor stub
 	}
 
 }
