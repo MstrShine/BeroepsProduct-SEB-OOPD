@@ -6,15 +6,15 @@ import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTimer;
 
-public class MaxHealthItem extends DynamicSpriteEntity implements TimerContainer{
-	
+public class MaxHealthItem extends DynamicSpriteEntity implements TimerContainer {
+
 	protected ItemDropper itemDropper;
-	
-	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper) {
-		super(resource, initialLocation, new Size(100,100));
-		setCurrentFrameIndex(0);
+
+	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible) {
+		super(resource, initialLocation, new Size(100, 100));
+		//setCurrentFrameIndex(0);
 		this.itemDropper = itemDropper;
-		// TODO Auto-generated constructor stub
+		setVisible(visible);
 	}
 
 	@Override
