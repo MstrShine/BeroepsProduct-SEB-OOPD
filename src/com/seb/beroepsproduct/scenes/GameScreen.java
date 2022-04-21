@@ -30,6 +30,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	private ArrayList<Robot> robots = new ArrayList<Robot>();
 	private int nRobots = 3;
 
+	/**
+	 * 
+	 * @param main
+	 */
 	public GameScreen(Main main) {
 		this.main = main;
 	}
@@ -102,6 +106,11 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	 * }
 	 */
 
+	/**
+	 * picks location for spawning enemy
+	 * @param player player object
+	 * @return coordinates for spawning
+	 */
 	public Coordinate2D pickEnemyLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
