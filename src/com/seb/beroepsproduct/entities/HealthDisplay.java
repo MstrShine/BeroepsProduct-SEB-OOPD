@@ -28,13 +28,9 @@ public class HealthDisplay extends EntitySpawner{
 			
 		hearts.clear();
 		for (int i = 0; i < player.getMaxHealth(); i++) {
-			System.out.println("" + player.getMaxHealth());
-			// var heartSprite = new HeartSprite(new Coordinate2D
-			// (this.getAnchorLocation().getX()+180*i, this.getAnchorLocation().getY()));
 			var heartSprite = new HeartSprite(new Coordinate2D(150 + i * 40, 40), player, i, new Size(40, 40));
 			hearts.add(heartSprite);
 		}
-		System.out.println("hearts array: " + hearts.size());
 		
 		for (HeartSprite hrt : hearts) {
 			spawn(hrt);

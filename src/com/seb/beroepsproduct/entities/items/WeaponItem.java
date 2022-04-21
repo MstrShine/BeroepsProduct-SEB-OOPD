@@ -17,7 +17,11 @@ public class WeaponItem extends Item {
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		// TODO Auto-generated method stub
+		if(collidingObject instanceof Player && isVisible()) {
+			var newWeaponLevel = player.getWeaponLevel() +1;
+			player.setWeaponLevel(newWeaponLevel);
+			setVisible(false);
+		}
 		
 	}
 }

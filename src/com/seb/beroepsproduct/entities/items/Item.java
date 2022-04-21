@@ -15,6 +15,7 @@ abstract class Item extends DynamicSpriteEntity implements TimerContainer, Colli
 	public Item(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
 		super(resource, initialLocation, new Size(100, 100));
 		this.itemDropper = itemDropper;
+		this.player = player;
 		setVisible(visible);
 	}
 	

@@ -23,32 +23,30 @@ public class ItemDropper extends EntitySpawner {
 	@Override
 	protected void spawnEntities() {
 		if (!robot.isVisible() && !itemDropped) {
-			var random = new Random();
-			var randomNumber = random.nextInt(1, 101); // lower bound inclusive, higher bound exclusive
+			var randomNumber = Math.random();
 
-			boolean itemVisible;
+			boolean itemVisible = true;
 			var tempLoc = new Coordinate2D(robot.getAnchorLocation().getX() - 50,
 					robot.getAnchorLocation().getY() - 50);
-			
-			if (randomNumber <= 60) {
+
+			if (randomNumber < 0.5) {
 				itemVisible = false;
-			} else {
-				itemVisible = true;
 			}
 
-			if (randomNumber >= 1 && randomNumber < 70) { // ~70% kans op key
+			if (randomNumber < 0.70) { // ~10% kans op key
+				System.out.println("randomNumber for key: " + randomNumber);
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			}
-			if (randomNumber >= 70 && randomNumber < 80) { // ~10% kans op max health
+			} else if (randomNumber < 0.80) { // ~10% kans op max health
+				System.out.println("randomNumber for maxH: " + randomNumber);
 				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			}
-			if (randomNumber >= 80 && randomNumber < 90) { // ~10% kans op health
+			} else if (randomNumber < 0.90) { // ~10% kans op health
+				System.out.println("randomNumber for Health: " + randomNumber);
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			}
-			if (randomNumber >= 90 && randomNumber <= 100) { // ~10% kans op weapon upgrade
+			} else if (randomNumber <= 1) { // ~10% kans op weapon upgrade
+				System.out.println("randomNumber for weapon: " + randomNumber);
 				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}

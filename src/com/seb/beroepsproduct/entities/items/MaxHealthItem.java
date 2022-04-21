@@ -12,21 +12,19 @@ import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTi
 public class MaxHealthItem extends Item{
 
 	protected ItemDropper itemDropper;
-	private Player player;
 
 	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
 			Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
-		this.player = player;
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Player) {
+		if (collidingObject instanceof Player && isVisible()) {
 			var newMaxHealth = player.getMaxHealth() + 1;
 			player.setMaxHealth(newMaxHealth);
 			//System.out.println("" + player.getMaxHealth());
-			remove();
+			setVisible(false);
 		}
 
 	}

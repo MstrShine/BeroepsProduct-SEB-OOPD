@@ -13,13 +13,16 @@ public class KeyItem extends Item {
 	}
 	
 	public void setupTimers() {
-		var itemTimer = new ItemTimer(this, Long.MAX_VALUE);
+		var itemTimer = new ItemTimer(this, 60000);
 		addTimer(itemTimer);
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		// TODO Auto-generated method stub
+		if(collidingObject instanceof Player && isVisible()) {
+			player.setPlayerHasKey(true);
+			setVisible(false);
+		}
 		
 	}
 }

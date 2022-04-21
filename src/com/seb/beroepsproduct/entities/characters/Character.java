@@ -12,14 +12,16 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 
 	protected int health;
 	protected int maxHealth;
+	protected GameScreen screen;
 
 	// protected CharacterHealthText text;
 	public CharacterHealthText text;
 
-	public Character(Coordinate2D location, Size size, int health) {
+	public Character(Coordinate2D location, Size size, int health, GameScreen screen) {
 		super(location);
 		this.health = health;
 		this.maxHealth = health;
+		this.screen = screen;
 	}
 
 	protected void Die() {

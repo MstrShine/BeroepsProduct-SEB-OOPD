@@ -12,20 +12,17 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 
 import javafx.scene.Node;
 
-public class HealthItem extends Item implements Collided{
-
-	protected Player player;
+public class HealthItem extends Item {
 	
 	protected HealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
-		this.player = player;
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Player) {
+		if (collidingObject instanceof Player && isVisible()) {
 			this.player.setHealth(player.getMaxHealth());
-			remove();
+			setVisible(false);
 		}
 		
 	}

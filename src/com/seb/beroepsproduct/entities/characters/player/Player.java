@@ -20,6 +20,8 @@ import com.seb.beroepsproduct.entities.characters.enemies.EnemyTimer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
+import com.seb.beroepsproduct.entities.map.Door;
+import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.input.KeyCode;
 
@@ -34,13 +36,14 @@ public class Player extends Character
 	private int score;
 	private int maxHealth;
 	private int weaponLevel;
+	private boolean playerHasKey;
 
 	public void setScore(int score) {
 		this.score = score;
 	}
 
-	public Player(Coordinate2D startLocation, int health, int PlayerLevel) {
-		super(startLocation, new Size(150, 150), health);
+	public Player(Coordinate2D startLocation, int health, int PlayerLevel, GameScreen screen) {
+		super(startLocation, new Size(150, 150), health, screen);
 		this.PlayerLevel = PlayerLevel;
 		shooting = false;
 		speed = 3;
@@ -48,6 +51,15 @@ public class Player extends Character
 		score = 0;
 		maxHealth = 7;
 		weaponLevel = 1;
+		playerHasKey = false;
+	}
+
+	public boolean isPlayerHasKey() {
+		return playerHasKey;
+	}
+
+	public void setPlayerHasKey(boolean playerHasKey) {
+		this.playerHasKey = playerHasKey;
 	}
 
 	public int getWeaponLevel() {
@@ -206,6 +218,9 @@ public class Player extends Character
 					setupTimers();
 				}
 			}
+		}
+		if (collidingObject instanceof Door && playerHasKey) {
+			screen.main.setActiveScene(2);
 		}
 
 	}
