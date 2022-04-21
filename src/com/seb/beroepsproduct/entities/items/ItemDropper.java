@@ -29,7 +29,7 @@ public class ItemDropper extends EntitySpawner {
 			} else {
 				itemVisible = true;
 			}
-			
+
 			if (randomNumber < 0.7) {
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
@@ -40,7 +40,7 @@ public class ItemDropper extends EntitySpawner {
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
 			} else if (randomNumber < 1) {
-				spawn(new WeaponItem("sprites/.gunUpgrade.gif", tempLoc, this, itemVisible));
+				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible));
 				itemDropped = true;
 			}
 

@@ -15,7 +15,8 @@ public class SceneChangeButton extends Button {
 	private int sceneId;
 
 	/**
-	 * Creates a button on given location with given text in color for changing scenes
+	 * Creates a button on given location with given text in color for changing
+	 * scenes
 	 * 
 	 * @param initialLocation sets location on screen
 	 * @param text            text to display on button
@@ -24,7 +25,7 @@ public class SceneChangeButton extends Button {
 	 * @param fontFamily      font for text, if null gets default font
 	 * @param fontSize        size of font, if 0 or null gets default size
 	 * @param sceneToChangeTo id of scene where to change to
-	 * @param main	          main class that handles the scenes
+	 * @param main            main class that handles the scenes
 	 */
 	public SceneChangeButton(Coordinate2D initialLocation, String text, Color initialColor, Color hoverColor,
 			String fontFamily, int fontSize, int sceneToChangeTo, Main main) {

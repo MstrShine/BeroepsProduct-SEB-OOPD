@@ -12,7 +12,7 @@ public class MaxHealthItem extends DynamicSpriteEntity implements TimerContainer
 
 	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible) {
 		super(resource, initialLocation, new Size(100, 100));
-		//setCurrentFrameIndex(0);
+		// setCurrentFrameIndex(0);
 		this.itemDropper = itemDropper;
 		setVisible(visible);
 	}

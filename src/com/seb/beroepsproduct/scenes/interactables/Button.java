@@ -25,7 +25,7 @@ public abstract class Button extends TextEntity
 	 * @param initialLocation sets location on screen
 	 * @param text            text to display on button
 	 * @param initialColor    set text color of button
-	 * @param hoverColor	  set hover color of text
+	 * @param hoverColor      set hover color of text
 	 * @param fontFamily      font for text, if null gets default font
 	 * @param fontSize        sets font size of text, if 0 or null gets default size
 	 */

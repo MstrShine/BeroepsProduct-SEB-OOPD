@@ -1,1 +1,0 @@
-package com.seb.beroepsproduct.entities.items;

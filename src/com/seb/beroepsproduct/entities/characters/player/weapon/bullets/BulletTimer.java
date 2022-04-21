@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Timer;
 public class BulletTimer extends Timer {
 
 	private Bullet bullet;
-	
+
 	protected BulletTimer(Bullet bullet, long intervalInMs) {
 		super(intervalInMs);
 		this.bullet = bullet;
@@ -14,9 +14,9 @@ public class BulletTimer extends Timer {
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-			//bullet.determineRadius(bullet.character);
-			//gaat kapot
-			bullet.remove();
+		// bullet.determineRadius(bullet.character);
+		// gaat kapot
+		bullet.remove();
 	}
 
 }

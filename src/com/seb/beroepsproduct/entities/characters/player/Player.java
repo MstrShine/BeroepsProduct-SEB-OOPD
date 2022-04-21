@@ -74,20 +74,21 @@ public class Player extends Character
 
 	@Override
 	protected void setupEntities() {
-		//var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100, -100), -90);
-		//addEntity(pSpriteGun);
-		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-50,-50), 0, new Size(100,100));
+		// var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100,
+		// -100), -90);
+		// addEntity(pSpriteGun);
+		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-50, -50), 0, new Size(100, 100));
 		addEntity(pSprite);
-		//this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
-		//addEntity(this.text);
+		// this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
+		// addEntity(this.text);
 	}
 
 	@Override
 	public void Hit(int damage) {
 		this.health -= damage;
-	    var owSound = new SoundClip("OW.mp3");
-	    owSound.play();
-		
+		var owSound = new SoundClip("audio/OW.mp3");
+		owSound.play();
+
 	}
 
 	@Override
@@ -183,17 +184,16 @@ public class Player extends Character
 				if (enemy.isVisible()) {
 					// this.Hit(enemy.getDamage());
 					this.Hit(1);
-					//text.update();
+					// text.update();
 					setVulnerable(false);
 					setupTimers();
 				}
-			}
-			else if (collidingObject instanceof Bullet) {
+			} else if (collidingObject instanceof Bullet) {
 				bullet = (Bullet) collidingObject;
 				if (bullet.character instanceof Enemy) {
 					// this.Hit(bullet.getDamage());
 					this.Hit(1);
-					//text.update();
+					// text.update();
 					setVulnerable(false);
 					setupTimers();
 				}

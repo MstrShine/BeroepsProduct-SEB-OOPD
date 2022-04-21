@@ -15,13 +15,13 @@ import javafx.scene.text.FontWeight;
 public class TitleScreen extends StaticScene {
 
 	private Main main;
-	
+
 	private static final String TITLE = "Escaping Pluto";
-	
+
 	public TitleScreen(Main main) {
 		this.main = main;
 	}
-	
+
 	@Override
 	public void setupScene() {
 
@@ -33,8 +33,9 @@ public class TitleScreen extends StaticScene {
 		titleEntity.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		titleEntity.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
 		addEntity(titleEntity);
-		
-		var startButton = new SceneChangeButton(new Coordinate2D(getWidth() /2, getHeight() / 2), "Start Game", Color.BLUE, Color.PURPLE, "Roboto", 30, 1, main);
+
+		var startButton = new SceneChangeButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), "Start Game",
+				Color.BLUE, Color.PURPLE, "Roboto", 30, 1, main);
 		startButton.setAnchorPoint(AnchorPoint.BOTTOM_CENTER);
 		addEntity(startButton);
 	}

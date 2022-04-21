@@ -22,14 +22,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
-	
+
 	private Main main;
 	public Player player1;
-	//public Robot robot;
-	
+	// public Robot robot;
+
 	private ArrayList<Robot> robots = new ArrayList<Robot>();
-	private int nRobots = 3; 
-	
+	private int nRobots = 3;
+
 	public GameScreen(Main main) {
 		this.main = main;
 	}
@@ -45,74 +45,75 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var player = new Player(new Coordinate2D(getWidth() / 2, getHeight() / 2), 5, 3);
 		player1 = player;
 		addEntity(player1);
-		
-		var healthDisplay = new HealthDisplay(new Coordinate2D(getWidth()/2-400, 100), player1);
+
+		var healthDisplay = new HealthDisplay(new Coordinate2D(getWidth() / 2 - 400, 100), player1);
 		addEntity(healthDisplay);
-		
-		var scoreText = new TextEntity(new Coordinate2D(50,50), "score");
-	    scoreText.setFont(Font.font("Roboto",FontWeight.NORMAL, 30));
-	    scoreText.setFill(Color.WHITE);
+
+		var scoreText = new TextEntity(new Coordinate2D(50, 50), "score");
+		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
+		scoreText.setFill(Color.WHITE);
 		addEntity(scoreText);
-		
+
 		var score = new scoreTextEntity(player1, new Coordinate2D(50, 90));
 		addEntity(score);
 
 		var door = new Door(main, new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);
-/*
-		var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10);
-		// var robot = new Robot(new Coordinate2D(100,100), player1, 500);
-		this.robot = robot;
-		addEntity(robot);
-*/
-		
-		for (int i = 0; i<nRobots; i++) {
+		/*
+		 * var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10); // var
+		 * robot = new Robot(new Coordinate2D(100,100), player1, 500); this.robot =
+		 * robot; addEntity(robot);
+		 */
+
+		for (int i = 0; i < nRobots; i++) {
 			var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10, this);
 			robots.add(robot);
 		}
-		for (Robot rbt : robots) {addEntity(rbt);}
+		for (Robot rbt : robots) {
+			addEntity(rbt);
+		}
 	}
 
 	@Override
 	public void setupEntitySpawners() {
 		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
-/*
-		var shooter2 = new BulletShooter(robot, 500);
-		addEntitySpawner(shooter2);
-*/ 		
+		/*
+		 * var shooter2 = new BulletShooter(robot, 500); addEntitySpawner(shooter2);
+		 */
 		for (Robot rbt : robots) {
 			var shooter2 = new BulletShooter(rbt, 500);
 			addEntitySpawner(shooter2);
 			var itemDropper = new ItemDropper(rbt, 200);
 			addEntitySpawner(itemDropper);
 		}
-		
-		//TODO: Waarom moet de constructor ItemDropper nu per se een robot ontvangen terwijl de bulletshooter character accepteert/??????
 
-		
-		//var eSpawner = new EnemySpawner(player1, robot, pickEnemyLocation(player1), 500, 10, 3);
-		//addEntitySpawner(eSpawner);
+		// TODO: Waarom moet de constructor ItemDropper nu per se een robot ontvangen
+		// terwijl de bulletshooter character accepteert/??????
+
+		// var eSpawner = new EnemySpawner(player1, robot, pickEnemyLocation(player1),
+		// 500, 10, 3);
+		// addEntitySpawner(eSpawner);
 	}
-	
+
 	/*
-	private Coordinate2D pickEnemyLocation(Player player) {
-		var xCoord = Math.random() * getWidth();
-		var yCoord = Math.random() * getHeight();
-		Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
-		return tempCoord;
-	}
-	*/
-	
+	 * private Coordinate2D pickEnemyLocation(Player player) { var xCoord =
+	 * Math.random() * getWidth(); var yCoord = Math.random() * getHeight();
+	 * Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord); return tempCoord;
+	 * }
+	 */
+
 	public Coordinate2D pickEnemyLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
-		var xCoord = Math.random() * getWidth();
-		var yCoord = Math.random() * getHeight();
-		Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
-		if (tempCoord.distance(player.getAnchorLocation()) > 500){return tempCoord;}
+			var xCoord = Math.random() * getWidth();
+			var yCoord = Math.random() * getHeight();
+			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
+			if (tempCoord.distance(player.getAnchorLocation()) > 500) {
+				return tempCoord;
+			}
 		}
-		return (new Coordinate2D(0,0));
+		return (new Coordinate2D(0, 0));
 	}
 
 }

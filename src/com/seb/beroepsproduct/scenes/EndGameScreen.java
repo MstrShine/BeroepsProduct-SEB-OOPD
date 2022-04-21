@@ -7,13 +7,13 @@ public class EndGameScreen extends StaticScene {
 	@Override
 	public void setupScene() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setupEntities() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

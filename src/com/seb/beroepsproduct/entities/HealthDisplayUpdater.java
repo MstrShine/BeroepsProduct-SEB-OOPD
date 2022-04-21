@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Timer;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class HealthDisplayUpdater extends Timer {
-	
+
 	private HealthDisplay healthDisplay;
 	private Player player;
 
@@ -16,14 +16,15 @@ public class HealthDisplayUpdater extends Timer {
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-		
-		for (int i = 0; i<healthDisplay.hearts.size(); i++) {
-			if ( (i+1) <= player.getHealth() )
-			{healthDisplay.hearts.get(i).setCurrentFrameIndex(0);}
-			else {healthDisplay.hearts.get(i).setCurrentFrameIndex(1);}
+
+		for (int i = 0; i < healthDisplay.hearts.size(); i++) {
+			if ((i + 1) <= player.getHealth()) {
+				healthDisplay.hearts.get(i).setCurrentFrameIndex(0);
+			} else {
+				healthDisplay.hearts.get(i).setCurrentFrameIndex(1);
+			}
 		}
-		
+
 	}
-	
 
 }

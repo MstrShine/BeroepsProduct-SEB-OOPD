@@ -4,6 +4,7 @@ module beroepsproduct {
 	requires hanyaeger;
 	requires javafx.graphics;
 	requires java.desktop;
-	
+
 	opens sprites;
+	opens audio;
 }

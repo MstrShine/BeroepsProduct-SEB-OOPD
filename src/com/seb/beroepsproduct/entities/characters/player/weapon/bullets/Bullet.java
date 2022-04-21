@@ -42,21 +42,19 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			setSpeed(speed);
 			var robot = (Robot) character;
 			var nBullets = 3 + robot.getLevel();
-			setSpeed(8+robot.getLevel()*2); //nu schiet robot harder per level
+			setSpeed(8 + robot.getLevel() * 2); // nu schiet robot harder per level
 			// var robot = (Robot) character;
-			setDirection(bulletOffset * 360/nBullets);
+			setDirection(bulletOffset * 360 / nBullets);
 			setupTimers();
 			this.damage = 10;
 		}
 	}
-	
-/*
-	protected double determineRadius(Character character) {
-		double bulletSize = 30 - (initialLocation.distance(character.getAnchorLocation())/20);
-		if (bulletSize < 0) {bulletSize = 0;}
-		return bulletSize;
-	}
-*/	
+
+	/*
+	 * protected double determineRadius(Character character) { double bulletSize =
+	 * 30 - (initialLocation.distance(character.getAnchorLocation())/20); if
+	 * (bulletSize < 0) {bulletSize = 0;} return bulletSize; }
+	 */
 
 	@Override
 	public void setupTimers() {
@@ -75,8 +73,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
 				remove();
 			}
-		}
-		else if (character instanceof Enemy) {
+		} else if (character instanceof Enemy) {
 			if (collidingObject instanceof Player) {
 				remove();
 			}

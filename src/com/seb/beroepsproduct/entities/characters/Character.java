@@ -9,11 +9,11 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 public abstract class Character extends DynamicCompositeEntity implements ICharacter, Collided, Collider {
-	
+
 	protected int health;
 	protected int maxHealth;
-	
-	//protected CharacterHealthText text;
+
+	// protected CharacterHealthText text;
 	public CharacterHealthText text;
 
 	public Character(Coordinate2D location, Size size, int health) {
@@ -21,22 +21,22 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 		this.health = health;
 		this.maxHealth = health;
 	}
-	
+
 	protected void Die() {
-		//this.remove();
+		// this.remove();
 		this.setVisible(false);
 	}
 
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
+
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
-	
+
 	public String getMaxHealthString() {
-		return ""+maxHealth;
+		return "" + maxHealth;
 	}
 
 	public int getMaxHealth() {
@@ -46,6 +46,5 @@ public abstract class Character extends DynamicCompositeEntity implements IChara
 	public int getHealth() {
 		return health;
 	}
-	
-	
+
 }

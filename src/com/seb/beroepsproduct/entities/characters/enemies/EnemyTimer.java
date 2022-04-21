@@ -14,7 +14,6 @@ public class EnemyTimer extends Timer {
 	private long respawnTimestamp;
 	private GameScreen screen;
 
-
 	protected EnemyTimer(Enemy enemy, Player player, long intervalInMs, GameScreen screen) {
 		super(intervalInMs);
 		this.enemy = enemy;
@@ -32,28 +31,30 @@ public class EnemyTimer extends Timer {
 			if (timestamp - previousTimestamp > 5000000000d) {
 				changeDirection();
 				previousTimestamp = timestamp;
-				
+
 			}
 		}
 
 		updateSpeed();
 		updateDirection();
-		//enemy.setMotion(enemy.getSpeed(), enemy.angleTo(player));
+		// enemy.setMotion(enemy.getSpeed(), enemy.angleTo(player));
 
 	}
-	
+
 	private void respawn(long timestamp) {
 		if (!enemy.isVisible()) {
-			if (respawnTimestamp == 0) {respawnTimestamp = timestamp;}
-			else {
+			if (respawnTimestamp == 0) {
+				respawnTimestamp = timestamp;
+			} else {
 				if (timestamp - respawnTimestamp > 5000000000d) {
-					//enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() * 700));
+					// enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() *
+					// 700));
 					enemy.setAnchorLocation(screen.pickEnemyLocation(player));
-					//TODO!
-					//hier reset ik de enemy met andere stats aan de hand van level
+					// TODO!
+					// hier reset ik de enemy met andere stats aan de hand van level
 					enemy.setLevel();
 					enemy.setVisible(true);
-					enemy.setMaxHealth(500+ (int)(enemy.level*50));
+					enemy.setMaxHealth(500 + (int) (enemy.level * 50));
 					enemy.setHealth(enemy.getMaxHealth());
 					enemy.text.update();
 					respawnTimestamp = 0;
@@ -61,11 +62,12 @@ public class EnemyTimer extends Timer {
 			}
 		}
 	}
-	
-	
+
 	private void changeDirection() {
-		if (enemy.getDirection() == 270) {enemy.setDirection(90);}
-		else {enemy.setDirection(270);
+		if (enemy.getDirection() == 270) {
+			enemy.setDirection(90);
+		} else {
+			enemy.setDirection(270);
 		}
 	}
 

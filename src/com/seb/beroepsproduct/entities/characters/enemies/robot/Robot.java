@@ -21,12 +21,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class Robot extends Enemy{
+public class Robot extends Enemy {
 
 	protected int damage;
 	protected Player player;
 	protected GameScreen screen;
-	
+
 	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
 		super(spawnlocation, new Size(10, 10), player, health, damage, screen);
 		this.screen = screen;
@@ -43,9 +43,9 @@ public class Robot extends Enemy{
 	public void Hit(int damage) {
 		this.health -= damage;
 		if (this.health <= 0 && this.isVisible()) {
-			player.setScore(player.getScore()+ 100+( ( (int)this.getLevel()-1)*10) );
+			player.setScore(player.getScore() + 100 + (((int) this.getLevel() - 1) * 10));
 			this.Die();
-			System.out.println(""+player.getScore());
+			System.out.println("" + player.getScore());
 		}
 	}
 
@@ -65,18 +65,18 @@ public class Robot extends Enemy{
 	public void onCollision(Collider collidingObject) {
 		if (collidingObject instanceof Bullet) {
 			var bullet = (Bullet) collidingObject;
-				if (bullet.character instanceof Player) {
-					Hit(bullet.getDamage());
-					text.setHealthText();
-				}
+			if (bullet.character instanceof Player) {
+				Hit(bullet.getDamage());
+				text.setHealthText();
+			}
 		}
 	}
 
 	@Override
 	protected void setupEntities() {
-		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(-50,-50), new Size(100,100));
+		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(-50, -50), new Size(100, 100));
 		addEntity(robotSprite);
-		this.text = new CharacterHealthText(this, new Coordinate2D(-40,-60));
+		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.text);
 		/*
 		 * var robotText = new TextEntity( this.getLocationInScene() //new

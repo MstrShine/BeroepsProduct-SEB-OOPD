@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Timer;
 public class ScoreUpdater extends Timer {
 
 	private scoreTextEntity entity;
-	
+
 	protected ScoreUpdater(scoreTextEntity entity, long intervalInMs) {
 		super(intervalInMs);
 		this.entity = entity;
