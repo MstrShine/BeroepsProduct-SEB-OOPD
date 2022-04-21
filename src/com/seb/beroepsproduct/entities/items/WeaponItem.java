@@ -2,15 +2,22 @@ package com.seb.beroepsproduct.entities.items;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
+import com.seb.beroepsproduct.entities.characters.player.Player;
 
-public class WeaponItem extends DynamicSpriteEntity {
+public class WeaponItem extends Item {
 
 	protected ItemDropper itemDropper;
 
-	protected WeaponItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible) {
-		super(resource, initialLocation, new Size(100, 100));
-		this.itemDropper = itemDropper;
-		setVisible(visible);
+	protected WeaponItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
+		super(resource, initialLocation, itemDropper, visible, player);
+
+	}
+
+	@Override
+	public void onCollision(Collider collidingObject) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -30,9 +30,10 @@ public class Player extends Character
 	private int PlayerLevel;
 	private boolean shooting;
 	private double speed;
-	protected boolean vulnerable;
-	protected int score;
-	protected int maxHealth;
+	private boolean vulnerable;
+	private int score;
+	private int maxHealth;
+	private int weaponLevel;
 
 	public void setScore(int score) {
 		this.score = score;
@@ -46,6 +47,15 @@ public class Player extends Character
 		vulnerable = true;
 		score = 0;
 		maxHealth = 7;
+		weaponLevel = 1;
+	}
+
+	public int getWeaponLevel() {
+		return weaponLevel;
+	}
+
+	public void setWeaponLevel(int weaponLevel) {
+		this.weaponLevel = weaponLevel;
 	}
 
 	public int getMaxHealth() {
@@ -136,8 +146,6 @@ public class Player extends Character
 			Move(Direction.DOWN);
 		} else if (pressedKeys.contains(KeyCode.D)) {
 			Move(Direction.RIGHT);
-		} else if (pressedKeys.contains(KeyCode.SPACE)) {
-			shooting = true;
 		} else if (pressedKeys.isEmpty()) {
 			setSpeed(0);
 		}

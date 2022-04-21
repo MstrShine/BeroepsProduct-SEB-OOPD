@@ -16,7 +16,9 @@ public class HealthDisplayUpdater extends Timer {
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-
+		healthDisplay.hearts.clear();
+		//healthDisplay.setupEntities();
+		
 		for (int i = 0; i < healthDisplay.hearts.size(); i++) {
 			if ((i + 1) <= player.getHealth()) {
 				healthDisplay.hearts.get(i).setCurrentFrameIndex(0);

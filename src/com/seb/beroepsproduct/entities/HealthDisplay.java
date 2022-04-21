@@ -3,39 +3,41 @@ package com.seb.beroepsproduct.entities;
 import java.util.ArrayList;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
+import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
-public class HealthDisplay extends DynamicCompositeEntity implements TimerContainer {
+public class HealthDisplay extends EntitySpawner{
 
 	private Player player;
 	protected ArrayList<HeartSprite> hearts = new ArrayList<HeartSprite>();
 
-	public HealthDisplay(Coordinate2D initialLocation, Player player) {
-		super(initialLocation);
+	public HealthDisplay(long refreshTime, Player player) {
+		super(refreshTime);
 		this.player = player;
 	}
 
 	@Override
-	protected void setupEntities() {
+	protected void spawnEntities() {
+		for(var heart : hearts)
+			heart.remove();
+			
+		hearts.clear();
 		for (int i = 0; i < player.getMaxHealth(); i++) {
 			System.out.println("" + player.getMaxHealth());
 			// var heartSprite = new HeartSprite(new Coordinate2D
 			// (this.getAnchorLocation().getX()+180*i, this.getAnchorLocation().getY()));
-			var heartSprite = new HeartSprite(new Coordinate2D(0 + i * 40, 0), player, i, new Size(40, 40));
+			var heartSprite = new HeartSprite(new Coordinate2D(150 + i * 40, 40), player, i, new Size(40, 40));
 			hearts.add(heartSprite);
 		}
+		System.out.println("hearts array: " + hearts.size());
+		
 		for (HeartSprite hrt : hearts) {
-			addEntity(hrt);
+			spawn(hrt);
 		}
 	}
-
-	@Override
-	public void setupTimers() {
-		addTimer(new HealthDisplayUpdater(this, 50, player));
-	}
-
 }

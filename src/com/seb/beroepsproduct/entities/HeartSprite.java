@@ -9,9 +9,9 @@ public class HeartSprite extends DynamicSpriteEntity {
 
 	private Player player;
 
-	protected HeartSprite(Coordinate2D initialLocation, Player player, int i, Size size) {
+	protected HeartSprite(Coordinate2D initialLocation, Player player, int positionInArray, Size size) {
 		super("sprites/hearts.png", initialLocation, size, 1, 2);
-		if (player.getHealth() >= (i + 1)) {
+		if (player.getHealth() >= (positionInArray + 1)) {
 			setCurrentFrameIndex(0);
 		} else {
 			setCurrentFrameIndex(1);

@@ -22,8 +22,6 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		this.player = player;
 		this.damage = damage;
 		this.screen = screen;
-		setSpeed(0.5);
-		setDirection(90);
 		level = 1;
 	}
 

@@ -3,24 +3,32 @@ package com.seb.beroepsproduct.entities.items;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.TimerContainer;
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
+import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTimer;
 
-public class MaxHealthItem extends DynamicSpriteEntity implements TimerContainer {
+public class MaxHealthItem extends Item{
 
 	protected ItemDropper itemDropper;
+	private Player player;
 
-	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible) {
-		super(resource, initialLocation, new Size(100, 100));
-		// setCurrentFrameIndex(0);
-		this.itemDropper = itemDropper;
-		setVisible(visible);
+	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
+			Player player) {
+		super(resource, initialLocation, itemDropper, visible, player);
+		this.player = player;
 	}
 
 	@Override
-	public void setupTimers() {
-		var itemTimer = new ItemTimer(this, 8000);
-		addTimer(itemTimer);
+	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Player) {
+			var newMaxHealth = player.getMaxHealth() + 1;
+			player.setMaxHealth(newMaxHealth);
+			//System.out.println("" + player.getMaxHealth());
+			remove();
+		}
+
 	}
 
 }

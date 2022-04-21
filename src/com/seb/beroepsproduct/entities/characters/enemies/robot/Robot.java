@@ -32,6 +32,8 @@ public class Robot extends Enemy {
 		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
+		setSpeed(0.5);
+		setDirection(90);
 	}
 
 	@Override

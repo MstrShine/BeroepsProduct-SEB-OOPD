@@ -4,19 +4,18 @@ import com.github.hanyaeger.api.Timer;
 
 public class ItemTimer extends Timer {
 
-	private MaxHealthItem maxHealthItem;
+	private Item item;
 	// private HealthItem healthItem;
 
-	protected ItemTimer(MaxHealthItem maxHealthItem, long intervalInMs) {
+	protected ItemTimer(Item item, long intervalInMs) {
 		super(intervalInMs);
-		this.maxHealthItem = maxHealthItem;
+		this.item = item;
 	}
 
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-		maxHealthItem.itemDropper.setItemDropped(false);
-		maxHealthItem.remove();
-
+		item.itemDropper.setItemDropped(false);
+		item.remove();
 	}
 
 }

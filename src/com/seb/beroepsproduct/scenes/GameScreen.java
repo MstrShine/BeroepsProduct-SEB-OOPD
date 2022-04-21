@@ -45,15 +45,12 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		player1 = player;
 		addEntity(player1);
 
-		var healthDisplay = new HealthDisplay(new Coordinate2D(getWidth() / 2 - 400, 100), player1);
-		addEntity(healthDisplay);
-
-		var scoreText = new TextEntity(new Coordinate2D(50, 50), "score");
+		var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
 		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		scoreText.setFill(Color.WHITE);
 		addEntity(scoreText);
 
-		var score = new scoreTextEntity(player1, new Coordinate2D(50, 90));
+		var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
 		addEntity(score);
 
 		var door = new Door(main, new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
@@ -75,6 +72,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupEntitySpawners() {
+		var healthDisplay = new HealthDisplay(1000, player1);
+		addEntitySpawner(healthDisplay);
+		
 		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
 		/*
@@ -83,7 +83,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		for (Robot rbt : robots) {
 			var shooter2 = new BulletShooter(rbt, 500);
 			addEntitySpawner(shooter2);
-			var itemDropper = new ItemDropper(rbt, 200);
+			var itemDropper = new ItemDropper(player1, rbt, 200);
 			addEntitySpawner(itemDropper);
 		}
 

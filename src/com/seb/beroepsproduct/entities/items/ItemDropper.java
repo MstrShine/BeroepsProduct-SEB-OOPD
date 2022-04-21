@@ -6,14 +6,17 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class ItemDropper extends EntitySpawner {
 	private Robot robot;
 	private boolean itemDropped;
+	private Player player;
 
-	public ItemDropper(Robot rbt, long intervalInMs) {
+	public ItemDropper(Player player, Robot rbt, long intervalInMs) {
 		super(intervalInMs);
 		this.robot = rbt;
+		this.player = player;
 		itemDropped = false;
 	}
 
@@ -26,27 +29,27 @@ public class ItemDropper extends EntitySpawner {
 			boolean itemVisible;
 			var tempLoc = new Coordinate2D(robot.getAnchorLocation().getX() - 50,
 					robot.getAnchorLocation().getY() - 50);
-
-			if (randomNumber <= 50) {
+			
+			if (randomNumber <= 60) {
 				itemVisible = false;
 			} else {
 				itemVisible = true;
 			}
 
 			if (randomNumber >= 1 && randomNumber < 70) { // ~70% kans op key
-				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible));
+				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}
 			if (randomNumber >= 70 && randomNumber < 80) { // ~10% kans op max health
-				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible));
+				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}
 			if (randomNumber >= 80 && randomNumber < 90) { // ~10% kans op health
-				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible));
+				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}
 			if (randomNumber >= 90 && randomNumber <= 100) { // ~10% kans op weapon upgrade
-				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible));
+				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}
 		}
