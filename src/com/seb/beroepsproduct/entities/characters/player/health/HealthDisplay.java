@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities;
+package com.seb.beroepsproduct.entities.characters.player.health;
 
 import java.util.ArrayList;
 

@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public class RobotSprite extends SpriteEntity {
 
-	protected RobotSprite(String resource, Coordinate2D initialLocation, Size size) {
+	public RobotSprite(String resource, Coordinate2D initialLocation, Size size) {
 		super(resource, initialLocation, size);
 	}
 

@@ -17,21 +17,23 @@ import javafx.scene.paint.Color;
 public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider, Collided {
 
 	private int damage;
-	public Character character;
-	private Coordinate2D initialLocation;
+	private Character character;
 
 	protected Bullet(Character character, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
 		this.character = character;
+		
 		if (character instanceof Player) {
 			setRadius(8);
 			setFill(Color.YELLOW);
 			setSpeed(speed);
+			
 			var player = (Player) character;
 			var totalBulletAngle = 15 * player.getPlayerLevel();
 			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + ((bulletOffset + 1) * 15);
 			setDirection(direction + 90);
 			setupTimers();
+			
 			this.damage = 3;
 		}
 
@@ -39,30 +41,21 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
+			
 			var robot = (Robot) character;
 			var nBullets = 3 + robot.getLevel();
 			setSpeed(8 + robot.getLevel() * 2); // nu schiet robot harder per level
-			// var robot = (Robot) character;
 			setDirection(bulletOffset * 360 / nBullets);
 			setupTimers();
+			
 			this.damage = 10;
 		}
 	}
-
-	/*
-	 * protected double determineRadius(Character character) { double bulletSize =
-	 * 30 - (initialLocation.distance(character.getAnchorLocation())/20); if
-	 * (bulletSize < 0) {bulletSize = 0;} return bulletSize; }
-	 */
 
 	@Override
 	public void setupTimers() {
 		var bullettimer = new BulletTimer(this, 500);
 		addTimer(bullettimer);
-	}
-
-	public int getDamage() {
-		return this.damage;
 	}
 
 	@Override
@@ -76,6 +69,14 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 				remove();
 			}
 		}
+	}
+	
+	public int getDamage() {
+		return this.damage;
+	}
+	
+	public Character getCharacter() {
+		return this.character;
 	}
 
 }

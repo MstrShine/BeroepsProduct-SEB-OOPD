@@ -8,14 +8,14 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.seb.beroepsproduct.Main;
-import com.seb.beroepsproduct.entities.HealthDisplay;
-import com.seb.beroepsproduct.entities.scoreTextEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
+import com.seb.beroepsproduct.entities.characters.player.health.HealthDisplay;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
 import com.seb.beroepsproduct.entities.items.ItemDropper;
 import com.seb.beroepsproduct.entities.map.Door;
+import com.seb.beroepsproduct.entities.score.scoreTextEntity;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,15 +25,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	public Main main;
 	public Player player1;
-	// public Robot robot;
 
 	private ArrayList<Robot> robots = new ArrayList<Robot>();
 	private int nRobots = 3;
 
-	/**
-	 * 
-	 * @param main
-	 */
 	public GameScreen(Main main) {
 		this.main = main;
 	}
@@ -57,13 +52,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
 		addEntity(score);
 
-		var door = new Door(main, new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
+		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);
-		/*
-		 * var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10); // var
-		 * robot = new Robot(new Coordinate2D(100,100), player1, 500); this.robot =
-		 * robot; addEntity(robot);
-		 */
 
 		for (int i = 0; i < nRobots; i++) {
 			var robot = new Robot(pickEnemyLocation(player1), player1, 500, 10, this);
@@ -81,9 +71,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		
 		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
-		/*
-		 * var shooter2 = new BulletShooter(robot, 500); addEntitySpawner(shooter2);
-		 */
+
 		for (Robot rbt : robots) {
 			var shooter2 = new BulletShooter(rbt, 500);
 			addEntitySpawner(shooter2);
@@ -91,20 +79,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			addEntitySpawner(itemDropper);
 		}
 
-		// TODO: Waarom moet de constructor ItemDropper nu per se een robot ontvangen
-		// terwijl de bulletshooter character accepteert/??????
-
-		// var eSpawner = new EnemySpawner(player1, robot, pickEnemyLocation(player1),
-		// 500, 10, 3);
-		// addEntitySpawner(eSpawner);
 	}
-
-	/*
-	 * private Coordinate2D pickEnemyLocation(Player player) { var xCoord =
-	 * Math.random() * getWidth(); var yCoord = Math.random() * getHeight();
-	 * Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord); return tempCoord;
-	 * }
-	 */
 
 	/**
 	 * picks location for spawning enemy

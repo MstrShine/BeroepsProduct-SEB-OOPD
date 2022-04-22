@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities;
+package com.seb.beroepsproduct.entities.characters.player.health;
 
 import com.github.hanyaeger.api.Timer;
 import com.seb.beroepsproduct.entities.characters.player.Player;

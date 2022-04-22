@@ -17,7 +17,7 @@ public class Main extends YaegerGame {
 																										// main screen
 		var x = gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
 		var y = gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
-		System.out.println("x: " + x + " y: " + y);
+
 		WIDTH = (int) (gd.getDisplayMode().getWidth() / x - 100);
 		HEIGHT = (int) (gd.getDisplayMode().getHeight() / y - 100);
 	}

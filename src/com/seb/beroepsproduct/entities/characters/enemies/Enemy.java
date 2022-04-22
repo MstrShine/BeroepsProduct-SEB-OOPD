@@ -14,7 +14,7 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 
 	protected int damage;
 	protected double level;
-	private Player player;
+	protected Player player;
 
 	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage, GameScreen screen) {
 		super(location, size, health, screen);
@@ -22,21 +22,28 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		this.damage = damage;
 		level = 1;
 	}
-
-	abstract public int getDamage();
+	
+	public int getDamage() {
+		return damage;
+	}
 
 	protected void createEnemyTimer() {
 		addTimer(new EnemyTimer(this, this.player, 50, screen));
 	}
 
+	/**
+	 * Gets current level of {@link enemy}
+	 * @return current level
+	 */
 	public double getLevel() {
 		return level;
 	}
 
+	/**
+	 * Sets level of {@link Enemy} by one plus dividing current score with 200
+	 */
 	public void setLevel() {
 		this.level = 1 + Math.floor(player.getScore() / 200);
-		// elke 200 punten die een speler haalt worden de tegenstanders sterker (1 level
-		// erbij)
 	}
 
 }

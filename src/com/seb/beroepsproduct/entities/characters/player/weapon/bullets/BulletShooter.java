@@ -28,7 +28,6 @@ public class BulletShooter extends EntitySpawner {
 
 	@Override
 	protected void spawnEntities() {
-		// spawn(new bullet(randomLocation(), 2) );
 		if (character instanceof Player) {
 			var player = (Player) character;
 			if (player.isShooting()) {
@@ -41,22 +40,13 @@ public class BulletShooter extends EntitySpawner {
 		if (character instanceof Robot) {
 			var robot = (Robot) character;
 			var nBullets = 3 + robot.getLevel();
+			
 			if (robot.isVisible()) {
 				for (int i = 0; i < nBullets; i++) {
-					// var bulletOrigin = new Coordinate2D( robot.getAnchorLocation().getX()+100,
-					// robot.getAnchorLocation().getY());
 					spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 10, i));
-					// spawn(new Bullet(robot, bulletOrigin, 10, i));
 				}
 			}
 		}
 
 	}
-
-	// private Coordinate2D randomLocation() {
-	// double x = new Random().nextInt((int) 1600);
-	// double y = new Random().nextInt((int) 800);
-	// return new Coordinate2D(x, y);
-	// }
-
 }

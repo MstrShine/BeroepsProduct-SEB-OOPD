@@ -8,10 +8,11 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class KeyItem extends Item {
 
-	protected KeyItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
+	public KeyItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 	
+	@Override
 	public void setupTimers() {
 		var itemTimer = new ItemTimer(this, 60000);
 		addTimer(itemTimer);
@@ -19,7 +20,7 @@ public class KeyItem extends Item {
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if(collidingObject instanceof Player && isVisible()) {
+		if(collisionCheckPlayer(collidingObject)) {
 			player.setPlayerHasKey(true);
 			setVisible(false);
 		}

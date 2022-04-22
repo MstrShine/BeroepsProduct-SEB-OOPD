@@ -33,11 +33,6 @@ public class EnemyTimer extends Timer {
 
 			}
 		}
-
-		updateSpeed();
-		updateDirection();
-		// enemy.setMotion(enemy.getSpeed(), enemy.angleTo(player));
-
 	}
 
 	private void respawn(long timestamp) {
@@ -69,13 +64,4 @@ public class EnemyTimer extends Timer {
 			enemy.setDirection(270);
 		}
 	}
-
-	private void updateSpeed() {
-
-	}
-
-	private void updateDirection() {
-
-	}
-
 }

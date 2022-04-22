@@ -14,13 +14,13 @@ import javafx.scene.Node;
 
 public class HealthItem extends Item {
 	
-	protected HealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
+	public HealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Player && isVisible()) {
+		if (collisionCheckPlayer(collidingObject)) {
 			this.player.setHealth(player.getMaxHealth());
 			setVisible(false);
 		}

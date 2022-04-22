@@ -9,24 +9,19 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTimer;
 
-public class MaxHealthItem extends Item{
+public class MaxHealthItem extends Item {
 
-	protected ItemDropper itemDropper;
-
-	protected MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
+	public MaxHealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
 			Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Player && isVisible()) {
+		if (collisionCheckPlayer(collidingObject)) {
 			var newMaxHealth = player.getMaxHealth() + 1;
 			player.setMaxHealth(newMaxHealth);
-			//System.out.println("" + player.getMaxHealth());
 			setVisible(false);
 		}
-
 	}
-
 }

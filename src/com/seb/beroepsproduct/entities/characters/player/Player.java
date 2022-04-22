@@ -14,10 +14,11 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
-import com.seb.beroepsproduct.entities.characters.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.EnemyTimer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
+import com.seb.beroepsproduct.entities.characters.player.invulnerability.InvulnerabilityTimer;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.map.Door;
@@ -28,136 +29,68 @@ import javafx.scene.input.KeyCode;
 public class Player extends Character
 		implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
-	double directionPlayer;
-	private int PlayerLevel;
+	private double directionPlayer;
+	private int playerLevel;
 	private boolean shooting;
-	private double speed;
-	private boolean vulnerable;
+	private boolean isVulnerable;
 	private int score;
-	private int maxHealth;
 	private int weaponLevel;
 	private boolean playerHasKey;
 
-	public void setScore(int score) {
-		this.score = score;
-	}
-
-	public Player(Coordinate2D startLocation, int health, int PlayerLevel, GameScreen screen) {
+	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
 		super(startLocation, new Size(150, 150), health, screen);
-		this.PlayerLevel = PlayerLevel;
-		shooting = false;
-		speed = 3;
-		vulnerable = true;
-		score = 0;
-		maxHealth = 7;
-		weaponLevel = 1;
-		playerHasKey = false;
-	}
 
-	public boolean isPlayerHasKey() {
-		return playerHasKey;
-	}
-
-	public void setPlayerHasKey(boolean playerHasKey) {
-		this.playerHasKey = playerHasKey;
-	}
-
-	public int getWeaponLevel() {
-		return weaponLevel;
-	}
-
-	public void setWeaponLevel(int weaponLevel) {
-		this.weaponLevel = weaponLevel;
-	}
-
-	public int getMaxHealth() {
-		return maxHealth;
-	}
-
-	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
-	}
-
-	public int getScore() {
-		return score;
-	}
-
-	public void setVulnerable(boolean vulnerable) {
-		this.vulnerable = vulnerable;
-	}
-
-	public int getPlayerLevel() {
-		return PlayerLevel;
-	}
-
-	public void setPlayerLevel(int playerLevel) {
-		PlayerLevel = playerLevel;
+		this.playerLevel = playerLevel;
+		this.shooting = false;
+		this.speed = 3;
+		this.isVulnerable = true;
+		this.score = 0;
+		this.maxHealth = 7;
+		this.weaponLevel = 1;
+		this.playerHasKey = false;
 	}
 
 	@Override
 	protected void setupEntities() {
-		// var pSpriteGun = new WeaponSprite("sprites/gun.gif", new Coordinate2D(-100,
-		// -100), -90);
-		// addEntity(pSpriteGun);
 		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-50, -50), 0, new Size(100, 100));
 		addEntity(pSprite);
-		// this.text = new CharacterHealthText(this, new Coordinate2D(-100, -100));
-		// addEntity(this.text);
 	}
 
 	@Override
-	public void Hit(int damage) {
+	public void hit(int damage) {
 		this.health -= damage;
 		var owSound = new SoundClip("audio/OW.mp3");
+		owSound.setVolume(0);
 		owSound.play();
-
-	}
-
-	@Override
-	public void Move(double direction) {
-		setMotion(speed, direction);
-	}
-
-	@Override
-	public void Move(Direction direction) {
-		setMotion(speed, direction);
 	}
 
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
 		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
 				mouseXY.getY() - (getLocationInScene().getY() + 75));
-		directionPlayer = Math.toDegrees(radian) - 90;
-		setRotate(directionPlayer);
-	}
-
-	public double getDirectionPlayer() {
-		return directionPlayer;
-	}
-
-	public void setDirectionPlayer(double directionPlayer) {
-		this.directionPlayer = directionPlayer;
+		this.directionPlayer = Math.toDegrees(radian) - 90;
+		setRotate(this.directionPlayer);
 	}
 
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		shootWeapon(pressedKeys);
 		if (pressedKeys.contains(KeyCode.A) && pressedKeys.contains(KeyCode.W)) {
-			Move(225d);
+			move(225d);
 		} else if (pressedKeys.contains(KeyCode.A) && pressedKeys.contains(KeyCode.S)) {
-			Move(315d);
+			move(315d);
 		} else if (pressedKeys.contains(KeyCode.D) && pressedKeys.contains(KeyCode.W)) {
-			Move(135d);
+			move(135d);
 		} else if (pressedKeys.contains(KeyCode.D) && pressedKeys.contains(KeyCode.S)) {
-			Move(45d);
+			move(45d);
 		} else if (pressedKeys.contains(KeyCode.W)) {
-			Move(Direction.UP);
+			move(Direction.UP);
 		} else if (pressedKeys.contains(KeyCode.A)) {
-			Move(Direction.LEFT);
+			move(Direction.LEFT);
 		} else if (pressedKeys.contains(KeyCode.S)) {
-			Move(Direction.DOWN);
+			move(Direction.DOWN);
 		} else if (pressedKeys.contains(KeyCode.D)) {
-			Move(Direction.RIGHT);
+			move(Direction.RIGHT);
 		} else if (pressedKeys.isEmpty()) {
 			setSpeed(0);
 		}
@@ -171,24 +104,20 @@ public class Player extends Character
 		}
 	}
 
-	public boolean isShooting() {
-		return shooting;
-	}
-
 	@Override
 	public void notifyBoundaryTouching(SceneBorder border) {
 		switch (border) {
 		case TOP:
-			setAnchorLocationY(1);
+			setAnchorLocationY(getBoundingBox().getHeight() / 1.7);
 			break;
 		case BOTTOM:
-			setAnchorLocationY(getSceneHeight() - getHeight() - 1);
+			setAnchorLocationY(getSceneHeight() - (getBoundingBox().getHeight() / 2));
 			break;
 		case LEFT:
-			setAnchorLocationX(1);
+			setAnchorLocationX(getBoundingBox().getWidth() / 1.75);
 			break;
 		case RIGHT:
-			setAnchorLocationX(getSceneWidth() - getWidth() - 1);
+			setAnchorLocationX(getSceneWidth() - (getBoundingBox().getWidth() / 1.75));
 		default:
 			break;
 		}
@@ -198,27 +127,24 @@ public class Player extends Character
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
 		Bullet bullet;
-		if (vulnerable) {
+		if (this.isVulnerable) {
 			if (collidingObject instanceof Robot) {
 				enemy = (Robot) collidingObject;
 				if (enemy.isVisible()) {
-					// this.Hit(enemy.getDamage());
-					this.Hit(1);
-					// text.update();
+					this.hit(1);
 					setVulnerable(false);
 					setupTimers();
 				}
 			} else if (collidingObject instanceof Bullet) {
 				bullet = (Bullet) collidingObject;
-				if (bullet.character instanceof Enemy) {
-					// this.Hit(bullet.getDamage());
-					this.Hit(1);
-					// text.update();
+				if (bullet.getCharacter() instanceof Enemy) {
+					this.hit(1);
 					setVulnerable(false);
 					setupTimers();
 				}
 			}
 		}
+
 		if (collidingObject instanceof Door && playerHasKey) {
 			screen.main.setActiveScene(2);
 		}
@@ -226,17 +152,55 @@ public class Player extends Character
 	}
 
 	@Override
-	public String GetHealth() {
-		return "" + health;
-	}
-
-	@Override
 	public void setupTimers() {
 		addTimer(new InvulnerabilityTimer(this, 50));
-		// this.createInvulnerabilityTimer();
 	}
-	/*
-	 * protected void createInvulnerabilityTimer() { addTimer(new
-	 * InvulnerabilityTimer(this, 50)); }
-	 */
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public double getDirectionPlayer() {
+		return this.directionPlayer;
+	}
+
+	public void setDirectionPlayer(double directionPlayer) {
+		this.directionPlayer = directionPlayer;
+	}
+
+	public boolean isShooting() {
+		return this.shooting;
+	}
+
+	public boolean isPlayerHasKey() {
+		return this.playerHasKey;
+	}
+
+	public void setPlayerHasKey(boolean playerHasKey) {
+		this.playerHasKey = playerHasKey;
+	}
+
+	public int getWeaponLevel() {
+		return this.weaponLevel;
+	}
+
+	public void setWeaponLevel(int weaponLevel) {
+		this.weaponLevel = weaponLevel;
+	}
+
+	public int getScore() {
+		return this.score;
+	}
+
+	public void setVulnerable(boolean vulnerable) {
+		this.isVulnerable = vulnerable;
+	}
+
+	public int getPlayerLevel() {
+		return this.playerLevel;
+	}
+
+	public void setPlayerLevel(int playerLevel) {
+		this.playerLevel = playerLevel;
+	}
 }

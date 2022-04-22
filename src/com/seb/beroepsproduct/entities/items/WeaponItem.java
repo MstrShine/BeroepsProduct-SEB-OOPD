@@ -8,20 +8,18 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class WeaponItem extends Item {
 
-	protected ItemDropper itemDropper;
-
-	protected WeaponItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
+	public WeaponItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
+			Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
-
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if(collidingObject instanceof Player && isVisible()) {
-			var newWeaponLevel = player.getWeaponLevel() +1;
+		if (collisionCheckPlayer(collidingObject)) {
+			var newWeaponLevel = player.getWeaponLevel() + 1;
 			player.setWeaponLevel(newWeaponLevel);
 			setVisible(false);
 		}
-		
+
 	}
 }
