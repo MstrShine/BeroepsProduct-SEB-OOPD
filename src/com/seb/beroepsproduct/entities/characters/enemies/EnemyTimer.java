@@ -2,6 +2,7 @@ package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
+import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
 import com.github.hanyaeger.api.scenes.DynamicScene;
@@ -24,13 +25,15 @@ public class EnemyTimer extends Timer {
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		respawn(timestamp);
-		if (previousTimestamp == 0) {
-			previousTimestamp = timestamp;
-		} else {
-			if (timestamp - previousTimestamp > 5000000000d) {
-				changeDirection();
+		if (enemy instanceof Robot) {
+			if (previousTimestamp == 0) {
 				previousTimestamp = timestamp;
+			} else {
+				if (timestamp - previousTimestamp > 5000000000d) {
+					changeDirection();
+					previousTimestamp = timestamp;
 
+				}
 			}
 		}
 	}
@@ -58,10 +61,12 @@ public class EnemyTimer extends Timer {
 	}
 
 	private void changeDirection() {
-		if (enemy.getDirection() == 270) {
-			enemy.setDirection(90);
-		} else {
-			enemy.setDirection(270);
+		if (enemy instanceof Robot) {
+			if (enemy.getDirection() == 270) {
+				enemy.setDirection(90);
+			} else {
+				enemy.setDirection(270);
+			}
 		}
 	}
 }

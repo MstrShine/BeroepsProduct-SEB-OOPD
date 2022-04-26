@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.scenes.YaegerScene;
 import com.seb.beroepsproduct.entities.characters.Character;
+import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTimer;
 import com.seb.beroepsproduct.scenes.GameScreen;
@@ -22,20 +23,16 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		this.damage = damage;
 		level = 1;
 	}
-	
-	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage, GameScreen screen, int rows, int columns) {
-		super(location, size, health, screen, rows, columns);
-		this.player = player;
-		this.damage = damage;
-		level = 1;
-	}
+
 	
 	public int getDamage() {
 		return damage;
 	}
 
 	protected void createEnemyTimer() {
+		//if (this instanceof Robot) {
 		addTimer(new EnemyTimer(this, this.player, 50, screen));
+		//}
 	}
 
 	/**

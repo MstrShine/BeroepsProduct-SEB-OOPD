@@ -103,7 +103,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	public Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
-			var xCoord = 50 + Math.random() * (getWidth()-200);
+			var xCoord = 50 + Math.random() * (getWidth()-150);
 			var yCoord = 50 + Math.random() * getHeight()*0.88;
 			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
 			if (tempCoord.distance(player.getAnchorLocation()) > 500) {
