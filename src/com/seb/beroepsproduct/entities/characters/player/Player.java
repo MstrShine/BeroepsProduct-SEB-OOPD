@@ -22,6 +22,8 @@ import com.seb.beroepsproduct.entities.characters.player.invulnerability.Invulne
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.map.Door;
+import com.seb.beroepsproduct.entities.obstacles.Rock;
+import com.seb.beroepsproduct.entities.obstacles.Toxic;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.input.KeyCode;
@@ -127,7 +129,19 @@ public class Player extends Character
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
 		Bullet bullet;
+		
+		if (collidingObject instanceof Rock) {
+			this.changeDirection(180);
+			this.setSpeed(0);
+			//this.getDirection();
+			//this.setAnchorLocation() 
+		}
 		if (this.isVulnerable) {
+			if (collidingObject instanceof Toxic) {
+				this.hit(1);
+				setVulnerable(false);
+				setupTimers();
+			}
 			if (collidingObject instanceof Robot) {
 				enemy = (Robot) collidingObject;
 				if (enemy.isVisible()) {

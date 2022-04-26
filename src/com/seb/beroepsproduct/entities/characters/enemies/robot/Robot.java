@@ -15,6 +15,8 @@ import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
+import com.seb.beroepsproduct.entities.obstacles.Rock;
+import com.seb.beroepsproduct.entities.obstacles.Toxic;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.paint.Color;
@@ -27,7 +29,6 @@ public class Robot extends Enemy {
 
 	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
 		super(spawnlocation, new Size(10, 10), player, health, damage, screen);
-		
 		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
@@ -47,6 +48,12 @@ public class Robot extends Enemy {
 
 	@Override
 	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Toxic) {}
+		if (collidingObject instanceof Rock) {
+			this.changeDirection(180);
+			this.setSpeed(1);
+
+		}
 		if (collidingObject instanceof Bullet) {
 			var bullet = (Bullet) collidingObject;
 			if (bullet.getCharacter() instanceof Player) {

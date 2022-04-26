@@ -1,0 +1,1 @@
+package com.seb.beroepsproduct.entities.obstacles;

@@ -10,6 +10,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
+import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.characters.Character;
 
 import javafx.scene.paint.Color;
@@ -60,6 +61,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 	@Override
 	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Rock) {remove();}
 		if (character instanceof Player) {
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
 				remove();
