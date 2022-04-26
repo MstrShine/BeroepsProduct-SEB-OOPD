@@ -51,17 +51,17 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
 		player1 = player;
 		addEntity(player1);
-		
+
 		fillObstacleArray();
-		for (Obstacle obst :obstacles) {
+		for (Obstacle obst : obstacles) {
 			addEntity(obst);
 		}
-		
+
 		fillEnemyArray();
 		for (Enemy nme : enemies) {
 			addEntity(nme);
 		}
-		
+
 		var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
 		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		scoreText.setFill(Color.WHITE);
@@ -72,16 +72,12 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
 		addEntity(door);
-/*
-		for (int i = 0; i < nRobots; i++) {
-			var robot = new Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
-			robots.add(robot);
-		}
-		for (Robot rbt : robots) {
-			addEntity(rbt);
-		}
-		
-*/
+		/*
+		 * for (int i = 0; i < nRobots; i++) { var robot = new
+		 * Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
+		 * robots.add(robot); } for (Robot rbt : robots) { addEntity(rbt); }
+		 * 
+		 */
 
 	}
 
@@ -93,10 +89,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
 
-		for (Enemy nme: enemies) {
+		for (Enemy nme : enemies) {
 			if (nme instanceof Robot) {
-			var shooter2 = new BulletShooter(nme, 500);
-			addEntitySpawner(shooter2);
+				var shooter2 = new BulletShooter(nme, 500);
+				addEntitySpawner(shooter2);
 			}
 			var itemDropper = new ItemDropper(player1, nme, 50);
 			addEntitySpawner(itemDropper);
@@ -104,44 +100,11 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	}
 
-	/**
-	 * picks location for spawning enemy
-	 * 
-	 * @param player player object
-	 * @return coordinates for spawning
-	 */
-	public Coordinate2D pickEnemyLocation(Player player, ArrayList<Obstacle> obstacles) {
-		boolean chosen = false;
-		boolean possible = true;
-		while (!chosen) {
-			var xCoord = Math.random() * (getWidth() - 500);
-			var yCoord = Math.random() * getHeight();
-			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
-			for (int i = 0; i < obstacles.size(); i++) {
-				possible = true;
-				if (tempCoord.distance(player.getAnchorLocation()) < 500
-						|| tempCoord.distance(obstacles.get(i).getAnchorLocation()) < 250) {
-					possible = false;
-				} else {
-					for (int j = 0; j < robots.size(); j++) {
-						if (tempCoord.distance(robots.get(j).getAnchorLocation()) < 200) {
-							possible = false;
-						}
-					}
-				}
-			}
-			if (possible) {
-				return tempCoord;
-			}
-		}
-		return (new Coordinate2D(0, 0));
-	}
-
-	public Coordinate2D pickEnemyLocation(Player player) {
+	public Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
-			var xCoord = Math.random() * (getWidth() - 500);
-			var yCoord = Math.random() * getHeight();
+			var xCoord = 50 + Math.random() * (getWidth()-200);
+			var yCoord = 50 + Math.random() * getHeight()*0.88;
 			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
 			if (tempCoord.distance(player.getAnchorLocation()) > 500) {
 				return tempCoord;
@@ -158,30 +121,57 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			var width = 20 + Math.random() * 100;
 			var height = width / 2 + Math.random() * 50;
 			if (Math.random() > 0.5) {
-				var obstacle = new Rock(pickEnemyLocation(player1), new Size(width + 25, height + 25));
-				System.out.println("ik probeer nu een rock toe te voegen");
+				var obstacle = new Rock(pickObstacleLocation(player1), new Size(width + 25, height + 25));
 				obstacles.add(obstacle);
-				System.out.println("ik heb nu een rock toegevoegd");
 			} else {
-				var obstacle = new Toxic(pickEnemyLocation(player1), new Size(width, height));
-				System.out.println("ik probeer nu een toxic toe te voegen");
+				var obstacle = new Toxic(pickObstacleLocation(player1), new Size(width, height));
 				obstacles.add(obstacle);
-				System.out.println("ik heb nu een toxic toegevoegd");
 			}
-			System.out.println("ik zit nu einde obstacle vullen");
 		}
 	}
 
+	/**
+	 * picks location for spawning enemy
+	 * 
+	 * @param player player object
+	 * @return coordinates for spawning
+	 */
+	public Coordinate2D pickEnemyLocation(Player player, ArrayList<Obstacle> obstacles) {
+		boolean chosen = false;
+		boolean possible;
+		while (!chosen) {
+			possible = true;
+			var xCoord = 50+ Math.random() * (getWidth()*0.95 - 400);
+			var yCoord = 80+ Math.random() * (getHeight()*0.88);
+			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
+			for (int i = 0; i < obstacles.size(); i++) {
+				possible = true;
+				if (tempCoord.distance(player.getAnchorLocation()) < 600
+						|| tempCoord.distance(obstacles.get(i).getAnchorLocation()) < 400) {
+					possible = false;
+				}
+			}
+			for (int j = 0; j < enemies.size(); j++) {
+				if (tempCoord.distance(enemies.get(j).getAnchorLocation()) < 200) {
+					possible = false;
+				}
+			}
+			if (possible) {
+				return tempCoord;
+			}
+		}
+		return (new Coordinate2D(0, 0));
+	}
+	
 	private void fillEnemyArray() {
 		enemies.clear();
 		var nEnemies = 3 + Math.floor(level / 3); // elke drie levels een enemy erbij
-		System.out.println(""+ nEnemies);
+		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
 			if (Math.random() > 0.5) {
 				var enemy = new Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
 				enemies.add(enemy);
-			}
-			else {
+			} else {
 				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
 				enemies.add(enemy);
 			}
