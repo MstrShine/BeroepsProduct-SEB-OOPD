@@ -52,12 +52,14 @@ public class Zombie extends Enemy{
 
 		@Override
 		public void setupTimers() {
+			this.createEnemyTimer();
 		}
 
 		@Override
 		protected void move(double direction) {
 			setMotion(this.speed, direction);
 			System.out.println("2. de snelheid is: " + speed);
+			System.out.println("3. de direction is: " + getDirection());
 		}
 		
 		
@@ -72,7 +74,9 @@ public class Zombie extends Enemy{
 		public void update(long timestamp) {
 			setRotate(this.angleTo(player)-180);
 			direction = this.angleTo(player);
+			System.out.println("0. de direction is: " + direction);
 			speed = 5;
+			setSpeed(speed);
 			System.out.println("1. de snelheid is: " + speed);
 			move(direction);
 			
