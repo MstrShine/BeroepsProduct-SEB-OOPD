@@ -5,29 +5,30 @@ import java.util.Random;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class ItemDropper extends EntitySpawner {
-	private Robot robot;
+	private Enemy enemy;
 	private boolean itemDropped;
 	private Player player;
 
-	public ItemDropper(Player player, Robot robot, long intervalInMs) {
+	public ItemDropper(Player player, Enemy enemy, long intervalInMs) {
 		super(intervalInMs);
-		this.robot = robot;
+		this.enemy = enemy;
 		this.player = player;
 		itemDropped = false;
 	}
 
 	@Override
 	public void spawnEntities() {
-		if (!robot.isVisible() && !itemDropped) {
+		if (!enemy.isVisible() && !itemDropped) {
 			var randomNumber = Math.random();
 
 			boolean itemVisible = true;
-			var tempLoc = new Coordinate2D(robot.getAnchorLocation().getX() - 50,
-					robot.getAnchorLocation().getY() - 50);
+			var tempLoc = new Coordinate2D(enemy.getAnchorLocation().getX() - 50,
+					enemy.getAnchorLocation().getY() - 50);
 
 			if (randomNumber < 0.5) {
 				itemVisible = false;

@@ -23,6 +23,13 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		level = 1;
 	}
 	
+	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage, GameScreen screen, int rows, int columns) {
+		super(location, size, health, screen, rows, columns);
+		this.player = player;
+		this.damage = damage;
+		level = 1;
+	}
+	
 	public int getDamage() {
 		return damage;
 	}

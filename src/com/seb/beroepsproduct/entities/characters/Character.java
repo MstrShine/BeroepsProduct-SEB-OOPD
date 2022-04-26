@@ -25,6 +25,14 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 		this.maxHealth = health;
 		this.screen = screen;
 	}
+	
+	public Character(Coordinate2D location, Size size, int health, GameScreen screen, int rows, int columns) {
+		super(location);
+		this.health = health;
+		this.maxHealth = health;
+		this.screen = screen;
+	}
+
 
 	protected void die() {
 		this.setVisible(false);

@@ -65,7 +65,8 @@ public class Robot extends Enemy {
 
 	@Override
 	protected void setupEntities() {
-		var robotSprite = new RobotSprite("sprites/Robot.gif", new Coordinate2D(-50, -50), new Size(100, 100));
+		double rotationSpeed = -5 + Math.random()*10;
+		var robotSprite = new RobotSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100), rotationSpeed);
 		addEntity(robotSprite);
 		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.text);
