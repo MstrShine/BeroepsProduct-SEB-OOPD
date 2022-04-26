@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities.characters.enemies;
+package com.seb.beroepsproduct.entities.characters.enemies.zombie;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;

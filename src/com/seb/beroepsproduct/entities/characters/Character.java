@@ -26,17 +26,16 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 		this.screen = screen;
 	}
 	
-
 	protected void die() {
 		this.setVisible(false);
 	}
 	
 	protected void move(double direction) {
-		setMotion(speed, direction);
+		setMotion(this.speed, direction);
 	}
 
 	protected void move(Direction direction) {
-		setMotion(speed, direction);
+		setMotion(this.speed, direction);
 	}
 	
 	protected void hit(int damage) {

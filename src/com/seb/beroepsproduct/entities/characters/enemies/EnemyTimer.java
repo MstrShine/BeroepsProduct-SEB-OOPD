@@ -3,6 +3,7 @@ package com.seb.beroepsproduct.entities.characters.enemies;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
 import com.github.hanyaeger.api.scenes.DynamicScene;
@@ -32,9 +33,14 @@ public class EnemyTimer extends Timer {
 				if (timestamp - previousTimestamp > 5000000000d) {
 					changeDirection();
 					previousTimestamp = timestamp;
-
 				}
 			}
+		}
+		if(enemy instanceof Zombie) {
+			var zombie = (Zombie)enemy;
+			zombie.setRotate(zombie.angleTo(player) - 180);
+			zombie.setDirection(zombie.angleTo(player));
+			zombie.setMotion(zombie.getEnemySpeed(), zombie.getDirection());
 		}
 	}
 

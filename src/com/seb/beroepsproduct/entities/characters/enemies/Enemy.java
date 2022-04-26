@@ -50,4 +50,7 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		this.level = 1 + Math.floor(player.getScore() / 200);
 	}
 
+	public double getEnemySpeed() {
+		return this.speed;
+	}
 }
