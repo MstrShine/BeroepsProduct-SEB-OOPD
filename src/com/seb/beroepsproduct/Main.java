@@ -33,9 +33,11 @@ public class Main extends YaegerGame {
 
 	@Override
 	public void setupScenes() {
+		var gs = new GameScreen(this);
 		addScene(0, new TitleScreen(this));
-		addScene(1, new GameScreen(this));
-		addScene(2, new EndGameScreen());
+		addScene(1, gs);
+		addScene(2, new EndGameScreen(gs));
+		addScene(3, new IntermissionScreen(this, gs));
 	}
 
 }

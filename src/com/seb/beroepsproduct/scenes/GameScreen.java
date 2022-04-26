@@ -29,7 +29,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	public Main main;
 	public Player player1;
-	private int level = 1;
+	protected int level = 1;
 
 	private ArrayList<Robot> robots = new ArrayList<Robot>();
 	private int nRobots = 3;
@@ -151,8 +151,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 					possible = false;
 				}
 			}
-			for (int j = 0; j < enemies.size(); j++) {
-				if (tempCoord.distance(enemies.get(j).getAnchorLocation()) < 200) {
+			for (int i = 0; i < enemies.size(); i++) {
+				if (tempCoord.distance(enemies.get(i).getAnchorLocation()) < 200) {
 					possible = false;
 				}
 			}
@@ -179,5 +179,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		var length = enemies.size();
 		System.out.println("de lengte van de enemy array is: " + length);
 	}
-
+	public int getScore() {
+		return player1.getScore();
+	}
 }

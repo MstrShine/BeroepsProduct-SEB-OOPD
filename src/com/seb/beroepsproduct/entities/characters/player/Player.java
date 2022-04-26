@@ -160,7 +160,7 @@ public class Player extends Character
 		}
 
 		if (collidingObject instanceof Door && playerHasKey) {
-			screen.main.setActiveScene(2);
+			screen.main.setActiveScene(3);
 		}
 
 	}
