@@ -22,14 +22,14 @@ public class Zombie extends Enemy {
 		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
-		this.speed = 1;
+		this.speed = 0.4+ (getEnemyLevel()*0.2);
 	}
 
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
 		if (this.health <= 0 && this.isVisible()) {
-			player.setScore(player.getScore() + 100 + (((int) this.getLevel() - 1) * 10));
+			player.setScore(player.getScore() + 100 + (((int) this.getEnemyLevel() - 1) * 10));
 			this.die();
 			System.out.println("" + player.getScore());
 		}

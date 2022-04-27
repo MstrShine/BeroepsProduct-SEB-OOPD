@@ -25,8 +25,8 @@ public class NextLvlButton extends Button{
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		gameScreen.setupEntities();
 		gameScreen.setupEntitySpawners();
+		gameScreen.setLevel(gameScreen.getLevel()+1);
 		main.setActiveScene(1);
-		
 	}
 
 	@Override

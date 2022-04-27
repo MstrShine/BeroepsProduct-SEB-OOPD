@@ -22,7 +22,7 @@ public class BulletShooter extends EntitySpawner {
 		this.character = character;
 		if (character instanceof Player) {
 			var player = (Player) character;
-			this.nBullets = player.getPlayerLevel();
+			this.nBullets = player.getWeaponLevel();
 		}
 	}
 
@@ -30,6 +30,7 @@ public class BulletShooter extends EntitySpawner {
 	protected void spawnEntities() {
 		if (character instanceof Player) {
 			var player = (Player) character;
+			this.nBullets = player.getWeaponLevel();
 			if (player.isShooting()) {
 				for (int i = 0; i < nBullets; i++) {
 					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 15, i));
@@ -39,7 +40,7 @@ public class BulletShooter extends EntitySpawner {
 
 		if (character instanceof Robot) {
 			var robot = (Robot) character;
-			var nBullets = 3 + robot.getLevel();
+			var nBullets = 4 + Math.floor(robot.getEnemyLevel()/2); //elke twee levels een kogel extra
 			
 			if (robot.isVisible()) {
 				for (int i = 0; i < nBullets; i++) {
@@ -47,6 +48,7 @@ public class BulletShooter extends EntitySpawner {
 				}
 			}
 		}
-
 	}
+	
+
 }

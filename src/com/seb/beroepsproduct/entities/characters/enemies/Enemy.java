@@ -14,14 +14,14 @@ import com.seb.beroepsproduct.scenes.GameScreen;
 public abstract class Enemy extends Character implements Collided, TimerContainer {
 
 	protected int damage;
-	protected double level;
+	protected double enemyLevel;
 	protected Player player;
 
 	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage, GameScreen screen) {
 		super(location, size, health, screen);
 		this.player = player;
 		this.damage = damage;
-		level = 1;
+		setEnemyLevel();
 	}
 
 	
@@ -39,16 +39,17 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 	 * Gets current level of {@link enemy}
 	 * @return current level
 	 */
-	public double getLevel() {
-		return level;
+	public double getEnemyLevel() {
+		return enemyLevel;
 	}
 
 	/**
 	 * Sets level of {@link Enemy} by one plus dividing current score with 200
 	 */
-	public void setLevel() {
-		this.level = 1 + Math.floor(player.getScore() / 200);
+	public void setEnemyLevel() {
+		this.enemyLevel = 1+ Math.floor(screen.getLevel()/3);
 	}
+	
 
 	public double getEnemySpeed() {
 		return this.speed;

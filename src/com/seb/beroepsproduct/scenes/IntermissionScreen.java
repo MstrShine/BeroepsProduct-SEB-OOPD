@@ -48,7 +48,7 @@ public class IntermissionScreen extends StaticScene{
 		ready.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
 		addEntity(ready);
 		
-		var nextLvlButton = new NextLvlButton(new Coordinate2D(getWidth() / 2, getHeight() / 4 +520), "LET'S KICK SOME @SS",
+		var nextLvlButton = new NextLvlButton(new Coordinate2D(getWidth() / 2, getHeight() / 4 +550), "LET'S KICK SOME @SS",
 				Color.RED, Color.GREEN, "Roboto", 50, main, gameScreen);
 		nextLvlButton.setAnchorPoint(AnchorPoint.BOTTOM_CENTER);
 		addEntity(nextLvlButton);

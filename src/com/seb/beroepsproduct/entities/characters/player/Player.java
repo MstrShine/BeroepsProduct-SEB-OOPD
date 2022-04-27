@@ -32,7 +32,6 @@ public class Player extends Character
 		implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
 
 	private double directionPlayer;
-	private int playerLevel;
 	private boolean shooting;
 	private boolean isVulnerable;
 	private int score;
@@ -41,8 +40,6 @@ public class Player extends Character
 
 	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
 		super(startLocation, new Size(150, 150), health, screen);
-
-		this.playerLevel = playerLevel;
 		this.shooting = false;
 		this.speed = 3;
 		this.isVulnerable = true;
@@ -54,7 +51,7 @@ public class Player extends Character
 
 	@Override
 	protected void setupEntities() {
-		var pSprite = new PlayerSprite("sprites/player1.gif", new Coordinate2D(-50, -50), 0, new Size(100, 100));
+		var pSprite = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(-50, -50), 0, new Size(100, 100));
 		addEntity(pSprite);
 	}
 
@@ -161,6 +158,8 @@ public class Player extends Character
 
 		if (collidingObject instanceof Door && playerHasKey) {
 			screen.main.setActiveScene(3);
+			setScore(getScore()+500);
+			setPlayerHasKey(false);
 		}
 
 	}
@@ -210,11 +209,4 @@ public class Player extends Character
 		this.isVulnerable = vulnerable;
 	}
 
-	public int getPlayerLevel() {
-		return this.playerLevel;
-	}
-
-	public void setPlayerLevel(int playerLevel) {
-		this.playerLevel = playerLevel;
-	}
 }

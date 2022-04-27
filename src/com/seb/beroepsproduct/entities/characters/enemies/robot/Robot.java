@@ -40,7 +40,7 @@ public class Robot extends Enemy {
 	public void hit(int damage) {
 		this.health -= damage;
 		if (this.health <= 0 && this.isVisible()) {
-			player.setScore(player.getScore() + 100 + (((int) this.getLevel() - 1) * 10));
+			player.setScore(player.getScore() + 100 + (((int) this.getEnemyLevel() - 1) * 10));
 			this.die();
 			System.out.println("" + player.getScore());
 		}

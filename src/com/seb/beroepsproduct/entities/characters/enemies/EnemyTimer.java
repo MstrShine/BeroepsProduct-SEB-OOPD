@@ -55,9 +55,7 @@ public class EnemyTimer extends Timer {
 					enemy.setAnchorLocation(screen.pickEnemyLocation(player, screen.obstacles));
 					// TODO
 					// hier reset ik de enemy met andere stats aan de hand van level
-					enemy.setLevel();
 					enemy.setVisible(true);
-					enemy.setMaxHealth(500 + (int) (enemy.level * 50));
 					enemy.setHealth(enemy.getMaxHealth());
 					enemy.text.update();
 					respawnTimestamp = 0;

@@ -32,9 +32,6 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	public Player player1;
 	protected int level = 1;
 
-	private ArrayList<Robot> robots = new ArrayList<Robot>();
-	private int nRobots = 3;
-
 	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public ArrayList<BulletShooter> bulletshooters = new ArrayList<BulletShooter>();
@@ -88,13 +85,6 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		addEntity(scoreText);
 		addEntity(score);
 		addEntity(door);
-	
-		/*
-		 * for (int i = 0; i < nRobots; i++) { var robot = new
-		 * Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
-		 * robots.add(robot); } for (Robot rbt : robots) { addEntity(rbt); }
-		 * 
-		 */
 
 	}
 
@@ -125,6 +115,14 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		for (ItemDropper id: itemdroppers) addEntitySpawner(id);
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 	public Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
@@ -139,7 +137,6 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	private void fillObstacleArray() {
-		System.out.println("ik begin nu met obstacle vullen");
 		obstacles.clear();
 		var nObstacles = 3 + Math.floor((Math.random() * 10) / 2.5);
 		for (int i = 0; i < nObstacles; i++) {
@@ -189,21 +186,23 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 	
 	private void fillEnemyArray() {
+		
+		var enemyHealth = 500 + (int) ((this.level-1) * 50);
+		
 		enemies.clear();
 		var nEnemies = 3 + Math.floor(level / 3); // elke drie levels een enemy erbij
 		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
-			if (Math.random() > 0.5) {
-				var enemy = new Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
+			if (i == 0) { //1 zombie, rest vuurballen
+				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			} else {
-				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
+				var enemy = new Robot(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			}
 		}
-		var length = enemies.size();
-		System.out.println("de lengte van de enemy array is: " + length);
 	}
+	
 	public int getScore() {
 		return player1.getScore();
 	}
