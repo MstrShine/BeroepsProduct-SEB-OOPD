@@ -30,7 +30,7 @@ public class ItemDropper extends EntitySpawner {
 			var tempLoc = new Coordinate2D(enemy.getAnchorLocation().getX() - 50,
 					enemy.getAnchorLocation().getY() - 50);
 
-			if (randomNumber < 0.5) {
+			if (randomNumber < 0.2) {
 				itemVisible = false;
 			}
 

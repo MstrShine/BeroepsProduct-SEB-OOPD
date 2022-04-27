@@ -1,6 +1,7 @@
 package com.seb.beroepsproduct.scenes;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
@@ -36,6 +37,14 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	public ArrayList<BulletShooter> bulletshooters = new ArrayList<BulletShooter>();
+	public ArrayList<ItemDropper> itemdroppers = new ArrayList<ItemDropper>();
+	
+	private TextEntity scoreText;
+	private scoreTextEntity score;
+	private Door door;
+	private BulletShooter shooter;
+	private HealthDisplay healthDisplay;
 
 	public GameScreen(Main main) {
 		this.main = main;
@@ -48,9 +57,13 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupEntities() {
+		
+		if (Objects.isNull(player1)) {
 		var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
 		player1 = player;
+		}
 		addEntity(player1);
+	
 
 		fillObstacleArray();
 		for (Obstacle obst : obstacles) {
@@ -61,17 +74,21 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		for (Enemy nme : enemies) {
 			addEntity(nme);
 		}
-
+		
+		if (player1.getScore() == 0) {
 		var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
 		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		scoreText.setFill(Color.WHITE);
-		addEntity(scoreText);
-
+		this.scoreText = scoreText;
 		var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
-		addEntity(score);
-
+		this.score = score;
 		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
+		this.door = door;
+		}
+		addEntity(scoreText);
+		addEntity(score);
 		addEntity(door);
+	
 		/*
 		 * for (int i = 0; i < nRobots; i++) { var robot = new
 		 * Robot(pickEnemyLocation(player1, obstacles), player1, 500, 10, this);
@@ -83,21 +100,29 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupEntitySpawners() {
-		var healthDisplay = new HealthDisplay(1000, player1);
+		if (player1.getScore() == 0) {
+			var healthDisplay = new HealthDisplay(1000, player1);
+			this.healthDisplay = healthDisplay;
+			var shooter = new BulletShooter(player1, 20);
+			this.shooter = shooter;
+			}
 		addEntitySpawner(healthDisplay);
-
-		var shooter = new BulletShooter(player1, 20);
 		addEntitySpawner(shooter);
-
+		
+		
+		bulletshooters.clear();
+		itemdroppers.clear();
 		for (Enemy nme : enemies) {
 			if (nme instanceof Robot) {
 				var shooter2 = new BulletShooter(nme, 500);
-				addEntitySpawner(shooter2);
+				bulletshooters.add(shooter2);
+				
 			}
 			var itemDropper = new ItemDropper(player1, nme, 50);
-			addEntitySpawner(itemDropper);
+			itemdroppers.add(itemDropper);
 		}
-
+		for (BulletShooter shtr: bulletshooters) addEntitySpawner(shtr);
+		for (ItemDropper id: itemdroppers) addEntitySpawner(id);
 	}
 
 	public Coordinate2D pickObstacleLocation(Player player) {
