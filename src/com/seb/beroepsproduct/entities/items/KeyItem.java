@@ -12,6 +12,7 @@ public class KeyItem extends Item {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 	
+	
 	@Override
 	public void setupTimers() {
 		var itemTimer = new ItemTimer(this, 60000);

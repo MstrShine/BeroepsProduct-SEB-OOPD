@@ -34,7 +34,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset*15);
 			setDirection(direction + 90);
 			setupTimers();
-			this.damage = 3;
+			this.damage = (int) (3 + Math.floor( (int)player.getWeaponLevel()/2));
 			
 		}
 
@@ -48,7 +48,6 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // nu schiet robot harder per level
 			setDirection(bulletOffset * 360 / nBullets);
 			setupTimers();
-			
 			this.damage = 10;
 		}
 	}

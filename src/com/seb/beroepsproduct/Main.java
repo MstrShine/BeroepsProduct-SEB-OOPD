@@ -6,6 +6,8 @@ import java.awt.GraphicsEnvironment;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import com.seb.beroepsproduct.scenes.*;
+import java.io.File;
+import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Main extends YaegerGame {
 
@@ -24,7 +26,20 @@ public class Main extends YaegerGame {
 
 	public static void main(String[] args) {
 		launch(args);
+		
+		try {
+		      File myObj = new File("highscores.txt");
+		      if (myObj.createNewFile()) {
+		        System.out.println("File created: " + myObj.getName());
+		      } else {
+		        System.out.println("File already exists.");
+		      }
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
 	}
+
 
 	@Override
 	public void setupGame() {

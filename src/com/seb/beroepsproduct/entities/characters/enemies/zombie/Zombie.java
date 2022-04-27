@@ -24,6 +24,7 @@ public class Zombie extends Enemy {
 		this.player = player;
 		this.speed = 0.4+ (getEnemyLevel()*0.2);
 	}
+	
 
 	@Override
 	public void hit(int damage) {

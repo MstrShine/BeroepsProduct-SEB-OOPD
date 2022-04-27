@@ -9,7 +9,6 @@ public abstract class Obstacle extends DynamicSpriteEntity implements Collider{
 
 	public Obstacle(String resource, Coordinate2D initialLocation, Size size, int columns, int rows) {
 		super(resource, initialLocation, size, columns, rows);
-		if (columns>1) {setAutoCycle(500);}
 	}
 
 }
