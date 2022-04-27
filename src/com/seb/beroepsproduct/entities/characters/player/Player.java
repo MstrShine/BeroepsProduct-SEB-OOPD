@@ -1,6 +1,8 @@
 package com.seb.beroepsproduct.entities.characters.player;
 
 import java.util.Set;
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
@@ -17,6 +19,7 @@ import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.EnemyTimer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.invulnerability.InvulnerabilityTimer;
 import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
@@ -59,10 +62,22 @@ public class Player extends Character
 	public void hit(int damage) {
 		this.health -= damage;
 		var owSound = new SoundClip("audio/OW.mp3");
-		owSound.setVolume(0);
+		owSound.setVolume(10);
 		owSound.play();
+		if (getHealth() <= 0) {
+			handleGameOver();
+		}
 	}
+	
+	private void handleGameOver() {
+		
+		 LocalDateTime myDateObj = LocalDateTime.now();
+		 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		 String formattedDate = myDateObj.format(myFormatObj);
 
+		screen.getMain().setActiveScene(2);
+	}
+	
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
 		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
@@ -134,7 +149,7 @@ public class Player extends Character
 			//this.setAnchorLocation() 
 		}
 		if (this.isVulnerable) {
-			if (collidingObject instanceof Toxic) {
+			if (collidingObject instanceof Toxic || collidingObject instanceof Zombie) {
 				this.hit(1);
 				setVulnerable(false);
 				setupTimers();

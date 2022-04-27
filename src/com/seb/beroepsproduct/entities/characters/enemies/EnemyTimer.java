@@ -30,7 +30,7 @@ public class EnemyTimer extends Timer {
 			if (previousTimestamp == 0) {
 				previousTimestamp = timestamp;
 			} else {
-				if (timestamp - previousTimestamp > 5000000000d) {
+				if (timestamp - previousTimestamp > 7000000000d) {
 					changeDirection();
 					previousTimestamp = timestamp;
 				}

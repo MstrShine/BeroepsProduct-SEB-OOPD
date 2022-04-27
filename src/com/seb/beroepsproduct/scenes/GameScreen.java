@@ -72,6 +72,11 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			addEntity(nme);
 		}
 		
+		var levelTextEntity = new TextEntity(new Coordinate2D(50, 20), getLevelText());
+		levelTextEntity.setFont(Font.font("Roboto", FontWeight.NORMAL, 20));
+		levelTextEntity.setFill(Color.WHITE);
+		addEntity(levelTextEntity);
+		
 		if (player1.getScore() == 0) {
 		var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
 		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
@@ -86,6 +91,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		addEntity(score);
 		addEntity(door);
 
+	}
+
+	public Main getMain() {
+		return main;
 	}
 
 	@Override
@@ -205,5 +214,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	
 	public int getScore() {
 		return player1.getScore();
+	}
+	
+	private String getLevelText() {
+		return "Level "+ level;
 	}
 }
