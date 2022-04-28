@@ -1,13 +1,10 @@
 package com.seb.beroepsproduct.entities.characters.enemies;
 
-import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
-import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.YaegerScene;
 
 public class EnemyTimer extends Timer {
 	private Enemy enemy;

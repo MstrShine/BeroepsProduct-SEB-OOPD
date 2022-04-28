@@ -6,7 +6,6 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
-import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.scenes.GameScreen;
 

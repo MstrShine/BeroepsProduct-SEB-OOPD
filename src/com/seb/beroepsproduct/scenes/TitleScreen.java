@@ -2,26 +2,17 @@ package com.seb.beroepsproduct.scenes;
 
 import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.RobotSprite;
-import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.ZombieSprite;
-import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.PlayerSprite;
-import com.seb.beroepsproduct.entities.items.KeyItem;
 import com.seb.beroepsproduct.entities.map.Door;
-import com.seb.beroepsproduct.entities.obstacles.Obstacle;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;
-
-import java.util.ArrayList;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.StaticScene;
 import com.seb.beroepsproduct.scenes.interactables.buttons.SceneChangeButton;
 
 import javafx.scene.paint.Color;

@@ -3,19 +3,15 @@ package com.seb.beroepsproduct.entities.characters.enemies.zombie;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.Direction;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;
-import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 public class Zombie extends Enemy {
-
-	private GameScreen screen;
 
 	public Zombie(Coordinate2D location, Player player, int health, int damage, GameScreen screen) {
 		super(location, new Size(100, 100), player, health, damage, screen);

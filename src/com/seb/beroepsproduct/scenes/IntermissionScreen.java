@@ -6,7 +6,6 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.scenes.interactables.buttons.NextLvlButton;
-import com.seb.beroepsproduct.scenes.interactables.buttons.SceneChangeButton;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.StaticScene;
 import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.entities.name.NameTextEntity;
 import com.seb.beroepsproduct.scenes.interactables.buttons.NewGameButton;
@@ -19,9 +18,7 @@ import javafx.scene.text.FontWeight;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException; // Import the IOException class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files
 import java.io.FileWriter; // Import the FileWriter class
-import java.util.ArrayList;
 
 public class EndGameScreen extends DynamicScene {
 

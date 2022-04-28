@@ -1,16 +1,10 @@
 package com.seb.beroepsproduct.entities.characters.player.weapon.bullets;
 
-import java.util.Random;
-import java.util.Set;
-
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
-import com.github.hanyaeger.api.userinput.KeyListener;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
-
-import javafx.scene.input.KeyCode;
 
 public class BulletShooter extends EntitySpawner {
 

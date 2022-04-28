@@ -1,8 +1,6 @@
 package com.seb.beroepsproduct.entities.characters.player;
 
 import java.util.Set;
-import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
@@ -17,12 +15,9 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.EnemyTimer;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
-import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.invulnerability.InvulnerabilityTimer;
-import com.seb.beroepsproduct.entities.characters.player.weapon.WeaponSprite;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.map.Door;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
@@ -65,16 +60,8 @@ public class Player extends Character
 		owSound.setVolume(10);
 		owSound.play();
 		if (getHealth() <= 0) {
-			handleGameOver();
+			screen.getMain().setActiveScene(2);
 		}
-	}
-
-	private void handleGameOver() {
-		LocalDateTime myDateObj = LocalDateTime.now();
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = myDateObj.format(myFormatObj);
-
-		screen.getMain().setActiveScene(2);
 	}
 
 	@Override

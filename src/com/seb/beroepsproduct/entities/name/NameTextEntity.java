@@ -6,7 +6,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.impl.DynamicTextEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
-import com.seb.beroepsproduct.entities.score.ScoreUpdater;
 import com.seb.beroepsproduct.scenes.EndGameScreen;
 
 import javafx.scene.input.KeyCode;

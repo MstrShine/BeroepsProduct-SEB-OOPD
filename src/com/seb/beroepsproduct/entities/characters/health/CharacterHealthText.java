@@ -2,9 +2,7 @@ package com.seb.beroepsproduct.entities.characters.health;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.DynamicTextEntity;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.seb.beroepsproduct.entities.characters.Character;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

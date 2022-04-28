@@ -3,12 +3,8 @@ package com.seb.beroepsproduct.entities.characters.player.health;
 import java.util.ArrayList;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.TimerContainer;
-import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.EntitySpawner;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class HealthDisplay extends EntitySpawner {

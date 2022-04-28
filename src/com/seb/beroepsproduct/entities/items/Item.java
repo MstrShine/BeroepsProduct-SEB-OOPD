@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.seb.beroepsproduct.entities.characters.player.Player;
-import com.seb.beroepsproduct.entities.characters.Character;
 
 abstract class Item extends DynamicSpriteEntity implements TimerContainer, Collided {
 

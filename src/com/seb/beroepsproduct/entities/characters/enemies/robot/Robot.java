@@ -1,16 +1,8 @@
 package com.seb.beroepsproduct.entities.characters.enemies.robot;
 
-import java.util.List;
-
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.Direction;
-import com.github.hanyaeger.api.entities.EntitySpawner;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
-import com.github.hanyaeger.api.scenes.YaegerScene;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
@@ -18,10 +10,6 @@ import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;
 import com.seb.beroepsproduct.scenes.GameScreen;
-
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 public class Robot extends Enemy {
 

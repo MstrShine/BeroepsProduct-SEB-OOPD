@@ -5,7 +5,10 @@ import java.awt.GraphicsEnvironment;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
-import com.seb.beroepsproduct.scenes.*;
+import com.seb.beroepsproduct.scenes.EndGameScreen;
+import com.seb.beroepsproduct.scenes.GameScreen;
+import com.seb.beroepsproduct.scenes.IntermissionScreen;
+import com.seb.beroepsproduct.scenes.TitleScreen;
 
 public class Main extends YaegerGame {
 

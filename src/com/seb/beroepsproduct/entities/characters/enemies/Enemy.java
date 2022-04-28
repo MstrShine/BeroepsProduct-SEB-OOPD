@@ -4,11 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.Collided;
-import com.github.hanyaeger.api.scenes.YaegerScene;
 import com.seb.beroepsproduct.entities.characters.Character;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
-import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletTimer;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 public abstract class Enemy extends Character implements Collided, TimerContainer {

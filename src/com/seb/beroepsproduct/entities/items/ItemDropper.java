@@ -1,12 +1,8 @@
 package com.seb.beroepsproduct.entities.items;
 
-import java.util.Random;
-
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
 public class ItemDropper extends EntitySpawner {
