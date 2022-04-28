@@ -69,7 +69,7 @@ public class EndGameScreen extends DynamicScene {
 		}
 
 		var newGameButton = new NewGameButton(main, this, gameScreen,
-				new Coordinate2D(getWidth() / 4, getHeight() - 200), "PLAY AGAIN", Color.RED, Color.AQUA, "Roboto", 50);
+				new Coordinate2D(getWidth() / 4, getHeight() - 200), "PLAY AGAIN", Color.RED, Color.GREEN, "Roboto", 50);
 		newGameButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(newGameButton);
 	}

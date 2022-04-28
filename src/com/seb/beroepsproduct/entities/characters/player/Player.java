@@ -46,10 +46,10 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
 		super(startLocation, new Size(150, 150), health, screen);
 		this.shooting = false;
-		this.speed = 3;
+		this.speed = 2;
 		this.isVulnerable = true;
 		this.score = 0;
-		this.maxHealth = 7;
+		this.maxHealth = 5;
 		this.weaponLevel = 1;
 		this.playerHasKey = false;
 	}
