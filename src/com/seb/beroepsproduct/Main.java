@@ -6,13 +6,13 @@ import java.awt.GraphicsEnvironment;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import com.seb.beroepsproduct.scenes.*;
-import java.io.File;
-import java.io.IOException;  // Import the IOException class to handle errors
+
 
 public class Main extends YaegerGame {
 
 	private final int WIDTH;
 	private final int HEIGHT;
+
 
 	public Main() {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of
@@ -27,7 +27,7 @@ public class Main extends YaegerGame {
 	public static void main(String[] args) {
 		launch(args);
 		
-		try {
+		/*try {
 		      File myObj = new File("highscores.txt");
 		      if (myObj.createNewFile()) {
 		        System.out.println("File created: " + myObj.getName());
@@ -38,6 +38,7 @@ public class Main extends YaegerGame {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
 		    }
+		    */
 	}
 
 
@@ -51,7 +52,7 @@ public class Main extends YaegerGame {
 		var gs = new GameScreen(this);
 		addScene(0, new TitleScreen(this));
 		addScene(1, gs);
-		addScene(2, new EndGameScreen(gs));
+		addScene(2, new EndGameScreen(this, gs));
 		addScene(3, new IntermissionScreen(this, gs));
 	}
 

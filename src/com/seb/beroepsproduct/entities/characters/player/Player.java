@@ -149,7 +149,7 @@ public class Player extends Character
 			//this.setAnchorLocation() 
 		}
 		if (this.isVulnerable) {
-			if (collidingObject instanceof Toxic || collidingObject instanceof Zombie) {
+			if (collidingObject instanceof Toxic) {
 				this.hit(1);
 				setVulnerable(false);
 				setupTimers();
@@ -161,7 +161,16 @@ public class Player extends Character
 					setVulnerable(false);
 					setupTimers();
 				}
-			} else if (collidingObject instanceof Bullet) {
+			}
+			if (collidingObject instanceof Zombie) {
+				enemy = (Zombie) collidingObject;
+				if (enemy.isVisible()) {
+					this.hit(1);
+					setVulnerable(false);
+					setupTimers();
+				}
+			}
+			else if (collidingObject instanceof Bullet) {
 				bullet = (Bullet) collidingObject;
 				if (bullet.getCharacter() instanceof Enemy) {
 					this.hit(1);
