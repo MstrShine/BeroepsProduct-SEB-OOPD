@@ -58,8 +58,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		if (Objects.isNull(player1)) {
 		var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
 		player1 = player;
-		}
 		addEntity(player1);
+		}
+		else {addEntity(player1);}
 	
 
 		fillObstacleArray();
