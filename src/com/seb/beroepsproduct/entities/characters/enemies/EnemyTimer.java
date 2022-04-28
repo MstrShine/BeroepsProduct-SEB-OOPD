@@ -1,7 +1,7 @@
 package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Timer;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
@@ -23,7 +23,7 @@ public class EnemyTimer extends Timer {
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		respawn(timestamp);
-		if (enemy instanceof Robot) {
+		if (enemy instanceof Fireball) {
 			if (previousTimestamp == 0) {
 				previousTimestamp = timestamp;
 			} else {
@@ -62,7 +62,7 @@ public class EnemyTimer extends Timer {
 	}
 
 	private void changeDirection() {
-		if (enemy instanceof Robot) {
+		if (enemy instanceof Fireball) {
 			if (enemy.getDirection() == 270) {
 				enemy.setDirection(90);
 			} else {

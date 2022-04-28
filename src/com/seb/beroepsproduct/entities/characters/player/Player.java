@@ -15,7 +15,7 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.invulnerability.InvulnerabilityTimer;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
@@ -140,8 +140,8 @@ public class Player extends Character
 				setVulnerable(false);
 				setupTimers();
 			}
-			if (collidingObject instanceof Robot) {
-				enemy = (Robot) collidingObject;
+			if (collidingObject instanceof Fireball) {
+				enemy = (Fireball) collidingObject;
 				if (enemy.isVisible()) {
 					this.hit(1);
 					setVulnerable(false);

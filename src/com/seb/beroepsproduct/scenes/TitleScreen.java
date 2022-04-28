@@ -1,7 +1,7 @@
 package com.seb.beroepsproduct.scenes;
 
 import com.seb.beroepsproduct.Main;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.RobotSprite;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.FireballSprite;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.ZombieSprite;
 import com.seb.beroepsproduct.entities.characters.player.PlayerSprite;
 import com.seb.beroepsproduct.entities.map.Door;
@@ -42,7 +42,7 @@ public class TitleScreen extends DynamicScene {
 
 		var iconSize = new Size(50, 50);
 		var hero = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(100, 300), 90, iconSize);
-		var fireball = new RobotSprite("sprites/fire2.gif", new Coordinate2D(100, 350), iconSize, 2);
+		var fireball = new FireballSprite("sprites/fire2.gif", new Coordinate2D(100, 350), iconSize, 2);
 		fireball.setOpacity(100);
 		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(100, 400), iconSize, 1, 2);
 		zombie.setOpacity(100);

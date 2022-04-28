@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.Character;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 
 public class BulletShooter extends EntitySpawner {
 
@@ -32,8 +32,8 @@ public class BulletShooter extends EntitySpawner {
 			}
 		}
 
-		if (character instanceof Robot) {
-			var robot = (Robot) character;
+		if (character instanceof Fireball) {
+			var robot = (Fireball) character;
 			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
 
 			if (robot.isVisible()) {

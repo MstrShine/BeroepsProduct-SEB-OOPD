@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
@@ -37,12 +37,12 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 		}
 
-		if (shooter instanceof Robot) {
+		if (shooter instanceof Fireball) {
 			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
 
-			var robot = (Robot) shooter;
+			var robot = (Fireball) shooter;
 			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
 			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // nu schiet robot harder per level
 			setDirection(bulletOffset * 360 / nBullets);
@@ -68,8 +68,8 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 					var zombie = (Zombie)collidingObject;
 					zombie.hit(damage);
 				}
-				if(collidingObject instanceof Robot) {
-					var robot = (Robot)collidingObject;
+				if(collidingObject instanceof Fireball) {
+					var robot = (Fireball)collidingObject;
 					robot.hit(damage);
 				}
 				remove();

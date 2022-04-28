@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities.characters.enemies.robot;
+package com.seb.beroepsproduct.entities.characters.enemies.fireball;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
@@ -10,11 +10,11 @@ import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
-public class Robot extends Enemy {
+public class Fireball extends Enemy {
 
 	protected GameScreen screen;
 
-	public Robot(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
+	public Fireball(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
 		super(spawnlocation, new Size(10, 10), player, health, damage, screen);
 		this.screen = screen;
 		this.damage = 10;
@@ -52,9 +52,9 @@ public class Robot extends Enemy {
 	@Override
 	protected void setupEntities() {
 		double rotationSpeed = -5 + Math.random() * 10;
-		var robotSprite = new RobotSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100),
+		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100),
 				rotationSpeed);
-		addEntity(robotSprite);
+		addEntity(fireballSprite);
 		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.text);
 	}

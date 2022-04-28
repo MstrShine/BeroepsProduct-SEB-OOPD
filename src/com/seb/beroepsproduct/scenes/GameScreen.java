@@ -10,7 +10,7 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.health.HealthDisplay;
@@ -111,7 +111,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		bulletshooters.clear();
 		itemdroppers.clear();
 		for (Enemy nme : enemies) {
-			if (nme instanceof Robot) {
+			if (nme instanceof Fireball) {
 				var shooter2 = new BulletShooter(nme, 500);
 				bulletshooters.add(shooter2);
 
@@ -207,7 +207,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			} else {
-				var enemy = new Robot(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
+				var enemy = new Fireball(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			}
 		}
