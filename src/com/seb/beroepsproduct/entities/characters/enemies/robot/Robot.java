@@ -48,7 +48,8 @@ public class Robot extends Enemy {
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Toxic) {}
+		if (collidingObject instanceof Toxic) {
+		}
 		if (collidingObject instanceof Rock) {
 			this.changeDirection(180);
 			this.setSpeed(1);
@@ -65,8 +66,9 @@ public class Robot extends Enemy {
 
 	@Override
 	protected void setupEntities() {
-		double rotationSpeed = -5 + Math.random()*10;
-		var robotSprite = new RobotSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100), rotationSpeed);
+		double rotationSpeed = -5 + Math.random() * 10;
+		var robotSprite = new RobotSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100),
+				rotationSpeed);
 		addEntity(robotSprite);
 		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.text);

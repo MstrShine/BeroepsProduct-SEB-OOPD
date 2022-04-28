@@ -36,8 +36,8 @@ public class EnemyTimer extends Timer {
 				}
 			}
 		}
-		if(enemy instanceof Zombie) {
-			var zombie = (Zombie)enemy;
+		if (enemy instanceof Zombie) {
+			var zombie = (Zombie) enemy;
 			zombie.setRotate(zombie.angleTo(player) - 180);
 			zombie.setDirection(zombie.angleTo(player));
 			zombie.setMotion(zombie.getEnemySpeed(), zombie.getDirection());

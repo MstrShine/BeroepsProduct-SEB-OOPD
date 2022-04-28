@@ -7,12 +7,10 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import com.seb.beroepsproduct.scenes.*;
 
-
 public class Main extends YaegerGame {
 
 	private final int WIDTH;
 	private final int HEIGHT;
-
 
 	public Main() {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of
@@ -26,21 +24,7 @@ public class Main extends YaegerGame {
 
 	public static void main(String[] args) {
 		launch(args);
-		
-		/*try {
-		      File myObj = new File("highscores.txt");
-		      if (myObj.createNewFile()) {
-		        System.out.println("File created: " + myObj.getName());
-		      } else {
-		        System.out.println("File already exists.");
-		      }
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-		    */
 	}
-
 
 	@Override
 	public void setupGame() {

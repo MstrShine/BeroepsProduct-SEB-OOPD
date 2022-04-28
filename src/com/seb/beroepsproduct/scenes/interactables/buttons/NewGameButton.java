@@ -10,14 +10,14 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
-public class NewGameButton extends Button{
-	
+public class NewGameButton extends Button {
+
 	private EndGameScreen screen;
 	private Main main;
 	private GameScreen gs;
 
-	public NewGameButton(Main main, EndGameScreen screen, GameScreen gs, Coordinate2D initialLocation, String text, Color initialColor, Color hoverColor,
-			String fontFamily, int fontSize) {
+	public NewGameButton(Main main, EndGameScreen screen, GameScreen gs, Coordinate2D initialLocation, String text,
+			Color initialColor, Color hoverColor, String fontFamily, int fontSize) {
 		super(initialLocation, text, initialColor, hoverColor, fontFamily, fontSize);
 		this.main = main;
 		this.screen = screen;
@@ -30,8 +30,8 @@ public class NewGameButton extends Button{
 		screen.saveHighScores();
 		main.setActiveScene(0);
 		gs.setLevel(1);
-		gs.player1.setScore(0);
-		gs.player1.remove();
+		gs.getPlayer().setScore(0);
+		gs.getPlayer().remove();
 		gs.setupEntities();
 		gs.setupEntitySpawners();
 	}

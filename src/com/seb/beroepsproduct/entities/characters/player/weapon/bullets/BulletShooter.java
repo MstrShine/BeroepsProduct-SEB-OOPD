@@ -40,8 +40,8 @@ public class BulletShooter extends EntitySpawner {
 
 		if (character instanceof Robot) {
 			var robot = (Robot) character;
-			var nBullets = 4 + Math.floor(robot.getEnemyLevel()/2); //elke twee levels een kogel extra
-			
+			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
+
 			if (robot.isVisible()) {
 				for (int i = 0; i < nBullets; i++) {
 					spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 10, i));
@@ -49,6 +49,5 @@ public class BulletShooter extends EntitySpawner {
 			}
 		}
 	}
-	
 
 }

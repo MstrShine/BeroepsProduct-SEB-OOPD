@@ -48,18 +48,18 @@ public class TitleScreen extends DynamicScene {
 				Color.RED, Color.GREEN, "Courier", 30, 1, main);
 		startButton.setAnchorPoint(AnchorPoint.BOTTOM_CENTER);
 		addEntity(startButton);
-		
-		var iconSize = new Size(50,50);
-		var hero = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(100,300), 90, iconSize);
-		var fireball = new RobotSprite("sprites/fire2.gif", new Coordinate2D (100,360), iconSize, 2);
+
+		var iconSize = new Size(50, 50);
+		var hero = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(100, 300), 90, iconSize);
+		var fireball = new RobotSprite("sprites/fire2.gif", new Coordinate2D(100, 360), iconSize, 2);
 		fireball.setOpacity(100);
-		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D (100,420), iconSize, 1, 2);
+		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(100, 420), iconSize, 1, 2);
 		zombie.setOpacity(100);
 		var toxic = new Toxic(new Coordinate2D(100, 480), iconSize);
 		var rock = new Rock(new Coordinate2D(100, 540), iconSize);
-		var door = new Door(new Coordinate2D(110,600), iconSize, 270);
-		var key = new PlayerSprite("sprites/keyGif.gif", new Coordinate2D(100,660), 0, iconSize);
-		var max = new PlayerSprite("sprites/maxHealth.gif", new Coordinate2D(100,720), 0, iconSize);
+		var door = new Door(new Coordinate2D(110, 600), iconSize, 270);
+		var key = new PlayerSprite("sprites/keyGif.gif", new Coordinate2D(100, 660), 0, iconSize);
+		var max = new PlayerSprite("sprites/maxHealth.gif", new Coordinate2D(100, 720), 0, iconSize);
 		var health = new PlayerSprite("sprites/health.gif", new Coordinate2D(100, 780), 0, iconSize);
 		var gun = new PlayerSprite("sprites/gunUpgrade.gif", new Coordinate2D(100, 840), 0, iconSize);
 		addEntity(hero);
@@ -72,9 +72,8 @@ public class TitleScreen extends DynamicScene {
 		addEntity(max);
 		addEntity(health);
 		addEntity(gun);
-		
-		String[] explanations = { 
-				"You -- Our hero. The chosen one. Or a pathetic wannabe...we'll see soon enough.",
+
+		String[] explanations = { "You -- Our hero. The chosen one. Or a pathetic wannabe...we'll see soon enough.",
 				"Fire -- It hurts. Try not to touch it. We really shouldn't have to explain these things.",
 				"Zombies -- The undead coming to make you one of their own. You better run.",
 				"Toxic Gas -- You've heard of laughing gas? Well this stuff will make you cry.",
@@ -83,12 +82,10 @@ public class TitleScreen extends DynamicScene {
 				"Key -- A key can unlock a locked door. Duh.",
 				"Increased max health -- Performance enhancing drugs are a-okay if you're fighting for your life.",
 				"Health restored -- Just like brand new!",
-				"Weapon level increased -- YEAH BABY! Gun goes brrrrrrrrrrrr!! MUAHAHahaha! Uhmm. Sorry."	
-		};
-		
+				"Weapon level increased -- YEAH BABY! Gun goes brrrrrrrrrrrr!! MUAHAHahaha! Uhmm. Sorry." };
 
-		for (int i = 0; i<explanations.length; i++) {
-			var explanation = new TextEntity(new Coordinate2D(180,320+60*i), explanations[i]);
+		for (int i = 0; i < explanations.length; i++) {
+			var explanation = new TextEntity(new Coordinate2D(180, 320 + 60 * i), explanations[i]);
 			explanation.setAnchorPoint(AnchorPoint.CENTER_LEFT);
 			explanation.setFill(Color.WHITE);
 			explanation.setFont(Font.font("Verdana", FontWeight.BOLD, 16));

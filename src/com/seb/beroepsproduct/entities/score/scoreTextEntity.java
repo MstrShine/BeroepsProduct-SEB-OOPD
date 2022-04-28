@@ -24,7 +24,7 @@ public class scoreTextEntity extends DynamicTextEntity implements TimerContainer
 		super(initialLocation);
 
 		this.player = player;
-		
+
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		setFill(Color.WHITE);
 		setScoreText();

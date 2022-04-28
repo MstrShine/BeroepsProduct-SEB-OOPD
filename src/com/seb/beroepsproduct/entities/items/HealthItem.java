@@ -13,8 +13,9 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
 import javafx.scene.Node;
 
 public class HealthItem extends Item {
-	
-	public HealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible, Player player) {
+
+	public HealthItem(String resource, Coordinate2D initialLocation, ItemDropper itemDropper, boolean visible,
+			Player player) {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
@@ -24,6 +25,6 @@ public class HealthItem extends Item {
 			this.player.setHealth(player.getMaxHealth());
 			setVisible(false);
 		}
-		
+
 	}
 }

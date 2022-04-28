@@ -23,28 +23,28 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	protected Bullet(Character character, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
 		this.character = character;
-		
+
 		if (character instanceof Player) {
 			setRadius(8);
 			setFill(Color.YELLOW);
 			setSpeed(speed);
-			
+
 			var player = (Player) character;
-			var totalBulletAngle = 15 * (player.getWeaponLevel()-1);
-			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset*15);
+			var totalBulletAngle = 15 * (player.getWeaponLevel() - 1);
+			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset * 15);
 			setDirection(direction + 90);
 			setupTimers();
-			this.damage = (int) (3 + Math.floor( (int)player.getWeaponLevel()/2));
-			
+			this.damage = (int) (3 + Math.floor((int) player.getWeaponLevel() / 2));
+
 		}
 
 		if (character instanceof Robot) {
 			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
-			
+
 			var robot = (Robot) character;
-			var nBullets = 4 + Math.floor(robot.getEnemyLevel()/2); //elke twee levels een kogel extra
+			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
 			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // nu schiet robot harder per level
 			setDirection(bulletOffset * 360 / nBullets);
 			setupTimers();
@@ -60,7 +60,9 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Rock) {remove();}
+		if (collidingObject instanceof Rock) {
+			remove();
+		}
 		if (character instanceof Player) {
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
 				remove();
@@ -71,11 +73,11 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			}
 		}
 	}
-	
+
 	public int getDamage() {
 		return this.damage;
 	}
-	
+
 	public Character getCharacter() {
 		return this.character;
 	}

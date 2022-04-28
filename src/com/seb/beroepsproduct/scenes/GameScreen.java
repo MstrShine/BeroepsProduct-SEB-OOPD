@@ -28,15 +28,15 @@ import javafx.scene.text.FontWeight;
 
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
-	public Main main;
-	public Player player1;
-	protected int level = 1;
+	private Main main;
+	private Player player1;
+	private int level = 1;
 
 	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public ArrayList<BulletShooter> bulletshooters = new ArrayList<BulletShooter>();
 	public ArrayList<ItemDropper> itemdroppers = new ArrayList<ItemDropper>();
-	
+
 	private TextEntity scoreText;
 	private scoreTextEntity score;
 	private Door door;
@@ -54,14 +54,13 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	@Override
 	public void setupEntities() {
-		
 		if (Objects.isNull(player1)) {
-		var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
-		player1 = player;
-		addEntity(player1);
+			var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
+			player1 = player;
+			addEntity(player1);
+		} else {
+			addEntity(player1);
 		}
-		else {addEntity(player1);}
-	
 
 		fillObstacleArray();
 		for (Obstacle obst : obstacles) {
@@ -72,26 +71,25 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		for (Enemy nme : enemies) {
 			addEntity(nme);
 		}
-		
+
 		var levelTextEntity = new TextEntity(new Coordinate2D(50, 20), getLevelText());
 		levelTextEntity.setFont(Font.font("Roboto", FontWeight.NORMAL, 20));
 		levelTextEntity.setFill(Color.WHITE);
 		addEntity(levelTextEntity);
-		
+
 		if (player1.getScore() == 0) {
-		var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
-		scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
-		scoreText.setFill(Color.WHITE);
-		this.scoreText = scoreText;
-		var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
-		this.score = score;
-		var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
-		this.door = door;
+			var scoreText = new TextEntity(new Coordinate2D(50, 40), "score");
+			scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
+			scoreText.setFill(Color.WHITE);
+			this.scoreText = scoreText;
+			var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
+			this.score = score;
+			var door = new Door(new Coordinate2D(getWidth() - 90, getHeight() / 2), new Size(60, 90), 270);
+			this.door = door;
 		}
 		addEntity(scoreText);
 		addEntity(score);
 		addEntity(door);
-
 	}
 
 	public Main getMain() {
@@ -105,24 +103,26 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			this.healthDisplay = healthDisplay;
 			var shooter = new BulletShooter(player1, 20);
 			this.shooter = shooter;
-			}
+		}
+
 		addEntitySpawner(healthDisplay);
 		addEntitySpawner(shooter);
-		
-		
+
 		bulletshooters.clear();
 		itemdroppers.clear();
 		for (Enemy nme : enemies) {
 			if (nme instanceof Robot) {
 				var shooter2 = new BulletShooter(nme, 500);
 				bulletshooters.add(shooter2);
-				
+
 			}
 			var itemDropper = new ItemDropper(player1, nme, 50);
 			itemdroppers.add(itemDropper);
 		}
-		for (BulletShooter shtr: bulletshooters) addEntitySpawner(shtr);
-		for (ItemDropper id: itemdroppers) addEntitySpawner(id);
+		for (BulletShooter shtr : bulletshooters)
+			addEntitySpawner(shtr);
+		for (ItemDropper id : itemdroppers)
+			addEntitySpawner(id);
 	}
 
 	public int getLevel() {
@@ -136,8 +136,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	public Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
-			var xCoord = 50 + Math.random() * (getWidth()-150);
-			var yCoord = 50 + Math.random() * getHeight()*0.88;
+			var xCoord = 50 + Math.random() * (getWidth() - 150);
+			var yCoord = 50 + Math.random() * getHeight() * 0.88;
 			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
 			if (tempCoord.distance(player.getAnchorLocation()) > 500) {
 				return tempCoord;
@@ -173,8 +173,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		boolean possible;
 		while (!chosen) {
 			possible = true;
-			var xCoord = 50+ Math.random() * (getWidth()*0.95 - 400);
-			var yCoord = 80+ Math.random() * (getHeight()*0.88);
+			var xCoord = 50 + Math.random() * (getWidth() * 0.95 - 400);
+			var yCoord = 80 + Math.random() * (getHeight() * 0.88);
 			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
 			for (int i = 0; i < obstacles.size(); i++) {
 				possible = true;
@@ -194,16 +194,16 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		}
 		return (new Coordinate2D(0, 0));
 	}
-	
+
 	private void fillEnemyArray() {
-		
-		var enemyHealth = 500 + (int) ((this.level-1) * 50);
-		
+
+		var enemyHealth = 500 + (int) ((this.level - 1) * 50);
+
 		enemies.clear();
 		var nEnemies = 3 + Math.floor(level / 3); // elke drie levels een enemy erbij
 		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
-			if (i == 0) { //1 zombie, rest vuurballen
+			if (i == 0) { // 1 zombie, rest vuurballen
 				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			} else {
@@ -212,12 +212,16 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			}
 		}
 	}
-	
+
 	public int getScore() {
 		return player1.getScore();
 	}
-	
+
+	public Player getPlayer() {
+		return this.player1;
+	}
+
 	private String getLevelText() {
-		return "Level "+ level;
+		return "Level " + level;
 	}
 }

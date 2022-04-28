@@ -19,21 +19,20 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 	private EndGameScreen screen;
 	private String name;
 
-
 	public NameTextEntity(EndGameScreen screen, Coordinate2D location) {
 		super(location);
 		this.screen = screen;
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		setFill(Color.BLACK);
 		name = screen.getName();
-		setText("YOUR NAME: "+ name);
+		setText("YOUR NAME: " + name);
 	}
 
 	public void setNameText() {
 		var nameString = "YOUR NAME: " + name;
 		setText(nameString);
 	}
-	
+
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		if (pressedKeys.contains(KeyCode.BACK_SPACE)) {
@@ -42,7 +41,7 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 			if (name.length() < 9) {
 				for (KeyCode code : pressedKeys) {
 					if (code.isLetterKey())
-					name = name + code;
+						name = name + code;
 				}
 			}
 		}

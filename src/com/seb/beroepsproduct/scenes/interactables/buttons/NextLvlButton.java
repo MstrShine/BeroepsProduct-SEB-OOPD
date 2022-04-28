@@ -9,11 +9,11 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
-public class NextLvlButton extends Button{
-	
+public class NextLvlButton extends Button {
+
 	private Main main;
 	private GameScreen gameScreen;
-	
+
 	public NextLvlButton(Coordinate2D initialLocation, String text, Color initialColor, Color hoverColor,
 			String fontFamily, int fontSize, Main main, GameScreen gameScreen) {
 		super(initialLocation, text, initialColor, hoverColor, fontFamily, fontSize);
@@ -25,7 +25,7 @@ public class NextLvlButton extends Button{
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		gameScreen.setupEntities();
 		gameScreen.setupEntitySpawners();
-		gameScreen.setLevel(gameScreen.getLevel()+1);
+		gameScreen.setLevel(gameScreen.getLevel() + 1);
 		main.setActiveScene(1);
 	}
 

@@ -15,7 +15,7 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 	protected int health;
 	protected int maxHealth;
 	protected double speed;
-	
+
 	protected GameScreen screen;
 	public CharacterHealthText text;
 
@@ -25,11 +25,11 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 		this.maxHealth = health;
 		this.screen = screen;
 	}
-	
+
 	protected void die() {
 		this.setVisible(false);
 	}
-	
+
 	protected void move(double direction) {
 		setMotion(this.speed, direction);
 	}
@@ -37,7 +37,7 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 	protected void move(Direction direction) {
 		setMotion(this.speed, direction);
 	}
-	
+
 	protected void hit(int damage) {
 		this.health -= damage;
 	}
@@ -45,11 +45,11 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
+
 	public int getHealth() {
 		return this.health;
 	}
-	
+
 	public String getHealthString() {
 		return "" + this.health;
 	}
@@ -57,7 +57,7 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
-	
+
 	public int getMaxHealth() {
 		return this.maxHealth;
 	}

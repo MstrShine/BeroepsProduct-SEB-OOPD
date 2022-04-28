@@ -24,19 +24,19 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 		setEnemyLevel();
 	}
 
-	
 	public int getDamage() {
 		return damage;
 	}
 
 	protected void createEnemyTimer() {
-		//if (this instanceof Robot) {
+		// if (this instanceof Robot) {
 		addTimer(new EnemyTimer(this, this.player, 50, screen));
-		//}
+		// }
 	}
 
 	/**
 	 * Gets current level of {@link enemy}
+	 * 
 	 * @return current level
 	 */
 	public double getEnemyLevel() {
@@ -47,9 +47,8 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 	 * Sets level of {@link Enemy} by one plus dividing current score with 200
 	 */
 	public void setEnemyLevel() {
-		this.enemyLevel = 1+ Math.floor(screen.getLevel()/3);
+		this.enemyLevel = 1 + Math.floor(screen.getLevel() / 3);
 	}
-	
 
 	public double getEnemySpeed() {
 		return this.speed;

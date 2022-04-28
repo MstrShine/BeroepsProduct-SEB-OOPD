@@ -68,16 +68,15 @@ public class Player extends Character
 			handleGameOver();
 		}
 	}
-	
+
 	private void handleGameOver() {
-		
-		 LocalDateTime myDateObj = LocalDateTime.now();
-		 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		 String formattedDate = myDateObj.format(myFormatObj);
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = myDateObj.format(myFormatObj);
 
 		screen.getMain().setActiveScene(2);
 	}
-	
+
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
 		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
@@ -141,12 +140,12 @@ public class Player extends Character
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
 		Bullet bullet;
-		
+
 		if (collidingObject instanceof Rock) {
 			this.changeDirection(180);
 			this.setSpeed(0);
-			//this.getDirection();
-			//this.setAnchorLocation() 
+			// this.getDirection();
+			// this.setAnchorLocation()
 		}
 		if (this.isVulnerable) {
 			if (collidingObject instanceof Toxic) {
@@ -169,8 +168,7 @@ public class Player extends Character
 					setVulnerable(false);
 					setupTimers();
 				}
-			}
-			else if (collidingObject instanceof Bullet) {
+			} else if (collidingObject instanceof Bullet) {
 				bullet = (Bullet) collidingObject;
 				if (bullet.getCharacter() instanceof Enemy) {
 					this.hit(1);
@@ -181,8 +179,8 @@ public class Player extends Character
 		}
 
 		if (collidingObject instanceof Door && playerHasKey) {
-			screen.main.setActiveScene(3);
-			setScore(getScore()+500);
+			screen.getMain().setActiveScene(3);
+			setScore(getScore() + 500);
 			setPlayerHasKey(false);
 		}
 
