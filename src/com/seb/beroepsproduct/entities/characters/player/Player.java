@@ -24,6 +24,9 @@ import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.input.KeyCode;
 
+/**
+ * A playable character listens to mouse movements and pressed keys
+ */
 public class Player extends Character implements KeyListener, MouseMovedListener {
 
 	private double directionPlayer;
@@ -33,6 +36,13 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	private int weaponLevel;
 	private boolean playerHasKey;
 
+	/**
+	 * Creates a playable character to add to a scene
+	 * @param startLocation the start location of the player
+	 * @param health the amount of max health and current health
+	 * @param playerLevel the level of the player
+	 * @param screen the screen where the player is located
+	 */
 	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
 		super(startLocation, new Size(150, 150), health, screen);
 		this.shooting = false;
@@ -93,6 +103,10 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		}
 	}
 
+	/**
+	 * Shoots the weapon of the player if space is pressed
+	 * @param pressedKeys the pressed keys of the user
+	 */
 	private void shootWeapon(Set<KeyCode> pressedKeys) {
 		if (pressedKeys.contains(KeyCode.SPACE)) {
 			this.shooting = true;
@@ -175,42 +189,74 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		addTimer(new InvulnerabilityTimer(this, 50));
 	}
 
+	/**
+	 * Sets score of the player
+	 * @param score the new score
+	 */
 	public void setScore(int score) {
 		this.score = score;
 	}
 
+	/**
+	 * Gets the current direction of where the player is looking to in degrees
+	 * @return the direction where the player looks to in degrees
+	 */
 	public double getDirectionPlayer() {
 		return this.directionPlayer;
 	}
 
-	public void setDirectionPlayer(double directionPlayer) {
-		this.directionPlayer = directionPlayer;
-	}
-
+	/**
+	 * Gets if the player is currently shooting his gun
+	 * @return true is shooting otherwise false
+	 */
 	public boolean isShooting() {
 		return this.shooting;
 	}
 
+	/**
+	 * Gets if the player is currently holding the key
+	 * @return true is player has key otherwise false
+	 */
 	public boolean isPlayerHasKey() {
 		return this.playerHasKey;
 	}
 
+	/**
+	 * Sets if the player has the key
+	 * @param playerHasKey 
+	 */
 	public void setPlayerHasKey(boolean playerHasKey) {
 		this.playerHasKey = playerHasKey;
 	}
 
+	/**
+	 * Gets the current weapon level of the player
+	 * @return current weapon level of the player
+	 */
 	public int getWeaponLevel() {
 		return this.weaponLevel;
 	}
 
+	/**
+	 * Sets new weapon level of the player
+	 * @param weaponLevel new weapon level
+	 */
 	public void setWeaponLevel(int weaponLevel) {
 		this.weaponLevel = weaponLevel;
 	}
 
+	/**
+	 * Gets the current score of the player
+	 * @return The current score of the player
+	 */
 	public int getScore() {
 		return this.score;
 	}
 
+	/**
+	 * Sets if the player is vulnerable for damage
+	 * @param vulnerable 
+	 */
 	public void setVulnerable(boolean vulnerable) {
 		this.isVulnerable = vulnerable;
 	}
