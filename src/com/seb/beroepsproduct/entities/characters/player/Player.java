@@ -4,15 +4,13 @@ import java.util.Set;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.TimerContainer;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
-import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
+import com.seb.beroepsproduct.entities.SimpleSprite;
 import com.seb.beroepsproduct.entities.characters.Character;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
@@ -26,8 +24,7 @@ import com.seb.beroepsproduct.scenes.GameScreen;
 
 import javafx.scene.input.KeyCode;
 
-public class Player extends Character
-		implements TimerContainer, Collided, KeyListener, MouseMovedListener, SceneBorderTouchingWatcher {
+public class Player extends Character implements KeyListener, MouseMovedListener {
 
 	private double directionPlayer;
 	private boolean shooting;
@@ -49,7 +46,7 @@ public class Player extends Character
 
 	@Override
 	protected void setupEntities() {
-		var pSprite = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(-50, -50), 0, new Size(100, 100));
+		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(-50, -50), 0, new Size(100, 100));
 		addEntity(pSprite);
 	}
 

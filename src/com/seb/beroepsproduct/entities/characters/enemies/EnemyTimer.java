@@ -49,7 +49,7 @@ public class EnemyTimer extends Timer {
 				if (timestamp - respawnTimestamp > 5000000000d) {
 					// enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() *
 					// 700));
-					enemy.setAnchorLocation(screen.pickEnemyLocation(player, screen.obstacles));
+					enemy.setAnchorLocation(screen.pickEnemyLocation(player));
 					// TODO
 					// hier reset ik de enemy met andere stats aan de hand van level
 					enemy.setVisible(true);

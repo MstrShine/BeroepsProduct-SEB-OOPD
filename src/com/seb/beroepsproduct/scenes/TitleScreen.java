@@ -1,9 +1,9 @@
 package com.seb.beroepsproduct.scenes;
 
 import com.seb.beroepsproduct.Main;
+import com.seb.beroepsproduct.entities.SimpleSprite;
 import com.seb.beroepsproduct.entities.characters.enemies.fireball.FireballSprite;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.ZombieSprite;
-import com.seb.beroepsproduct.entities.characters.player.PlayerSprite;
 import com.seb.beroepsproduct.entities.map.Door;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;
@@ -41,18 +41,22 @@ public class TitleScreen extends DynamicScene {
 		addEntity(startButton);
 
 		var iconSize = new Size(50, 50);
-		var hero = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(100, 300), 90, iconSize);
+		var hero = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(100, 300), 90, iconSize);
+		
 		var fireball = new FireballSprite("sprites/fire2.gif", new Coordinate2D(100, 350), iconSize, 2);
 		fireball.setOpacity(100);
+		
 		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(100, 400), iconSize, 1, 2);
 		zombie.setOpacity(100);
+		
 		var toxic = new Toxic(new Coordinate2D(100, 450), iconSize);
 		var rock = new Rock(new Coordinate2D(100, 500), iconSize);
 		var door = new Door(new Coordinate2D(110, 550), iconSize, 270);
-		var key = new PlayerSprite("sprites/keyGif.gif", new Coordinate2D(100, 600), 0, iconSize);
-		var max = new PlayerSprite("sprites/maxHealth.gif", new Coordinate2D(100, 650), 0, iconSize);
-		var health = new PlayerSprite("sprites/health.gif", new Coordinate2D(100, 700), 0, iconSize);
-		var gun = new PlayerSprite("sprites/gunUpgrade.gif", new Coordinate2D(100,750), 0, iconSize);
+		var key = new SimpleSprite("sprites/keyGif.gif", new Coordinate2D(100, 600), 0, iconSize);
+		var max = new SimpleSprite("sprites/maxHealth.gif", new Coordinate2D(100, 650), 0, iconSize);
+		var health = new SimpleSprite("sprites/health.gif", new Coordinate2D(100, 700), 0, iconSize);
+		var gun = new SimpleSprite("sprites/gunUpgrade.gif", new Coordinate2D(100,750), 0, iconSize);
+		
 		addEntity(hero);
 		addEntity(fireball);
 		addEntity(zombie);
@@ -64,7 +68,8 @@ public class TitleScreen extends DynamicScene {
 		addEntity(health);
 		addEntity(gun);
 
-		String[] explanations = { "You -- Our hero. The chosen one. Or a pathetic wannabe...we'll see soon enough.",
+		String[] explanations = { 
+				"You -- Our hero. The chosen one. Or a pathetic wannabe...we'll see soon enough.",
 				"Fire -- It hurts. Try not to touch it. We really shouldn't have to explain these things.",
 				"Zombies -- The undead coming to make you one of their own. You better run.",
 				"Toxic Gas -- You've heard of laughing gas? Well this stuff will make you cry.",

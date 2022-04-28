@@ -2,14 +2,16 @@ package com.seb.beroepsproduct.entities.characters;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
+import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
-public abstract class Character extends DynamicCompositeEntity implements Collided, Collider {
+public abstract class Character extends DynamicCompositeEntity implements Collided, Collider, TimerContainer, SceneBorderTouchingWatcher {
 
 	protected int health;
 	protected int maxHealth;

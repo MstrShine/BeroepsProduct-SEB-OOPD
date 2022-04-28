@@ -92,10 +92,6 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		addEntity(door);
 	}
 
-	public Main getMain() {
-		return main;
-	}
-
 	@Override
 	public void setupEntitySpawners() {
 		if (player1.getScore() == 0) {
@@ -125,15 +121,32 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			addEntitySpawner(id);
 	}
 
+	/**
+	 * Gets current level
+	 * 
+	 * @return current level
+	 */
 	public int getLevel() {
 		return level;
 	}
 
+	/**
+	 * Sets current level
+	 * 
+	 * @param level new level
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
 
-	public Coordinate2D pickObstacleLocation(Player player) {
+	/**
+	 * Picks location for obstacles, so no obstacles are not placed where the player
+	 * is located
+	 * 
+	 * @param player current player
+	 * @return coordinates for obstacle
+	 */
+	private Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
 		while (!chosen) {
 			var xCoord = 50 + Math.random() * (getWidth() - 150);
@@ -146,6 +159,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		return (new Coordinate2D(0, 0));
 	}
 
+	/**
+	 * Fills obstacles for the game to place
+	 */
 	private void fillObstacleArray() {
 		obstacles.clear();
 		var nObstacles = 3 + Math.floor((Math.random() * 10) / 2.5);
@@ -163,12 +179,13 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * picks location for spawning enemy
+	 * Picks location for spawning enemy, while checking if enemy is not placed on
+	 * location of obstacle and player
 	 * 
-	 * @param player player object
-	 * @return coordinates for spawning
+	 * @param player current player
+	 * @return coordinates for spawning the enemy
 	 */
-	public Coordinate2D pickEnemyLocation(Player player, ArrayList<Obstacle> obstacles) {
+	public Coordinate2D pickEnemyLocation(Player player) {
 		boolean chosen = false;
 		boolean possible;
 		while (!chosen) {
@@ -176,10 +193,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			var xCoord = 50 + Math.random() * (getWidth() * 0.95 - 400);
 			var yCoord = 80 + Math.random() * (getHeight() * 0.88);
 			Coordinate2D tempCoord = new Coordinate2D(xCoord, yCoord);
-			for (int i = 0; i < obstacles.size(); i++) {
+			for (int i = 0; i < this.obstacles.size(); i++) {
 				possible = true;
 				if (tempCoord.distance(player.getAnchorLocation()) < 600
-						|| tempCoord.distance(obstacles.get(i).getAnchorLocation()) < 400) {
+						|| tempCoord.distance(this.obstacles.get(i).getAnchorLocation()) < 400) {
 					possible = false;
 				}
 			}
@@ -195,6 +212,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		return (new Coordinate2D(0, 0));
 	}
 
+	/**
+	 * Fills the enemy array with enemies, always one zombie and the rest are
+	 * fireballs. Every 3 levels adds one enemy in total
+	 */
 	private void fillEnemyArray() {
 
 		var enemyHealth = 500 + (int) ((this.level - 1) * 50);
@@ -204,27 +225,55 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
 			if (i == 0) { // 1 zombie, rest vuurballen
-				var enemy = new Zombie(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
+				var enemy = new Zombie(pickEnemyLocation(player1), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			} else {
-				var enemy = new Fireball(pickEnemyLocation(player1, obstacles), player1, enemyHealth, 10, this);
+				var enemy = new Fireball(pickEnemyLocation(player1), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			}
 		}
 	}
 
+	/**
+	 * Gets main entry point of application
+	 * @return main entry point of application
+	 */
+	public Main getMain() {
+		return main;
+	}
+
+	/**
+	 * Gets current score of player
+	 * 
+	 * @return current score of player
+	 */
 	public int getScore() {
 		return player1.getScore();
 	}
 
+	/**
+	 * Gets current player
+	 * 
+	 * @return current player
+	 */
 	public Player getPlayer() {
 		return this.player1;
 	}
-	
+
+	/**
+	 * Sets current {@link Player}
+	 * 
+	 * @param player new {@link Player}
+	 */
 	public void setPlayer(Player player) {
 		this.player1 = player;
 	}
 
+	/**
+	 * Gets current level in text
+	 * 
+	 * @return "Level {level}"
+	 */
 	private String getLevelText() {
 		return "Level " + level;
 	}
