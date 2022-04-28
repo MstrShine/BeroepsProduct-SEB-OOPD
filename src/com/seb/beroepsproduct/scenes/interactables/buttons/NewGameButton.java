@@ -27,13 +27,18 @@ public class NewGameButton extends Button {
 
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
+		if (screen.getName().length() > 0) {
 		screen.saveHighScores();
 		main.setActiveScene(0);
 		gs.setLevel(1);
 		gs.getPlayer().setScore(0);
 		gs.getPlayer().remove();
+		gs.setPlayer(null);
+		screen.setName("YOU");
+		screen.setHsIndex(0);
 		gs.setupEntities();
 		gs.setupEntitySpawners();
+		}
 	}
 
 	@Override

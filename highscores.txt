@@ -1,5 +1,3 @@
-EZIO
-2030
 rowan
 1000
 bob
@@ -22,4 +20,3 @@ cloud
 100
 zyra
 10
-

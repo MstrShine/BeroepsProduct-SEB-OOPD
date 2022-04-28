@@ -39,25 +39,38 @@ public class EndGameScreen extends DynamicScene {
 
 	@Override
 	public void setupScene() {
+		setBackgroundImage("sprites/map.png", true);
 	}
 
 	@Override
 	public void setupEntities() {
+		readHighscores();
+		updateHighscores();
+		displayHighscores();
+
 		var gameoverTextEntity = new TextEntity(new Coordinate2D(getWidth() / 4, 150), "YOU DIED. MANKIND IS DOOMED.");
 		gameoverTextEntity.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		gameoverTextEntity.setFill(Color.RED);
 		gameoverTextEntity.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
 		addEntity(gameoverTextEntity);
 
-		var nameTextEntity = new NameTextEntity(this, new Coordinate2D(getWidth() / 4, 200));
-		addEntity(nameTextEntity);
+		if (hsIndex < 10) {
+			var madeHS = new TextEntity(new Coordinate2D(getWidth() / 4, 180),
+					"But at least you got a new highscore right?");
+			madeHS.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+			madeHS.setFill(Color.RED);
+			madeHS.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+			addEntity(madeHS);
 
-		readHighscores();
-		updateHighscores();
-		displayHighscores();
+			var nameTextEntity = new NameTextEntity(this, new Coordinate2D(getWidth() / 4, 240));
+			nameTextEntity.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+
+			addEntity(nameTextEntity);
+		}
 
 		var newGameButton = new NewGameButton(main, this, gameScreen,
 				new Coordinate2D(getWidth() / 4, getHeight() - 200), "Play again", Color.RED, Color.AQUA, "Roboto", 16);
+		newGameButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(newGameButton);
 	}
 
@@ -75,6 +88,10 @@ public class EndGameScreen extends DynamicScene {
 
 	public void updateName() {
 		highscores.set(hsIndex * 2, name);
+	}
+
+	public void setHsIndex(int index) {
+		hsIndex = index;
 	}
 
 	public String getName() {
@@ -116,6 +133,7 @@ public class EndGameScreen extends DynamicScene {
 	}
 
 	private void displayHighscores() {
+
 		for (int i = 0; i < 20; i++) { // laten alleen de top 10 zien
 			if (i <= highscores.size()) {
 				var offsetWidth = 0;
@@ -126,7 +144,12 @@ public class EndGameScreen extends DynamicScene {
 				var highscoretext = new TextEntity(new Coordinate2D(getWidth() / 2 + offsetWidth, 300 + offsetHeight),
 						highscores.get(i));
 				highscoretext.setAnchorPoint(AnchorPoint.CENTER_LEFT);
-				highscoretext.setFill(Color.RED);
+
+				if (i == hsIndex * 2 || i == hsIndex * 2 + 1) {
+					highscoretext.setFill(Color.WHITE);
+				} else {
+					highscoretext.setFill(Color.GOLD);
+				}
 				highscoretext.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
 				addEntity(highscoretext);
 			}

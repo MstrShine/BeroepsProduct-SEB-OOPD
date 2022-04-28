@@ -22,7 +22,7 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 		super(location);
 		this.screen = screen;
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
-		setFill(Color.BLACK);
+		setFill(Color.WHITE);
 		name = screen.getName();
 		setText("YOUR NAME: " + name);
 	}
@@ -34,7 +34,7 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-		if (pressedKeys.contains(KeyCode.BACK_SPACE)) {
+		if (pressedKeys.contains(KeyCode.BACK_SPACE) && name.length()>0) {
 			name = name.substring(0, (name.length() - 1));
 		} else {
 			if (name.length() < 9) {

@@ -220,6 +220,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	public Player getPlayer() {
 		return this.player1;
 	}
+	
+	public void setPlayer(Player player) {
+		this.player1 = player;
+	}
 
 	private String getLevelText() {
 		return "Level " + level;
