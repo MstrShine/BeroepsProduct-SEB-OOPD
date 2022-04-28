@@ -120,18 +120,19 @@ public class EndGameScreen extends DynamicScene {
 
 	private void displayHighscores() {
 		for (int i = 0; i < 20; i++) { // laten alleen de top 10 zien
-			var offsetWidth = 0;
-			if (i % 2 == 1) {
-				offsetWidth = 300;
+			if (i <= highscores.size()) {
+				var offsetWidth = 0;
+				if (i % 2 == 1) {
+					offsetWidth = 300;
+				}
+				var offsetHeight = Math.floor(i / 2) * 40;
+				var highscoretext = new TextEntity(new Coordinate2D(getWidth() / 2 + offsetWidth, 300 + offsetHeight),
+						highscores.get(i));
+				highscoretext.setAnchorPoint(AnchorPoint.CENTER_LEFT);
+				highscoretext.setFill(Color.RED);
+				highscoretext.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+				addEntity(highscoretext);
 			}
-			var offsetHeight = Math.floor(i / 2) * 40;
-			var highscoretext = new TextEntity(new Coordinate2D(getWidth() / 2 + offsetWidth, 300 + offsetHeight),
-					highscores.get(i));
-			highscoretext.setAnchorPoint(AnchorPoint.CENTER_LEFT);
-			highscoretext.setFill(Color.RED);
-			highscoretext.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
-			addEntity(highscoretext);
 		}
 	}
-
 }
