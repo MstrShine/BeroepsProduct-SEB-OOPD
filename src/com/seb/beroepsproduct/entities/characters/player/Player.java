@@ -56,7 +56,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	protected void setupEntities() {
-		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(-50, -50), 0, new Size(100, 100));
+		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(-40, -40), 0, new Size(80, 80));
 		addEntity(pSprite);
 	}
 

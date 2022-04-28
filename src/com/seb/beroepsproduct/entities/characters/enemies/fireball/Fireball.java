@@ -52,7 +52,7 @@ public class Fireball extends Enemy {
 	@Override
 	protected void setupEntities() {
 		double rotationSpeed = -5 + Math.random() * 10;
-		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(-50, -50), new Size(100, 100),
+		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(-40, -40), new Size(80, 80),
 				rotationSpeed);
 		addEntity(fireballSprite);
 		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));

@@ -27,7 +27,7 @@ public class BulletShooter extends EntitySpawner {
 			this.nBullets = player.getWeaponLevel();
 			if (player.isShooting()) {
 				for (int i = 0; i < nBullets; i++) {
-					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 15, i));
+					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 11, i));
 				}
 			}
 		}
@@ -38,7 +38,7 @@ public class BulletShooter extends EntitySpawner {
 
 			if (robot.isVisible()) {
 				for (int i = 0; i < nBullets; i++) {
-					spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 10, i));
+					spawn(new Bullet(robot, new Coordinate2D(robot.getAnchorLocation()), 8, i));
 				}
 			}
 		}

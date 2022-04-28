@@ -48,7 +48,7 @@ public class Zombie extends Enemy {
 
 	@Override
 	protected void setupEntities() {
-		var zombieSprite = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(-50, -50), new Size(100, 100), 1, 2);
+		var zombieSprite = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(-40, -40), new Size(80, 80), 1, 2);
 		addEntity(zombieSprite);
 		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.text);

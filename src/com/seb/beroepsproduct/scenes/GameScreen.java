@@ -104,7 +104,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		if (player1.getScore() == 0) {
 			var healthDisplay = new HealthDisplay(1000, player1);
 			this.healthDisplay = healthDisplay;
-			var shooter = new BulletShooter(player1, 20);
+			var shooter = new BulletShooter(player1, 100);
 			this.shooter = shooter;
 		}
 
