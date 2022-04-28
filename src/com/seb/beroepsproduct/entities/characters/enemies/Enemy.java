@@ -26,9 +26,7 @@ public abstract class Enemy extends Character implements Collided, TimerContaine
 	}
 
 	protected void createEnemyTimer() {
-		// if (this instanceof Robot) {
 		addTimer(new EnemyTimer(this, this.player, 50, screen));
-		// }
 	}
 
 	/**

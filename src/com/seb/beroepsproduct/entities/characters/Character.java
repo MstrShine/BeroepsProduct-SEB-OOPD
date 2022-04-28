@@ -37,7 +37,7 @@ public abstract class Character extends DynamicCompositeEntity implements Collid
 		setMotion(this.speed, direction);
 	}
 
-	protected void hit(int damage) {
+	public void hit(int damage) {
 		this.health -= damage;
 	}
 

@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.robot.Robot;
+import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.characters.Character;
@@ -16,18 +17,18 @@ import javafx.scene.paint.Color;
 public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider, Collided {
 
 	private int damage;
-	private Character character;
+	private Character shooter;
 
-	protected Bullet(Character character, Coordinate2D initialLocation, double speed, int bulletOffset) {
+	protected Bullet(Character shooter, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
-		this.character = character;
+		this.shooter = shooter;
 
-		if (character instanceof Player) {
+		if (shooter instanceof Player) {
 			setRadius(8);
 			setFill(Color.YELLOW);
 			setSpeed(speed);
 
-			var player = (Player) character;
+			var player = (Player) shooter;
 			var totalBulletAngle = 15 * (player.getWeaponLevel() - 1);
 			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset * 15);
 			setDirection(direction + 90);
@@ -36,12 +37,12 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 		}
 
-		if (character instanceof Robot) {
+		if (shooter instanceof Robot) {
 			setRadius(8);
 			setFill(Color.RED);
 			setSpeed(speed);
 
-			var robot = (Robot) character;
+			var robot = (Robot) shooter;
 			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
 			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // nu schiet robot harder per level
 			setDirection(bulletOffset * 360 / nBullets);
@@ -61,11 +62,19 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		if (collidingObject instanceof Rock) {
 			remove();
 		}
-		if (character instanceof Player) {
+		if (shooter instanceof Player) {
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
+				if(collidingObject instanceof Zombie) {
+					var zombie = (Zombie)collidingObject;
+					zombie.hit(damage);
+				}
+				if(collidingObject instanceof Robot) {
+					var robot = (Robot)collidingObject;
+					robot.hit(damage);
+				}
 				remove();
 			}
-		} else if (character instanceof Enemy) {
+		} else if (shooter instanceof Enemy) {
 			if (collidingObject instanceof Player) {
 				remove();
 			}
@@ -77,7 +86,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	}
 
 	public Character getCharacter() {
-		return this.character;
+		return this.shooter;
 	}
 
 }

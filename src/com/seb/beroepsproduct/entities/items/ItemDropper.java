@@ -30,7 +30,7 @@ public class ItemDropper extends EntitySpawner {
 				itemVisible = false;
 			}
 
-			if (randomNumber < 0.65) { // ~20% kans op key
+			if (randomNumber < 0.65) { // ~15% kans op key
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			} else if (randomNumber < 0.75) { // ~10% kans op max health
@@ -39,7 +39,7 @@ public class ItemDropper extends EntitySpawner {
 			} else if (randomNumber < 0.85) { // ~10% kans op health
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber <= 1) { // ~10% kans op weapon upgrade
+			} else if (randomNumber <= 1) { // ~15% kans op weapon upgrade
 				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}

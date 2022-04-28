@@ -8,7 +8,6 @@ import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
-import com.seb.beroepsproduct.entities.obstacles.Toxic;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 public class Robot extends Enemy {
@@ -27,28 +26,26 @@ public class Robot extends Enemy {
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
+		text.setHealthText();
 		if (this.health <= 0 && this.isVisible()) {
 			player.setScore(player.getScore() + 100 + (((int) this.getEnemyLevel() - 1) * 10));
 			this.die();
-			System.out.println("" + player.getScore());
 		}
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Toxic) {
-		}
-		if (collidingObject instanceof Rock) {
-			this.changeDirection(180);
-			this.setSpeed(1);
-
-		}
 		if (collidingObject instanceof Bullet) {
+			//System.out.println("ik heb gebotst met een kogel");
 			var bullet = (Bullet) collidingObject;
 			if (bullet.getCharacter() instanceof Player) {
 				hit(bullet.getDamage());
-				text.setHealthText();
 			}
+		}
+		if (collidingObject instanceof Rock) {
+			//System.out.println("ik heb gebotst met een rots");
+			this.changeDirection(180);
+			this.setSpeed(1);
 		}
 	}
 

@@ -6,8 +6,6 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
-import com.seb.beroepsproduct.entities.obstacles.Rock;
-import com.seb.beroepsproduct.entities.obstacles.Toxic;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
@@ -24,24 +22,20 @@ public class Zombie extends Enemy {
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
+		text.setHealthText();
+
 		if (this.health <= 0 && this.isVisible()) {
 			player.setScore(player.getScore() + 100 + (((int) this.getEnemyLevel() - 1) * 10));
 			this.die();
-			System.out.println("" + player.getScore());
 		}
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Toxic) {
-		}
-		if (collidingObject instanceof Rock) {
-		}
 		if (collidingObject instanceof Bullet) {
 			var bullet = (Bullet) collidingObject;
 			if (bullet.getCharacter() instanceof Player) {
 				hit(bullet.getDamage());
-				text.setHealthText();
 			}
 		}
 	}
