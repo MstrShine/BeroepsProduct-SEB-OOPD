@@ -30,17 +30,17 @@ public class ItemDropper extends EntitySpawner {
 			var tempLoc = new Coordinate2D(enemy.getAnchorLocation().getX() - 50,
 					enemy.getAnchorLocation().getY() - 50);
 
-			if (randomNumber < 0.2) {
+			if (randomNumber < 0.5) {
 				itemVisible = false;
 			}
 
-			if (randomNumber < 0.70) { // ~20% kans op key
+			if (randomNumber < 0.65) { // ~20% kans op key
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber < 0.80) { // ~10% kans op max health
+			} else if (randomNumber < 0.75) { // ~10% kans op max health
 				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber < 0.90) { // ~10% kans op health
+			} else if (randomNumber < 0.85) { // ~10% kans op health
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			} else if (randomNumber <= 1) { // ~10% kans op weapon upgrade

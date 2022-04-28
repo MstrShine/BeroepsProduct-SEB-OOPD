@@ -51,17 +51,17 @@ public class TitleScreen extends DynamicScene {
 
 		var iconSize = new Size(50, 50);
 		var hero = new PlayerSprite("sprites/player1v2.png", new Coordinate2D(100, 300), 90, iconSize);
-		var fireball = new RobotSprite("sprites/fire2.gif", new Coordinate2D(100, 360), iconSize, 2);
+		var fireball = new RobotSprite("sprites/fire2.gif", new Coordinate2D(100, 350), iconSize, 2);
 		fireball.setOpacity(100);
-		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(100, 420), iconSize, 1, 2);
+		var zombie = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(100, 400), iconSize, 1, 2);
 		zombie.setOpacity(100);
-		var toxic = new Toxic(new Coordinate2D(100, 480), iconSize);
-		var rock = new Rock(new Coordinate2D(100, 540), iconSize);
-		var door = new Door(new Coordinate2D(110, 600), iconSize, 270);
-		var key = new PlayerSprite("sprites/keyGif.gif", new Coordinate2D(100, 660), 0, iconSize);
-		var max = new PlayerSprite("sprites/maxHealth.gif", new Coordinate2D(100, 720), 0, iconSize);
-		var health = new PlayerSprite("sprites/health.gif", new Coordinate2D(100, 780), 0, iconSize);
-		var gun = new PlayerSprite("sprites/gunUpgrade.gif", new Coordinate2D(100, 840), 0, iconSize);
+		var toxic = new Toxic(new Coordinate2D(100, 450), iconSize);
+		var rock = new Rock(new Coordinate2D(100, 500), iconSize);
+		var door = new Door(new Coordinate2D(110, 550), iconSize, 270);
+		var key = new PlayerSprite("sprites/keyGif.gif", new Coordinate2D(100, 600), 0, iconSize);
+		var max = new PlayerSprite("sprites/maxHealth.gif", new Coordinate2D(100, 650), 0, iconSize);
+		var health = new PlayerSprite("sprites/health.gif", new Coordinate2D(100, 700), 0, iconSize);
+		var gun = new PlayerSprite("sprites/gunUpgrade.gif", new Coordinate2D(100,750), 0, iconSize);
 		addEntity(hero);
 		addEntity(fireball);
 		addEntity(zombie);
@@ -85,7 +85,7 @@ public class TitleScreen extends DynamicScene {
 				"Weapon level increased -- YEAH BABY! Gun goes brrrrrrrrrrrr!! MUAHAHahaha! Uhmm. Sorry." };
 
 		for (int i = 0; i < explanations.length; i++) {
-			var explanation = new TextEntity(new Coordinate2D(180, 320 + 60 * i), explanations[i]);
+			var explanation = new TextEntity(new Coordinate2D(180, 320 + 50 * i), explanations[i]);
 			explanation.setAnchorPoint(AnchorPoint.CENTER_LEFT);
 			explanation.setFill(Color.WHITE);
 			explanation.setFont(Font.font("Verdana", FontWeight.BOLD, 16));

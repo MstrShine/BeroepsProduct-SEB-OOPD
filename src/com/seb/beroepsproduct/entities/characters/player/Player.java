@@ -65,16 +65,8 @@ public class Player extends Character
 		owSound.setVolume(10);
 		owSound.play();
 		if (getHealth() <= 0) {
-			handleGameOver();
+			screen.getMain().setActiveScene(2);
 		}
-	}
-
-	private void handleGameOver() {
-		LocalDateTime myDateObj = LocalDateTime.now();
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = myDateObj.format(myFormatObj);
-
-		screen.getMain().setActiveScene(2);
 	}
 
 	@Override
