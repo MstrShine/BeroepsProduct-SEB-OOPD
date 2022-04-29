@@ -32,6 +32,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	private Main main;
 	private Player player1;
+	private Coordinate2D playerStartLocation; 
 	private int level = 1;
 
 	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
@@ -57,7 +58,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	@Override
 	public void setupEntities() {
 		if (Objects.isNull(player1)) {
-			var player = new Player(new Coordinate2D(getWidth() - 200, getHeight() / 2), 5, 3, this);
+			playerStartLocation = new Coordinate2D(50, getHeight() / 2);
+			var player = new Player(playerStartLocation, 5, 3, this);
 			player1 = player;
 			addEntity(player1);
 		} else {
@@ -283,5 +285,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	 */
 	private String getLevelText() {
 		return "Level " + level;
+	}
+	
+	public void resetPlayerLocation() {
+		player1.setAnchorLocation(playerStartLocation);
 	}
 }

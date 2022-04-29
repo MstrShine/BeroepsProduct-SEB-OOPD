@@ -16,8 +16,8 @@ public class Zombie extends Enemy {
 		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
-		var newSpeed =  0.4 + (getEnemyLevel() * 0.2);
-		this.speed = newSpeed < 2 ? newSpeed : 2;
+		var newSpeed =  0.6 + (getEnemyLevel() * 0.2);
+		this.speed = newSpeed < 2.5 ? newSpeed : 2.5;
 	}
 
 	@Override

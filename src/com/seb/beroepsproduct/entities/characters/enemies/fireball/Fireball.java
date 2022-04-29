@@ -19,7 +19,7 @@ public class Fireball extends Enemy {
 		this.screen = screen;
 		this.damage = 10;
 		this.player = player;
-		setSpeed(0.5);
+		setSpeed(0.8+ (getEnemyLevel() * 0.1));
 		setDirection(90);
 	}
 

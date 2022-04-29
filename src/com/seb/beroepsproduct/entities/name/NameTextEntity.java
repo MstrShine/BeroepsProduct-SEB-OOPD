@@ -24,7 +24,7 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		setFill(Color.WHITE);
 		name = screen.getName();
-		setText("YOUR NAME: " + name);
+		setText("Enter your name: " + name);
 	}
 
 	public void setNameText() {

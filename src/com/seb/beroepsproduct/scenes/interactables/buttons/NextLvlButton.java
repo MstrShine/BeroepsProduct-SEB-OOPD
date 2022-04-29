@@ -26,6 +26,7 @@ public class NextLvlButton extends Button {
 		gameScreen.setupEntities();
 		gameScreen.setupEntitySpawners();
 		gameScreen.setLevel(gameScreen.getLevel() + 1);
+		gameScreen.resetPlayerLocation();
 		main.setActiveScene(1);
 	}
 

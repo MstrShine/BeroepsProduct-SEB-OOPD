@@ -39,7 +39,7 @@ public class EndGameScreen extends DynamicScene {
 
 	@Override
 	public void setupScene() {
-		setBackgroundImage("sprites/map.png", true);
+		setBackgroundImage("sprites/gameOverScreen.gif", true);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class EndGameScreen extends DynamicScene {
 		}
 
 		var newGameButton = new NewGameButton(main, this, gameScreen,
-				new Coordinate2D(getWidth() / 4, getHeight() - 200), "PLAY AGAIN", Color.RED, Color.GREEN, "Roboto", 50);
+				new Coordinate2D(getWidth() / 4, getHeight() - 100), "PLAY AGAIN", Color.RED, Color.GREEN, "Roboto", 50);
 		newGameButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(newGameButton);
 	}
@@ -150,7 +150,7 @@ public class EndGameScreen extends DynamicScene {
 				} else {
 					highscoretext.setFill(Color.GOLD);
 				}
-				highscoretext.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+				highscoretext.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
 				addEntity(highscoretext);
 			}
 		}

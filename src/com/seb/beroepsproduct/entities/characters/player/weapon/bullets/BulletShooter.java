@@ -27,7 +27,7 @@ public class BulletShooter extends EntitySpawner {
 			this.nBullets = player.getWeaponLevel();
 			if (player.isShooting()) {
 				for (int i = 0; i < nBullets; i++) {
-					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 11, i));
+					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 12, i));
 				}
 			}
 		}
