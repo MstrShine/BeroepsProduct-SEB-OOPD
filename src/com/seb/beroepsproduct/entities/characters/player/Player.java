@@ -16,7 +16,7 @@ import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.invulnerability.InvulnerabilityTimer;
-import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
+import com.seb.beroepsproduct.entities.characters.bullets.Bullet;
 import com.seb.beroepsproduct.entities.map.Door;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;

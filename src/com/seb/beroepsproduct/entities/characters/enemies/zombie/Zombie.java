@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
-import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.Bullet;
+import com.seb.beroepsproduct.entities.characters.bullets.Bullet;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.scenes.GameScreen;
 

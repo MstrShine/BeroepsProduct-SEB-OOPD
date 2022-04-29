@@ -15,7 +15,7 @@ import com.seb.beroepsproduct.entities.characters.enemies.fireball.Fireball;
 import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.player.health.HealthDisplay;
-import com.seb.beroepsproduct.entities.characters.player.weapon.bullets.BulletShooter;
+import com.seb.beroepsproduct.entities.characters.bullets.BulletShooter;
 import com.seb.beroepsproduct.entities.items.ItemDropper;
 import com.seb.beroepsproduct.entities.map.Door;
 import com.seb.beroepsproduct.entities.map.Lock;

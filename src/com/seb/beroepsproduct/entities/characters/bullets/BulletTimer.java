@@ -1,4 +1,4 @@
-package com.seb.beroepsproduct.entities.characters.player.weapon.bullets;
+package com.seb.beroepsproduct.entities.characters.bullets;
 
 import com.github.hanyaeger.api.Timer;
 
