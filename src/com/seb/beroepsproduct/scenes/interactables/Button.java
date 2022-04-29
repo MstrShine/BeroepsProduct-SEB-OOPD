@@ -10,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * Basic class for creating a button to add to a screen
+ */
 public abstract class Button extends TextEntity
 		implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
 

@@ -9,11 +9,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class scoreTextEntity extends DynamicTextEntity implements TimerContainer {
+/**
+ * A simple entity to display the score of the {@link Player}
+ */
+public class ScoreTextEntity extends DynamicTextEntity implements TimerContainer {
 
 	private Player player;
 
-	public scoreTextEntity(Player player, Coordinate2D initialLocation) {
+	/**
+	 * Sets the text on a scene
+	 * @param player The current {@link Player}
+	 * @param initialLocation The location in the scene to set the text
+	 */
+	public ScoreTextEntity(Player player, Coordinate2D initialLocation) {
 		super(initialLocation);
 
 		this.player = player;
@@ -23,6 +31,9 @@ public class scoreTextEntity extends DynamicTextEntity implements TimerContainer
 		setScoreText();
 	}
 
+	/**
+	 * Sets the score as text
+	 */
 	public void setScoreText() {
 		var scoreString = "" + player.getScore();
 		setText(scoreString);
@@ -30,7 +41,7 @@ public class scoreTextEntity extends DynamicTextEntity implements TimerContainer
 
 	@Override
 	public void setupTimers() {
-		addTimer(new ScoreUpdater(this, 50));
+		addTimer(new ScoreTextUpdater(this, 50));
 	}
 
 }

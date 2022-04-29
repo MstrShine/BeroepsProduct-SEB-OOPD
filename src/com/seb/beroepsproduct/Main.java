@@ -1,6 +1,5 @@
 package com.seb.beroepsproduct;
 
-import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 import com.github.hanyaeger.api.Size;
@@ -16,8 +15,8 @@ public class Main extends YaegerGame {
 	private final int HEIGHT;
 
 	public Main() {
-		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of
-																										// main screen
+		var gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of
+																								// main screen
 		var x = gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
 		var y = gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
 

@@ -9,14 +9,16 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
+/**
+ * A {@link Button} to change the scene
+ */
 public class SceneChangeButton extends Button {
 
 	private Main main;
 	private int sceneId;
 
 	/**
-	 * Creates a button on given location with given text in color for changing
-	 * scenes
+	 * Creates a {@link Button} for changing the scene
 	 * 
 	 * @param initialLocation sets location on screen
 	 * @param text            text to display on button

@@ -13,28 +13,32 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * A text entity on the scene to display the typed name of the user
+ */
 public class NameTextEntity extends DynamicTextEntity implements KeyListener, TimerContainer {
 
-	private EndGameScreen screen;
+	private EndGameScreen endGameScreen;
 	private String name;
 
-	public NameTextEntity(EndGameScreen screen, Coordinate2D location) {
+	/**
+	 * Creates a name text entity to place on the end game screen
+	 * @param endGameScreen The {@link EndGameScreen} of the game
+	 * @param location The location on the scene
+	 */
+	public NameTextEntity(EndGameScreen endGameScreen, Coordinate2D location) {
 		super(location);
-		this.screen = screen;
+		this.endGameScreen = endGameScreen;
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		setFill(Color.WHITE);
-		name = screen.getName();
-		setText("Enter your name: " + name);
-	}
 
-	public void setNameText() {
-		var nameString = "YOUR NAME: " + name;
-		setText(nameString);
+		this.name = endGameScreen.getName();
+		setText("Enter your name: " + name);
 	}
 
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-		if (pressedKeys.contains(KeyCode.BACK_SPACE) && name.length()>0) {
+		if (pressedKeys.contains(KeyCode.BACK_SPACE) && name.length() > 0) {
 			name = name.substring(0, (name.length() - 1));
 		} else {
 			if (name.length() < 9) {
@@ -44,13 +48,19 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 				}
 			}
 		}
-		screen.setName(name);
-		System.out.println(name);
+		endGameScreen.setName(name);
 	}
 
 	@Override
 	public void setupTimers() {
-		addTimer(new NameUpdater(this, 50, screen));
+		addTimer(new NameTextUpdater(this, 50, endGameScreen));
 	}
 
+	/**
+	 * Sets the new name text on the screen
+	 */
+	public void setNameText() {
+		var nameString = "YOUR NAME: " + name;
+		setText(nameString);
+	}
 }

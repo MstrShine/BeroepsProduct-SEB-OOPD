@@ -22,32 +22,46 @@ import com.seb.beroepsproduct.entities.map.Lock;
 import com.seb.beroepsproduct.entities.obstacles.Obstacle;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.entities.obstacles.Toxic;
-import com.seb.beroepsproduct.entities.score.scoreTextEntity;
+import com.seb.beroepsproduct.entities.score.ScoreTextEntity;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * Scene where the game takes place and handles placing entities
+ */
 public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	private Main main;
 	private Player player1;
-	private Coordinate2D playerStartLocation; 
-	private int level = 1;
+	private Coordinate2D playerStartLocation;
+	private int level;
 
-	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
-	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-	public ArrayList<BulletShooter> bulletshooters = new ArrayList<BulletShooter>();
-	public ArrayList<ItemDropper> itemdroppers = new ArrayList<ItemDropper>();
+	private ArrayList<Obstacle> obstacles;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<BulletShooter> bulletshooters;
+	private ArrayList<ItemDropper> itemdroppers;
 
 	private TextEntity scoreText;
-	private scoreTextEntity score;
+	private ScoreTextEntity score;
 	private Door door;
 	private BulletShooter shooter;
 	private HealthDisplay healthDisplay;
 
+	/**
+	 * Initialising the GameScreen
+	 * 
+	 * @param main Entry point of the game
+	 */
 	public GameScreen(Main main) {
 		this.main = main;
+		this.level = 1;
+
+		this.obstacles = new ArrayList<Obstacle>();
+		this.enemies = new ArrayList<Enemy>();
+		this.bulletshooters = new ArrayList<BulletShooter>();
+		this.itemdroppers = new ArrayList<ItemDropper>();
 	}
 
 	@Override
@@ -86,7 +100,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 			scoreText.setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 			scoreText.setFill(Color.WHITE);
 			this.scoreText = scoreText;
-			var score = new scoreTextEntity(player1, new Coordinate2D(50, 80));
+			var score = new ScoreTextEntity(player1, new Coordinate2D(50, 80));
 			this.score = score;
 			var door = new Door(new Coordinate2D(getWidth() - 50, getHeight() / 2), new Size(60, 90), 270);
 			door.setAnchorPoint(AnchorPoint.CENTER_CENTER);
@@ -95,8 +109,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		addEntity(scoreText);
 		addEntity(score);
 		addEntity(door);
-		
-		var lock = new Lock(player1, "sprites/lock.png", new Coordinate2D(getWidth() - 50, getHeight() / 2), new Size(50,50));
+
+		var lock = new Lock(player1, "sprites/lock.png", new Coordinate2D(getWidth() - 50, getHeight() / 2),
+				new Size(50, 50));
 		lock.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(lock);
 	}
@@ -133,7 +148,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	/**
 	 * Gets current level
 	 * 
-	 * @return current level
+	 * @return Current level
 	 */
 	public int getLevel() {
 		return level;
@@ -142,18 +157,18 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	/**
 	 * Sets current level
 	 * 
-	 * @param level new level
+	 * @param level New level
 	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
 
 	/**
-	 * Picks location for obstacles, so no obstacles are not placed where the player
+	 * Picks location for {@link Obstacle}s, so no {@link Obstacle}s are not placed where the {@link Player}
 	 * is located
 	 * 
-	 * @param player current player
-	 * @return coordinates for obstacle
+	 * @param player Current {@link Player}
+	 * @return Coordinates for {@link Obstacle}
 	 */
 	private Coordinate2D pickObstacleLocation(Player player) {
 		boolean chosen = false;
@@ -169,7 +184,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Fills obstacles for the game to place
+	 * Fills {@link Obstacle}s list for the game to place
 	 */
 	private void fillObstacleArray() {
 		obstacles.clear();
@@ -188,11 +203,11 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Picks location for spawning enemy, while checking if enemy is not placed on
-	 * location of obstacle and player
+	 * Picks location for spawning {@link Enemy}, while checking if {@link Enemy} is not placed on
+	 * location of {@link Obstacle} and {@link Player}
 	 * 
-	 * @param player current player
-	 * @return coordinates for spawning the enemy
+	 * @param player Current {@link Player}
+	 * @return Coordinates for spawning the {@link Enemy}
 	 */
 	public Coordinate2D pickEnemyLocation(Player player) {
 		boolean chosen = false;
@@ -222,18 +237,18 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Fills the enemy array with enemies, always one zombie and the rest are
-	 * fireballs. Every 3 levels adds one enemy in total
+	 * Fills the {@link Enemy} array with enemies, always one {@link Zombie} and the rest are
+	 * {@link Fireball}s. Every 3 levels adds one {@link Enemy} in total
 	 */
 	private void fillEnemyArray() {
 
 		var enemyHealth = 500 + (int) ((this.level - 1) * 50);
 
 		enemies.clear();
-		var nEnemies = 3 + Math.floor(level / 3); // elke drie levels een enemy erbij
+		var nEnemies = 3 + Math.floor(level / 3); // every three levels a new enemy
 		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
-			if (i == 0) { // 1 zombie, rest vuurballen
+			if (i == 0) { // one zombie, rest fireballs
 				var enemy = new Zombie(pickEnemyLocation(player1), player1, enemyHealth, 10, this);
 				enemies.add(enemy);
 			} else {
@@ -245,25 +260,26 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 	/**
 	 * Gets main entry point of application
-	 * @return main entry point of application
+	 * 
+	 * @return main Entry point of the game
 	 */
 	public Main getMain() {
 		return main;
 	}
 
 	/**
-	 * Gets current score of player
+	 * Gets current score of {@link Player}
 	 * 
-	 * @return current score of player
+	 * @return Current score of player
 	 */
 	public int getScore() {
 		return player1.getScore();
 	}
 
 	/**
-	 * Gets current player
+	 * Gets current {@link Player}
 	 * 
-	 * @return current player
+	 * @return Current {@link Player}
 	 */
 	public Player getPlayer() {
 		return this.player1;
@@ -272,7 +288,7 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	/**
 	 * Sets current {@link Player}
 	 * 
-	 * @param player new {@link Player}
+	 * @param player New {@link Player}
 	 */
 	public void setPlayer(Player player) {
 		this.player1 = player;
@@ -286,8 +302,11 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	private String getLevelText() {
 		return "Level " + level;
 	}
-	
+
+	/**
+	 * Resets {@link Player} to the left side of the {@link GameScreen}
+	 */
 	public void resetPlayerLocation() {
-		player1.setAnchorLocation(playerStartLocation);
+		this.player1.setAnchorLocation(playerStartLocation);
 	}
 }
