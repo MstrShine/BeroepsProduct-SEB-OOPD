@@ -1,5 +1,6 @@
 package com.seb.beroepsproduct.entities.characters.enemies.fireball;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -65,8 +66,9 @@ public class Fireball extends Enemy {
 	@Override
 	public void setupEntities() {
 		double rotationSpeed = -5 + Math.random() * 10;
-		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(-40, -40), new Size(80, 80),
+		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(0,0), new Size(80, 80),
 				rotationSpeed);
+		fireballSprite.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(fireballSprite);
 		this.enemyHealthText = new EnemyHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.enemyHealthText);

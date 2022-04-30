@@ -1,5 +1,6 @@
 package com.seb.beroepsproduct.entities.characters.enemies.zombie;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -63,7 +64,8 @@ public class Zombie extends Enemy {
 
 	@Override
 	protected void setupEntities() {
-		var zombieSprite = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(-40, -40), new Size(80, 80), 1, 2);
+		var zombieSprite = new ZombieSprite("sprites/zombie.gif", new Coordinate2D(0,0), new Size(80, 80), 1, 2);
+		zombieSprite.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(zombieSprite);
 		this.enemyHealthText = new EnemyHealthText(this, new Coordinate2D(-40, -60));
 		addEntity(this.enemyHealthText);

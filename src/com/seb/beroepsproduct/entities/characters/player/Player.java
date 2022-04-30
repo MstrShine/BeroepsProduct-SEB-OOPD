@@ -2,6 +2,7 @@ package com.seb.beroepsproduct.entities.characters.player;
 
 import java.util.Set;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -55,7 +56,8 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	protected void setupEntities() {
-		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(-40, -40), 0, new Size(80, 80));
+		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(0,0), 0, new Size(80, 80));
+		pSprite.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(pSprite);
 	}
 
@@ -75,8 +77,8 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
-		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 75),
-				mouseXY.getY() - (getLocationInScene().getY() + 75));
+		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 40),
+				mouseXY.getY() - (getLocationInScene().getY() + 40));
 		this.directionPlayer = Math.toDegrees(radian) - 90;
 		setRotate(this.directionPlayer);
 	}
