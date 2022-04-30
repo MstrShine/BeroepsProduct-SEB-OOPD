@@ -36,6 +36,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	private int score;
 	private int weaponLevel;
 	private boolean playerHasKey;
+	private double bulletDirection;
 
 	/**
 	 * Creates a playable character to add to a scene
@@ -72,6 +73,17 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			screen.getMain().setActiveScene(2);
 		}
 	}
+	
+	
+	public Coordinate2D calcGunLocation() {
+		double tempDirection = Math.toRadians(directionPlayer-30);
+		double xCoord = getAnchorLocation().getX() + Math.cos(tempDirection)*46;
+		double yCoord = getAnchorLocation().getY() - Math.sin(tempDirection)*46;
+		return new Coordinate2D(xCoord, yCoord);
+	}
+    
+
+	
 
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
@@ -79,6 +91,18 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 				mouseXY.getY() - (getLocationInScene().getY() + 40));
 		this.directionPlayer = Math.toDegrees(radian) - 90;
 		setRotate(this.directionPlayer);
+		calcGunLocation();
+		var radian2 = Math.atan2(mouseXY.getX() - (calcGunLocation().getX()),
+				mouseXY.getY() - (calcGunLocation().getY()));
+		setBulletDirection(Math.toDegrees(radian2) -90);
+	}
+
+	public double getBulletDirection() {
+		return bulletDirection;
+	}
+
+	public void setBulletDirection(double bulletDirection) {
+		this.bulletDirection = bulletDirection;
 	}
 
 	@Override
