@@ -26,6 +26,9 @@ public class HealthDisplay extends EntitySpawner {
 		this.hearts = new ArrayList<HeartSprite>();
 	}
 
+	/**
+	 * First clears the hearts and then respawns them again with the correct sprite on the screen
+	 */
 	@Override
 	public void spawnEntities() {
 		for (var heart : hearts)

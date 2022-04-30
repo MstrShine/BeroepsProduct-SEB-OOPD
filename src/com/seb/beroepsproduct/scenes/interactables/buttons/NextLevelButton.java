@@ -5,7 +5,6 @@ import com.seb.beroepsproduct.Main;
 import com.seb.beroepsproduct.scenes.GameScreen;
 import com.seb.beroepsproduct.scenes.interactables.Button;
 
-import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
@@ -35,6 +34,9 @@ public class NextLevelButton extends Button {
 		this.gameScreen = gameScreen;
 	}
 
+	/**
+	 * When the mouse button is pressed the game will be reset for the next level
+	 */
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		gameScreen.setupEntities();
@@ -42,17 +44,5 @@ public class NextLevelButton extends Button {
 		gameScreen.setLevel(gameScreen.getLevel() + 1);
 		gameScreen.resetPlayerLocation();
 		main.setActiveScene(1);
-	}
-
-	@Override
-	public void onMouseEntered() {
-		setCursor(Cursor.HAND);
-		setFill(this.hoverColor);
-	}
-
-	@Override
-	public void onMouseExited() {
-		setCursor(Cursor.DEFAULT);
-		setFill(this.initialColor);
 	}
 }

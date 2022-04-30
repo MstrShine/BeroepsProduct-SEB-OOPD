@@ -56,6 +56,9 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		this.playerHasKey = false;
 	}
 
+	/**
+	 * Sets up the player sprite with the anchor point in the center
+	 */
 	@Override
 	public void setupEntities() {
 		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(0, 0), 0, new Size(80, 80));
@@ -70,6 +73,10 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
+		
+		setVulnerable(false);
+		setupTimers();
+		
 		var owSound = new SoundClip("audio/OW.mp3");
 		owSound.setVolume(10);
 		owSound.play();
@@ -89,6 +96,9 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		return new Coordinate2D(xCoord, yCoord);
 	}
 
+	/**
+	 * If the mouse moves the degrees difference will be calculated and the rotation of the sprite will be set to that difference
+	 */
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
 		var radian = Math.atan2(mouseXY.getX() - (getLocationInScene().getX() + 40),
@@ -101,6 +111,9 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		setBulletDirection(Math.toDegrees(radian2) - 90);
 	}
 
+	/**
+	 * Handles the movement of the sprite over the scene, WASD keys for movement and SPACE for shooting
+	 */
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		shootWeapon(pressedKeys);
@@ -138,10 +151,12 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		}
 	}
 
+	/**
+	 * Handles the collision of objects for the {@link Player} 
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
-		Bullet bullet;
 
 		if (collidingObject instanceof Rock) {
 			this.changeDirection(180);
@@ -150,30 +165,22 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		if (this.isVulnerable) {
 			if (collidingObject instanceof Toxic) {
 				this.hit(1);
-				setVulnerable(false);
-				setupTimers();
 			}
 			if (collidingObject instanceof Fireball) {
 				enemy = (Fireball) collidingObject;
 				if (enemy.isVisible()) {
 					this.hit(1);
-					setVulnerable(false);
-					setupTimers();
 				}
 			}
 			if (collidingObject instanceof Zombie) {
 				enemy = (Zombie) collidingObject;
 				if (enemy.isVisible()) {
 					this.hit(1);
-					setVulnerable(false);
-					setupTimers();
 				}
 			} else if (collidingObject instanceof Bullet) {
-				bullet = (Bullet) collidingObject;
+				var bullet = (Bullet) collidingObject;
 				if (bullet.getCharacter() instanceof Enemy) {
 					this.hit(1);
-					setVulnerable(false);
-					setupTimers();
 				}
 			}
 		}
@@ -183,9 +190,11 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			setScore(getScore() + 500);
 			setPlayerHasKey(false);
 		}
-
 	}
 
+	/**
+	 * Sets up the {@link InvulnerabilityTimer} when the {@link Player} is hit and when the {@link Player} is spawned
+	 */
 	@Override
 	public void setupTimers() {
 		addTimer(new InvulnerabilityTimer(this, 50));

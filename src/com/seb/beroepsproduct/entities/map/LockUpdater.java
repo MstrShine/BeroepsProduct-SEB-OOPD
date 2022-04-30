@@ -19,9 +19,11 @@ public class LockUpdater extends Timer{
 		this.lock = lock;
 	}
 	
+	/**
+	 * Updates the visibility of the lock every interval
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		lock.updateLockVisible();
 	}
-
 }

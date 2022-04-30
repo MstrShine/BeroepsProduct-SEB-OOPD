@@ -24,9 +24,12 @@ public class NameTextUpdater extends Timer {
 
 	}
 
+	/**
+	 * Updates the name text in {@link NameTextEntity} and updates the showed name on the {@link EndGameScreen}
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-		nameTextEntity.setNameText();
+		nameTextEntity.updateNameText();
 		endGameScreen.updateName();
 	}
 }

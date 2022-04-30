@@ -24,6 +24,9 @@ public class KeyItem extends Item {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
+	/**
+	 * If {@link Player} collides with a {@link KeyItem} the player boolean hasKey is set to true
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {

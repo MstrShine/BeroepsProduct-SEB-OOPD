@@ -25,6 +25,9 @@ public class WeaponItem extends Item {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
+	/**
+	 * If {@link Player} collides with a {@link WeaponItem} the player will shoot one extra bullet every time
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {

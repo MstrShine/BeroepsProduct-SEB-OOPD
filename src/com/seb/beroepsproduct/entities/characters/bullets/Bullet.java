@@ -63,17 +63,23 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		}
 	}
 
+	/**
+	 * Adds a {@link BulletTimer} to the {@link Bullet} for despawning after some time
+	 */
 	@Override
 	public void setupTimers() {
-		var bullettimer = new BulletTimer(this, 500);
-		addTimer(bullettimer);
+		addTimer(new BulletTimer(this, 500));
 	}
 
+	/**
+	 * Handles collision with objects, if the bullet hits something it will despawn and do damage to enemies if it hits an {@link Enemy}
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collidingObject instanceof Rock) {
 			remove();
 		}
+		
 		if (shooter instanceof Player) {
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
 				if (collidingObject instanceof Zombie) {

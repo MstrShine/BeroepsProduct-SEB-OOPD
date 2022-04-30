@@ -40,11 +40,17 @@ public class Main extends YaegerGame {
 		launch(args);
 	}
 
+	/**
+	 * Sets the size of the screen where the game will be played
+	 */
 	@Override
 	public void setupGame() {
 		setSize(new Size(WIDTH, HEIGHT));
 	}
 
+	/**
+	 * Sets up the scenes of the game
+	 */
 	@Override
 	public void setupScenes() {
 		var gs = new GameScreen(this);

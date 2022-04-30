@@ -25,6 +25,10 @@ public class BulletShooter extends EntitySpawner {
 		this.character = character;
 	}
 
+	/**
+	 * Handles spawning the {@link Bullet}s of enemies and the {@link Player}.
+	 * For the enemies it spawns every interval, for the player every interval if user is pressing the spacebar
+	 */
 	@Override
 	public void spawnEntities() {
 		if (character instanceof Player) {

@@ -29,12 +29,19 @@ public class IntermissionScreen extends StaticScene {
 		this.gameScreen = gameScreen;
 	}
 
+	/**
+	 * Sets up the background image of the scene
+	 */
 	@Override
 	public void setupScene() {
 		setBackgroundImage("sprites/curtains2.gif", true);
 
 	}
 
+	/**
+	 * Sets up all the sprites that will be used on this scene
+	 * with a {@link Button} to go to the next level
+	 */
 	@Override
 	public void setupEntities() {
 		var lvlComplete = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 4 + 200),
@@ -57,7 +64,7 @@ public class IntermissionScreen extends StaticScene {
 		addEntity(ready);
 
 		var nextLvlButton = new NextLevelButton(new Coordinate2D(getWidth() / 2, getHeight() / 4 + 550),
-				"LET'S KICK SOME @SS", Color.RED, Color.GREEN, "Roboto", 50, main, gameScreen);
+				"LET'S KICK SOME ASS", Color.RED, Color.GREEN, "Roboto", 50, main, gameScreen);
 		nextLvlButton.setAnchorPoint(AnchorPoint.BOTTOM_CENTER);
 		addEntity(nextLvlButton);
 

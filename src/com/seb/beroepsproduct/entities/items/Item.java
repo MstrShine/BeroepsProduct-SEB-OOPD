@@ -13,7 +13,7 @@ import com.seb.beroepsproduct.entities.characters.player.Player;
  */
 abstract class Item extends DynamicSpriteEntity implements TimerContainer, Collided {
 
-	protected ItemDropper itemDropper;
+	private ItemDropper itemDropper;
 	protected Player player;
 
 	/**
@@ -33,10 +33,12 @@ abstract class Item extends DynamicSpriteEntity implements TimerContainer, Colli
 		setVisible(visible);
 	}
 
+	/**
+	 * Sets up {@link ItemTimer} for {@link Item}
+	 */
 	@Override
 	public void setupTimers() {
-		var itemTimer = new ItemTimer(this, 8000);
-		addTimer(itemTimer);
+		addTimer(new ItemTimer(this, 8000));
 	}
 
 	/**
@@ -50,7 +52,11 @@ abstract class Item extends DynamicSpriteEntity implements TimerContainer, Colli
 		return (collidingObject instanceof Player && isVisible());
 	}
 	
-	public ItemDropper getItemDropper() {
+	/**
+	 * Gets the current {@link ItemDropper} of the {@link Item}
+	 * @return
+	 */
+	public final ItemDropper getItemDropper() {
 		return this.itemDropper;
 	}
 }

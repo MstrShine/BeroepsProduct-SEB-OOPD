@@ -25,6 +25,9 @@ public class MaxHealthItem extends Item {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
+	/**
+	 * If {@link Player} collides with a {@link MaxHealthItem} the max health of the player will be increased by one
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {

@@ -35,11 +35,18 @@ public class TitleScreen extends DynamicScene {
 		this.main = main;
 	}
 
+	/**
+	 * Sets up the background image of the scene
+	 */
 	@Override
 	public void setupScene() {
 		setBackgroundImage("sprites/titleScreen.gif", true);
 	}
 
+	/**
+	 * Sets up all the sprites that will be used on this scene
+	 * and sets up the explanation by the sprites 
+	 */
 	@Override
 	public void setupEntities() {
 

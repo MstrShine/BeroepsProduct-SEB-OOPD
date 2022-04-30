@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
 
+import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -43,5 +44,23 @@ public abstract class Button extends TextEntity
 		setFont(Font.font(fontFamily == null ? DEFAULT_FONT_FAMILY : fontFamily, FontWeight.BOLD,
 				fontSize == 0 ? DEFAULT_FONT_SIZE : fontSize));
 	}
+	
+	/**
+	 * When the mouse enters the color changes of the button and the cursor is set
+	 * to a hand
+	 */
+	@Override
+	public void onMouseEntered() {
+		setCursor(Cursor.HAND);
+		setFill(this.hoverColor);
+	}
 
+	/**
+	 * When the mouse exits the color changes back and the cursor is set to default
+	 */
+	@Override
+	public void onMouseExited() {
+		setCursor(Cursor.DEFAULT);
+		setFill(this.initialColor);
+	}
 }

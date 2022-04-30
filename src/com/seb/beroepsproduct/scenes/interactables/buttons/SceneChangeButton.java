@@ -5,7 +5,6 @@ import com.seb.beroepsproduct.Main;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.seb.beroepsproduct.scenes.interactables.Button;
 
-import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
@@ -36,20 +35,11 @@ public class SceneChangeButton extends Button {
 		this.sceneId = sceneToChangeTo;
 	}
 
+	/**
+	 * When the mouse button is pressed the active scene will change
+	 */
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		main.setActiveScene(sceneId);
-	}
-
-	@Override
-	public void onMouseEntered() {
-		setCursor(Cursor.HAND);
-		setFill(this.hoverColor);
-	}
-
-	@Override
-	public void onMouseExited() {
-		setCursor(Cursor.DEFAULT);
-		setFill(this.initialColor);
 	}
 }

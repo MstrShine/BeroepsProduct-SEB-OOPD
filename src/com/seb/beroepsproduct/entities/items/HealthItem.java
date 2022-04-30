@@ -25,6 +25,10 @@ public class HealthItem extends Item {
 		super(resource, initialLocation, itemDropper, visible, player);
 	}
 
+	/**
+	 * If {@link Player} collides with a {@link HealthItem} and the new health is
+	 * not greater than the max health the player will gain one health back
+	 */
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {
@@ -34,6 +38,5 @@ public class HealthItem extends Item {
 			}
 			setVisible(false);
 		}
-
 	}
 }

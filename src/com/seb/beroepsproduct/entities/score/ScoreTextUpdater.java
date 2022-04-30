@@ -19,8 +19,11 @@ public class ScoreTextUpdater extends Timer {
 		this.scoreText = scoreText;
 	}
 
+	/**
+	 * Updates the {@link ScoreTextEntity} with the new score every interval
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
-		scoreText.setScoreText();
+		scoreText.updateScoreText();
 	}
 }

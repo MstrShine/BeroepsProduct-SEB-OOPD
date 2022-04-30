@@ -27,14 +27,18 @@ public class Lock extends DynamicSpriteEntity implements TimerContainer {
 		setVisible(!player.isPlayerHasKey());
 	}
 
+	/**
+	 * Adds the {@link LockUpdater}
+	 */
 	@Override
 	public void setupTimers() {
-		var lockUpdater = new LockUpdater(this, 500);
-		addTimer(lockUpdater);
+		addTimer(new LockUpdater(this, 500));
 	}
 
+	/**
+	 * Updates the visibility of the lock when the {@link Player} has the key
+	 */
 	public void updateLockVisible() {
 		setVisible(!player.isPlayerHasKey());
 	}
-
 }

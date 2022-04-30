@@ -1,7 +1,9 @@
 package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collider;
 import com.seb.beroepsproduct.entities.characters.Character;
+import com.seb.beroepsproduct.entities.characters.bullets.Bullet;
 import com.seb.beroepsproduct.entities.characters.enemies.health.EnemyHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
@@ -31,10 +33,24 @@ public abstract class Enemy extends Character {
 	/**
 	 * Creates an {@link EnemyTimer} for handling {@link Enemy} behaviour
 	 */
-	protected void createEnemyTimer() {
+	@Override
+	public void setupTimers() {
 		addTimer(new EnemyTimer(this, this.player, 50, gameScreen));
 	}
 
+	/**
+	 * Handles collision with {@link Bullet}s of the {@link Player}
+	 */
+	@Override
+	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Bullet) {
+			var bullet = (Bullet) collidingObject;
+			if (bullet.getCharacter() instanceof Player) {
+				hit(bullet.getDamage());
+			}
+		}
+	}
+	
 	/**
 	 * Gets current level of {@link enemy}
 	 * 

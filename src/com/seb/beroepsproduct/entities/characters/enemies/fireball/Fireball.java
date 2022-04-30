@@ -3,12 +3,10 @@ package com.seb.beroepsproduct.entities.characters.enemies.fireball;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.Collider;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.enemies.health.EnemyHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.bullets.Bullet;
-import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
 /**
@@ -49,24 +47,13 @@ public class Fireball extends Enemy {
 		}
 	}
 
-	@Override
-	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Bullet) {
-			var bullet = (Bullet) collidingObject;
-			if (bullet.getCharacter() instanceof Player) {
-				hit(bullet.getDamage());
-			}
-		}
-		if (collidingObject instanceof Rock) {
-			this.changeDirection(180);
-			this.setSpeed(1);
-		}
-	}
-
+	/**
+	 * Sets up sprite of the {@link Fireball} and the {@link EnemyHealthText}
+	 */
 	@Override
 	public void setupEntities() {
 		double rotationSpeed = -5 + Math.random() * 10;
-		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(0,0), new Size(80, 80),
+		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(0, 0), new Size(80, 80),
 				rotationSpeed);
 		fireballSprite.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(fireballSprite);
@@ -74,8 +61,4 @@ public class Fireball extends Enemy {
 		addEntity(this.enemyHealthText);
 	}
 
-	@Override
-	public void setupTimers() {
-		this.createEnemyTimer();
-	}
 }

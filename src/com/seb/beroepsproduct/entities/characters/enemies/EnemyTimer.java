@@ -31,6 +31,10 @@ public class EnemyTimer extends Timer {
 		this.gameScreen = gameScreen;
 	}
 
+	/**
+	 * Every interval the {@link Fireball} will move horizontally and the {@link Zombie} will angle himself to the {@link Player} and move to him.
+	 * And if the {@link Enemy} is killed longer than 5 seconds ago the enemy will be respawned
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		respawn(timestamp);
@@ -52,6 +56,10 @@ public class EnemyTimer extends Timer {
 		}
 	}
 
+	/**
+	 * Respawns the enemy after 5 seconds are passed if he is dead
+	 * @param timestamp
+	 */
 	private void respawn(long timestamp) {
 		if (!enemy.isVisible()) {
 			if (respawnTimestamp == 0) {
@@ -70,6 +78,9 @@ public class EnemyTimer extends Timer {
 		}
 	}
 
+	/**
+	 * Changes direction of the {@link Fireball} from left to right or the other way round
+	 */
 	private void changeDirection() {
 		if (enemy instanceof Fireball) {
 			if (enemy.getDirection() == 270) {

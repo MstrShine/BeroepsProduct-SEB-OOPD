@@ -36,6 +36,9 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 		setText("Enter your name: " + name);
 	}
 
+	/**
+	 * When keys are pressed the letterkeys and the backspace key will influence the name string
+	 */
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		if (pressedKeys.contains(KeyCode.BACK_SPACE) && name.length() > 0) {
@@ -48,9 +51,13 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 				}
 			}
 		}
+		
 		endGameScreen.setName(name);
 	}
 
+	/**
+	 * Adds the {@link NameTextUpdater}
+	 */
 	@Override
 	public void setupTimers() {
 		addTimer(new NameTextUpdater(this, 50, endGameScreen));
@@ -59,7 +66,7 @@ public class NameTextEntity extends DynamicTextEntity implements KeyListener, Ti
 	/**
 	 * Sets the new name text on the screen
 	 */
-	public void setNameText() {
+	public void updateNameText() {
 		var nameString = "YOUR NAME: " + name;
 		setText(nameString);
 	}

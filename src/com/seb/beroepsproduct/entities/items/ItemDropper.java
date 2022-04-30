@@ -29,6 +29,11 @@ public class ItemDropper extends EntitySpawner {
 		this.itemDropped = false;
 	}
 
+	/**
+	 * Spawns {@link Item}, every item has a certain chance to spawn. If item is not
+	 * spawned after killing an enemy the item is dropped but invisible and will not
+	 * register colliding events.
+	 */
 	@Override
 	public void spawnEntities() {
 		if (!enemy.isVisible() && !itemDropped) {
@@ -60,6 +65,7 @@ public class ItemDropper extends EntitySpawner {
 
 	/**
 	 * Sets if the item has dropped or not
+	 * 
 	 * @param itemDropped true if dropped otherwise false
 	 */
 	public void setItemDropped(boolean itemDropped) {

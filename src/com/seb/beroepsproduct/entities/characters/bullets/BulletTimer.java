@@ -19,6 +19,9 @@ public class BulletTimer extends Timer {
 		this.bullet = bullet;
 	}
 
+	/**
+	 * When the time has run out on the interval the {@link Bullet} will despawn
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		bullet.remove();

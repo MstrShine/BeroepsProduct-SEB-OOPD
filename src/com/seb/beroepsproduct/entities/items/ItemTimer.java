@@ -19,6 +19,9 @@ public class ItemTimer extends Timer {
 		this.item = item;
 	}
 
+	/**
+	 * Resets item dropped boolean in {@link ItemDropper} and removes entity from the scene
+	 */
 	@Override
 	public void onAnimationUpdate(long timestamp) {
 		item.getItemDropper().setItemDropped(false);

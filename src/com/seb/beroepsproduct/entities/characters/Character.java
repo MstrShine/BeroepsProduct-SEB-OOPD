@@ -38,6 +38,9 @@ public abstract class Character extends DynamicCompositeEntity
 		this.gameScreen = gameScreen;
 	}
 
+	/**
+	 * When {@link Character} tries to get out of bounds the location will be reset within the bounds of the scene
+	 */
 	@Override
 	public void notifyBoundaryTouching(SceneBorder border) {
 		switch (border) {

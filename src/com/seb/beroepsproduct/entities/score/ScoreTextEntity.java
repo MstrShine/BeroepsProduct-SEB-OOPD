@@ -28,17 +28,20 @@ public class ScoreTextEntity extends DynamicTextEntity implements TimerContainer
 
 		setFont(Font.font("Roboto", FontWeight.NORMAL, 30));
 		setFill(Color.WHITE);
-		setScoreText();
+		updateScoreText();
 	}
 
 	/**
 	 * Sets the score as text
 	 */
-	public void setScoreText() {
+	public void updateScoreText() {
 		var scoreString = "" + player.getScore();
 		setText(scoreString);
 	}
 
+	/**
+	 * Adds the {@link ScoreTextUpdater}
+	 */
 	@Override
 	public void setupTimers() {
 		addTimer(new ScoreTextUpdater(this, 50));

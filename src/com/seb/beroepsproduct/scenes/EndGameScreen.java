@@ -43,11 +43,18 @@ public class EndGameScreen extends DynamicScene {
 		this.name = "YOU";
 	}
 
+	/**
+	 * Sets up the background image of the scene
+	 */
 	@Override
 	public void setupScene() {
 		setBackgroundImage("sprites/gameOverScreen.gif", true);
 	}
 
+	/**
+	 * Sets up all the sprites and text that will be used on this scene
+	 * and gets the current score and the current leaderboard of highscores
+	 */
 	@Override
 	public void setupEntities() {
 		readHighscores();

@@ -64,11 +64,19 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		this.itemdroppers = new ArrayList<ItemDropper>();
 	}
 
+	/**
+	 * Sets up the background image of the scene
+	 */
 	@Override
 	public void setupScene() {
 		setBackgroundImage("sprites/map.png", true);
 	}
 
+	/**
+	 * Sets up all the sprites that will be used on this scene
+	 * first call will setup the player and then sets up the {@link Obstacle}s and {@link Enemy} list
+	 * if called for second, third etc. only the obstacle and enemy lists will be set 
+	 */
 	@Override
 	public void setupEntities() {
 		if (Objects.isNull(player1)) {
@@ -116,6 +124,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		addEntity(lock);
 	}
 
+	/**
+	 * Sets up the entity spawners for the {@link HealthDisplay} and {@link BulletShooter} for {@link Player}
+	 * and all the {@link BulletShooter}s and {@link ItemDropper}s for the enemies
+	 */
 	@Override
 	public void setupEntitySpawners() {
 		if (player1.getScore() == 0) {
