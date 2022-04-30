@@ -12,10 +12,10 @@ public class SimpleSprite extends SpriteEntity {
 	/**
 	 * Creates a simple sprite to use in scene
 	 * 
-	 * @param resource        location on PC
-	 * @param initialLocation location to spawn sprite in scene
-	 * @param rotation        sets rotation of sprite
-	 * @param size            sets size of image in scene
+	 * @param resource        Location on PC
+	 * @param initialLocation Location to spawn sprite in scene
+	 * @param rotation        Sets rotation of sprite
+	 * @param size            Sets size of image in scene
 	 */
 	public SimpleSprite(String resource, Coordinate2D initialLocation, int rotation, Size size) {
 		super(resource, initialLocation, size);

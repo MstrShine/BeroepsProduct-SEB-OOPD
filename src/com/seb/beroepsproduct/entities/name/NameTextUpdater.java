@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Timer;
 import com.seb.beroepsproduct.scenes.EndGameScreen;
 
 /**
- * A updater for {@link NameTextEntity}
+ * A updater for {@link NameTextEntity} that checks on a certain interval
  */
 public class NameTextUpdater extends Timer {
 

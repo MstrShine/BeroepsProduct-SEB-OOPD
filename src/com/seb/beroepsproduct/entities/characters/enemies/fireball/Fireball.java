@@ -4,29 +4,44 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
-import com.seb.beroepsproduct.entities.characters.health.CharacterHealthText;
+import com.seb.beroepsproduct.entities.characters.enemies.health.EnemyHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.entities.characters.bullets.Bullet;
 import com.seb.beroepsproduct.entities.obstacles.Rock;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
+/**
+ * An {@link Enemy} that moves horizontally and shoots {@link Bullet}s in a
+ * circle like manner
+ */
 public class Fireball extends Enemy {
 
-	protected GameScreen screen;
-
-	public Fireball(Coordinate2D spawnlocation, Player player, int health, int damage, GameScreen screen) {
-		super(spawnlocation, new Size(10, 10), player, health, damage, screen);
-		this.screen = screen;
-		this.damage = 10;
+	/**
+	 * Creates a {@link Fireball} to add to a scene
+	 * 
+	 * @param location   The location on the sene
+	 * @param player     The current {@link Player}
+	 * @param health     The current health and the maximum health of the
+	 *                   {@link Fireball}
+	 * @param gameScreen The {@link GameScreen} where the {@link Fireball} is placed
+	 * 
+	 */
+	public Fireball(Coordinate2D location, Player player, int health, GameScreen gameScreen) {
+		super(location, player, health, gameScreen);
 		this.player = player;
-		setSpeed(0.8+ (getEnemyLevel() * 0.1));
+		setSpeed(0.8 + (getEnemyLevel() * 0.1));
 		setDirection(90);
 	}
 
+	/**
+	 * Do damage to the {@link Fireball} and updates the {@link EnemyHealthText}. If
+	 * the {@link Fireball}'s health is 0 or lower he dies and the {@link Player}
+	 * gets points added to his score
+	 */
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
-		text.setHealthText();
+		enemyHealthText.updateText();
 		if (this.health <= 0 && this.isVisible()) {
 			player.setScore(player.getScore() + 100 + (((int) this.getEnemyLevel() - 1) * 10));
 			this.die();
@@ -36,27 +51,25 @@ public class Fireball extends Enemy {
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collidingObject instanceof Bullet) {
-			//System.out.println("ik heb gebotst met een kogel");
 			var bullet = (Bullet) collidingObject;
 			if (bullet.getCharacter() instanceof Player) {
 				hit(bullet.getDamage());
 			}
 		}
 		if (collidingObject instanceof Rock) {
-			//System.out.println("ik heb gebotst met een rots");
 			this.changeDirection(180);
 			this.setSpeed(1);
 		}
 	}
 
 	@Override
-	protected void setupEntities() {
+	public void setupEntities() {
 		double rotationSpeed = -5 + Math.random() * 10;
 		var fireballSprite = new FireballSprite("sprites/fire2.gif", new Coordinate2D(-40, -40), new Size(80, 80),
 				rotationSpeed);
 		addEntity(fireballSprite);
-		this.text = new CharacterHealthText(this, new Coordinate2D(-40, -60));
-		addEntity(this.text);
+		this.enemyHealthText = new EnemyHealthText(this, new Coordinate2D(-40, -60));
+		addEntity(this.enemyHealthText);
 	}
 
 	@Override

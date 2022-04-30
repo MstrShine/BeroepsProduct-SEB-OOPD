@@ -14,12 +14,22 @@ import com.seb.beroepsproduct.entities.characters.Character;
 
 import javafx.scene.paint.Color;
 
+/**
+ * A bullet that can be shot by a {@link BulletShooter}
+ */
 public class Bullet extends DynamicCircleEntity implements TimerContainer, Collider, Collided {
 
 	private int damage;
 	private Character shooter;
 
-	protected Bullet(Character shooter, Coordinate2D initialLocation, double speed, int bulletOffset) {
+	/**
+	 * Creates {@link Bullet} that can collide with other objects in the scene
+	 * @param shooter         The {@link Character} that has shot the {@link Bullet}
+	 * @param initialLocation The start location of the {@link Bullet}
+	 * @param speed           The speed of the {@link Bullet}
+	 * @param bulletOffset	  The offset of the bullet from the previous one
+	 */
+	public Bullet(Character shooter, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
 		this.shooter = shooter;
 
@@ -33,7 +43,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset * 15);
 			setDirection(direction + 90);
 			setupTimers();
-			this.damage = (int) Math.floor((3.5 + (Math.floor((int) player.getWeaponLevel() / 2)) *0.5));
+			this.damage = (int) Math.floor((3.5 + (Math.floor((int) player.getWeaponLevel() / 2)) * 0.5));
 
 		}
 
@@ -43,8 +53,8 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 			setSpeed(speed);
 
 			var robot = (Fireball) shooter;
-			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // elke twee levels een kogel extra
-			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // nu schiet robot harder per level
+			var nBullets = 4 + Math.floor(robot.getEnemyLevel() / 2); // Every two levels add one bullet to shoot
+			setSpeed(8 + (robot.getEnemyLevel() * 0.5)); // Every level the bullet goes faster
 			setDirection(bulletOffset * 360 / nBullets);
 			setupTimers();
 			this.damage = 10;
@@ -64,12 +74,12 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		}
 		if (shooter instanceof Player) {
 			if (collidingObject instanceof Enemy && ((Enemy) collidingObject).isVisible()) {
-				if(collidingObject instanceof Zombie) {
-					var zombie = (Zombie)collidingObject;
+				if (collidingObject instanceof Zombie) {
+					var zombie = (Zombie) collidingObject;
 					zombie.hit(damage);
 				}
-				if(collidingObject instanceof Fireball) {
-					var robot = (Fireball)collidingObject;
+				if (collidingObject instanceof Fireball) {
+					var robot = (Fireball) collidingObject;
 					robot.hit(damage);
 				}
 				remove();
@@ -81,10 +91,18 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 		}
 	}
 
+	/**
+	 * Gets the damage of the {@link Bullet}
+	 * @return The current damage of the {@link Bullet}
+	 */
 	public int getDamage() {
 		return this.damage;
 	}
 
+	/**
+	 * Gets the {@link Character} that shot the {@link Bullet}
+	 * @return The {@link Character} that shot the {@link Bullet}
+	 */
 	public Character getCharacter() {
 		return this.shooter;
 	}

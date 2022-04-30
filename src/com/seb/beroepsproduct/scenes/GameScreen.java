@@ -249,10 +249,10 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
 			if (i == 0) { // one zombie, rest fireballs
-				var enemy = new Zombie(pickEnemyLocation(player1), player1, enemyHealth, 10, this);
+				var enemy = new Zombie(pickEnemyLocation(player1), player1, enemyHealth, this);
 				enemies.add(enemy);
 			} else {
-				var enemy = new Fireball(pickEnemyLocation(player1), player1, enemyHealth, 10, this);
+				var enemy = new Fireball(pickEnemyLocation(player1), player1, enemyHealth, this);
 				enemies.add(enemy);
 			}
 		}

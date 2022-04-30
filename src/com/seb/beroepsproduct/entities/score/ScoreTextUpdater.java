@@ -3,7 +3,7 @@ package com.seb.beroepsproduct.entities.score;
 import com.github.hanyaeger.api.Timer;
 
 /**
- * A updater for {@link ScoreTextEntity}
+ * A updater for {@link ScoreTextEntity} that checks on a certain interval
  */
 public class ScoreTextUpdater extends Timer {
 

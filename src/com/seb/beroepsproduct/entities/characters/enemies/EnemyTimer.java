@@ -6,18 +6,29 @@ import com.seb.beroepsproduct.entities.characters.enemies.zombie.Zombie;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
+/**
+ * A {@link Timer} for handling {@link Enemy} behaviour on the game screen
+ */
 public class EnemyTimer extends Timer {
+	
 	private Enemy enemy;
 	private Player player;
 	private long previousTimestamp;
 	private long respawnTimestamp;
-	private GameScreen screen;
+	private GameScreen gameScreen;
 
-	protected EnemyTimer(Enemy enemy, Player player, long intervalInMs, GameScreen screen) {
+	/**
+	 * Initialises timer to handle behaviour of the {@link Enemy}
+	 * @param enemy The {@link Enemy} of which the timer handles the behaviour of
+	 * @param player The {@link Player} to give enemy knowledge of his position
+	 * @param intervalInMs The interval in milliseconds to change behaviour of {@link Enemy}
+	 * @param gameScreen The screen where the {@link Player} and the {@link Enemy} are
+	 */
+	public EnemyTimer(Enemy enemy, Player player, long intervalInMs, GameScreen gameScreen) {
 		super(intervalInMs);
 		this.enemy = enemy;
 		this.player = player;
-		this.screen = screen;
+		this.gameScreen = gameScreen;
 	}
 
 	@Override
@@ -47,14 +58,12 @@ public class EnemyTimer extends Timer {
 				respawnTimestamp = timestamp;
 			} else {
 				if (timestamp - respawnTimestamp > 5000000000d) {
-					// enemy.setAnchorLocation(new Coordinate2D(Math.random() * 1200,Math.random() *
-					// 700));
-					enemy.setAnchorLocation(screen.pickEnemyLocation(player));
-					// TODO
-					// hier reset ik de enemy met andere stats aan de hand van level
+					enemy.setAnchorLocation(gameScreen.pickEnemyLocation(player));
+					
+					// Reseting enemy
 					enemy.setVisible(true);
 					enemy.setHealth(enemy.getMaxHealth());
-					enemy.text.update();
+					enemy.getEnemyHealthText().updateText();
 					respawnTimestamp = 0;
 				}
 			}

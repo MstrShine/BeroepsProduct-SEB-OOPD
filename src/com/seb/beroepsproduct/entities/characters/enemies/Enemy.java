@@ -1,69 +1,70 @@
 package com.seb.beroepsproduct.entities.characters.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.seb.beroepsproduct.entities.characters.Character;
+import com.seb.beroepsproduct.entities.characters.enemies.health.EnemyHealthText;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 import com.seb.beroepsproduct.scenes.GameScreen;
 
+/**
+ * The super class of an enemy that extends the {@link Character} class
+ */
 public abstract class Enemy extends Character {
 
-	protected int damage;
 	protected double enemyLevel;
-	protected Player player;
+	protected Player player;	
+	protected EnemyHealthText enemyHealthText;
 
-	public Enemy(Coordinate2D location, Size size, Player player, int health, int damage, GameScreen screen) {
-		super(location, size, health, screen);
+	/**
+	 * Creates an {@link Enemy} to place on the {@link GameScreen}
+	 * @param location Location on the scene
+	 * @param player The current {@link Player}
+	 * @param health The current health and the max health of the {@link Enemy}
+	 * @param gameScreen The scene where the {@link Enemy} is placed
+	 */
+	public Enemy(Coordinate2D location, Player player, int health, GameScreen gameScreen) {
+		super(location, health, gameScreen);
 		this.player = player;
-		this.damage = damage;
 		setEnemyLevel();
 	}
 
-	public int getDamage() {
-		return damage;
-	}
-
+	/**
+	 * Creates an {@link EnemyTimer} for handling {@link Enemy} behaviour
+	 */
 	protected void createEnemyTimer() {
-		addTimer(new EnemyTimer(this, this.player, 50, screen));
-	}
-	
-	@Override
-	public void notifyBoundaryTouching(SceneBorder border) {
-		switch (border) {
-		case TOP:
-			setAnchorLocationY(getBoundingBox().getHeight() / 1.7);
-			break;
-		case BOTTOM:
-			setAnchorLocationY(getSceneHeight() - (getBoundingBox().getHeight() / 2));
-			break;
-		case LEFT:
-			setAnchorLocationX(getBoundingBox().getWidth() / 1.75);
-			break;
-		case RIGHT:
-			setAnchorLocationX(getSceneWidth() - (getBoundingBox().getWidth() / 1.75));
-		default:
-			break;
-		}
+		addTimer(new EnemyTimer(this, this.player, 50, gameScreen));
 	}
 
 	/**
 	 * Gets current level of {@link enemy}
 	 * 
-	 * @return current level
+	 * @return current level of the {@link Enemy}
 	 */
-	public double getEnemyLevel() {
+	public final double getEnemyLevel() {
 		return enemyLevel;
 	}
 
 	/**
-	 * Sets level of {@link Enemy} by one plus dividing current score with 200
+	 * Sets level of {@link Enemy} by one plus dividing the current level with three.
+	 * So every three levels an {@link Enemy} gets stronger
 	 */
-	public void setEnemyLevel() {
-		this.enemyLevel = 1 + Math.floor(screen.getLevel() / 3);
+	public final void setEnemyLevel() {
+		this.enemyLevel = 1 + Math.floor(gameScreen.getLevel() / 3);
 	}
 
-	public double getEnemySpeed() {
+	/**
+	 * Get the speed of the {@link Enemy}
+	 * @return The current speed of {@link Enemy}
+	 */
+	public final double getEnemySpeed() {
 		return this.speed;
+	}
+	
+	/**
+	 * Get the health text of the {@link Enemy}
+	 * @return The current health text of the {@link Enemy}
+	 */
+	public final EnemyHealthText getEnemyHealthText() {
+		return this.enemyHealthText;
 	}
 }

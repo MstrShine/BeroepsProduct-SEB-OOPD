@@ -9,11 +9,20 @@ import com.seb.beroepsproduct.scenes.GameScreen;
 import com.seb.beroepsproduct.scenes.IntermissionScreen;
 import com.seb.beroepsproduct.scenes.TitleScreen;
 
+/**
+ * The main entry point of the game and initializes the screen width and height
+ * plus sets up the scenes that will be used
+ */
 public class Main extends YaegerGame {
 
 	private final int WIDTH;
 	private final int HEIGHT;
 
+	/**
+	 * Gets called when the game is inialized and sets the width and the height by
+	 * getting the width and height of the main screen of the PC and removes some
+	 * space
+	 */
 	public Main() {
 		var gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); // get info of
 																								// main screen
@@ -24,6 +33,9 @@ public class Main extends YaegerGame {
 		HEIGHT = (int) (gd.getDisplayMode().getHeight() / y - 100);
 	}
 
+	/**
+	 * Launches the game
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -5,16 +5,28 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.seb.beroepsproduct.entities.characters.enemies.Enemy;
 import com.seb.beroepsproduct.entities.characters.player.Player;
 
+/**
+ * Handles dropping items if the enemy is killed and has not already dropped an
+ * item
+ */
 public class ItemDropper extends EntitySpawner {
+
 	private Enemy enemy;
 	private boolean itemDropped;
 	private Player player;
 
+	/**
+	 * Initialises a item dropper for an {@link Enemy}
+	 * 
+	 * @param player       The {@link Player} that could take the {@link Item}
+	 * @param enemy        The {@link Enemy} to check
+	 * @param intervalInMs The interval in milliseconds for checking
+	 */
 	public ItemDropper(Player player, Enemy enemy, long intervalInMs) {
 		super(intervalInMs);
 		this.enemy = enemy;
 		this.player = player;
-		itemDropped = false;
+		this.itemDropped = false;
 	}
 
 	@Override
@@ -30,22 +42,26 @@ public class ItemDropper extends EntitySpawner {
 				itemVisible = false;
 			}
 
-			if (randomNumber < 0.65) { // ~15% kans op key
+			if (randomNumber < 0.65) { // ~15% chance
 				spawn(new KeyItem("sprites/keyGif.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber < 0.75) { // ~10% kans op max health
+			} else if (randomNumber < 0.75) { // ~10% chance
 				spawn(new MaxHealthItem("sprites/maxHealth.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber < 0.85) { // ~10% kans op health
+			} else if (randomNumber < 0.85) { // ~10% chance
 				spawn(new HealthItem("sprites/health.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
-			} else if (randomNumber <= 1) { // ~15% kans op weapon upgrade
+			} else if (randomNumber <= 1) { // ~15% chance
 				spawn(new WeaponItem("sprites/gunUpgrade.gif", tempLoc, this, itemVisible, player));
 				itemDropped = true;
 			}
 		}
 	}
 
+	/**
+	 * Sets if the item has dropped or not
+	 * @param itemDropped true if dropped otherwise false
+	 */
 	public void setItemDropped(boolean itemDropped) {
 		this.itemDropped = itemDropped;
 	}

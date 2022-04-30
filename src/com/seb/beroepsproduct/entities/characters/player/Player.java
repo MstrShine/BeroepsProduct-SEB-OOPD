@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.media.SoundClip;
-import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseMovedListener;
 import com.seb.beroepsproduct.entities.SimpleSprite;
@@ -44,7 +43,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	 * @param screen the screen where the player is located
 	 */
 	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
-		super(startLocation, new Size(150, 150), health, screen);
+		super(startLocation, health, screen);
 		this.shooting = false;
 		this.speed = 2.5;
 		this.isVulnerable = true;
@@ -60,6 +59,9 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		addEntity(pSprite);
 	}
 
+	/**
+	 * Do damage to the {@link Player} and play sound. If players health is zero or lower the scene changes to the end game screen
+	 */
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
@@ -67,7 +69,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		owSound.setVolume(10);
 		owSound.play();
 		if (getHealth() <= 0) {
-			screen.getMain().setActiveScene(2);
+			gameScreen.getMain().setActiveScene(2);
 		}
 	}
 
@@ -116,25 +118,6 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	}
 
 	@Override
-	public void notifyBoundaryTouching(SceneBorder border) {
-		switch (border) {
-		case TOP:
-			setAnchorLocationY(getBoundingBox().getHeight() / 1.7);
-			break;
-		case BOTTOM:
-			setAnchorLocationY(getSceneHeight() - (getBoundingBox().getHeight() / 2));
-			break;
-		case LEFT:
-			setAnchorLocationX(getBoundingBox().getWidth() / 1.75);
-			break;
-		case RIGHT:
-			setAnchorLocationX(getSceneWidth() - (getBoundingBox().getWidth() / 1.75));
-		default:
-			break;
-		}
-	}
-
-	@Override
 	public void onCollision(Collider collidingObject) {
 		Enemy enemy;
 		Bullet bullet;
@@ -177,7 +160,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		}
 
 		if (collidingObject instanceof Door && playerHasKey) {
-			screen.getMain().setActiveScene(3);
+			gameScreen.getMain().setActiveScene(3);
 			setScore(getScore() + 500);
 			setPlayerHasKey(false);
 		}
@@ -255,7 +238,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Sets if the player is vulnerable for damage
-	 * @param vulnerable 
+	 * @param vulnerable true is vulnerable, false is invulnerable
 	 */
 	public void setVulnerable(boolean vulnerable) {
 		this.isVulnerable = vulnerable;
