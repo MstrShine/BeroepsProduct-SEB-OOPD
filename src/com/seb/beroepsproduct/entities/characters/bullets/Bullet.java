@@ -1,5 +1,6 @@
 package com.seb.beroepsproduct.entities.characters.bullets;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.Collided;
@@ -32,6 +33,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	public Bullet(Character shooter, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
 		this.shooter = shooter;
+		this.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 
 		if (shooter instanceof Player) {
 			setRadius(8);
@@ -40,7 +42,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 
 			var player = (Player) shooter;
 			var totalBulletAngle = 15 * (player.getWeaponLevel() - 1);
-			var direction = player.getDirectionPlayer() - (totalBulletAngle / 2) + (bulletOffset * 15);
+			var direction = player.getBulletDirection() - (totalBulletAngle / 2) + (bulletOffset * 15);
 			setDirection(direction + 90);
 			setupTimers();
 			this.damage = (int) Math.floor((3.5 + (Math.floor((int) player.getWeaponLevel() / 2)) * 0.5));

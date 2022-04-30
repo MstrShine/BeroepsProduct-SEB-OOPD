@@ -33,7 +33,7 @@ public class BulletShooter extends EntitySpawner {
 			
 			if (player.isShooting()) {
 				for (int i = 0; i < nBullets; i++) {
-					spawn(new Bullet(player, new Coordinate2D(player.getAnchorLocation()), 12, i));
+					spawn(new Bullet(player, player.calcGunLocation(), 12, i));
 				}
 			}
 		}
