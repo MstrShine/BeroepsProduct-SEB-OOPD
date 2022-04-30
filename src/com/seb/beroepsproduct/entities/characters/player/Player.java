@@ -39,10 +39,11 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Creates a playable character to add to a scene
+	 * 
 	 * @param startLocation the start location of the player
-	 * @param health the amount of max health and current health
-	 * @param playerLevel the level of the player
-	 * @param screen the screen where the player is located
+	 * @param health        the amount of max health and current health
+	 * @param playerLevel   the level of the player
+	 * @param screen        the screen where the player is located
 	 */
 	public Player(Coordinate2D startLocation, int health, int playerLevel, GameScreen screen) {
 		super(startLocation, health, screen);
@@ -56,14 +57,15 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	}
 
 	@Override
-	protected void setupEntities() {
-		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(0,0), 0, new Size(80, 80));
+	public void setupEntities() {
+		var pSprite = new SimpleSprite("sprites/player1v2.png", new Coordinate2D(0, 0), 0, new Size(80, 80));
 		pSprite.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(pSprite);
 	}
 
 	/**
-	 * Do damage to the {@link Player} and play sound. If players health is zero or lower the scene changes to the end game screen
+	 * Do damage to the {@link Player} and play sound. If players health is zero or
+	 * lower the scene changes to the end game screen
 	 */
 	@Override
 	public void hit(int damage) {
@@ -75,17 +77,17 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 			gameScreen.getMain().setActiveScene(2);
 		}
 	}
-	
-	
+
+	/**
+	 * Calculates position of gun on the player sprite for shooting {@link Bullet}s out of the sprite
+	 * @return Coordinates of the gun
+	 */
 	public Coordinate2D calcGunLocation() {
-		double tempDirection = Math.toRadians(directionPlayer-30);
-		double xCoord = getAnchorLocation().getX() + Math.cos(tempDirection)*46;
-		double yCoord = getAnchorLocation().getY() - Math.sin(tempDirection)*46;
+		double tempDirection = Math.toRadians(directionPlayer - 30);
+		double xCoord = getAnchorLocation().getX() + Math.cos(tempDirection) * 46;
+		double yCoord = getAnchorLocation().getY() - Math.sin(tempDirection) * 46;
 		return new Coordinate2D(xCoord, yCoord);
 	}
-    
-
-	
 
 	@Override
 	public void onMouseMoved(Coordinate2D mouseXY) {
@@ -93,18 +95,10 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 				mouseXY.getY() - (getLocationInScene().getY() + 40));
 		this.directionPlayer = Math.toDegrees(radian) - 90;
 		setRotate(this.directionPlayer);
-		calcGunLocation();
-		var radian2 = Math.atan2(mouseXY.getX() - (calcGunLocation().getX()),
-				mouseXY.getY() - (calcGunLocation().getY()));
-		setBulletDirection(Math.toDegrees(radian2) -90);
-	}
 
-	public double getBulletDirection() {
-		return bulletDirection;
-	}
-
-	public void setBulletDirection(double bulletDirection) {
-		this.bulletDirection = bulletDirection;
+		var gunLocation = calcGunLocation();
+		var radian2 = Math.atan2(mouseXY.getX() - (gunLocation.getX()), mouseXY.getY() - (gunLocation.getY()));
+		setBulletDirection(Math.toDegrees(radian2) - 90);
 	}
 
 	@Override
@@ -133,6 +127,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Shoots the weapon of the player if space is pressed
+	 * 
 	 * @param pressedKeys the pressed keys of the user
 	 */
 	private void shootWeapon(Set<KeyCode> pressedKeys) {
@@ -151,8 +146,6 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 		if (collidingObject instanceof Rock) {
 			this.changeDirection(180);
 			this.setSpeed(0);
-			// this.getDirection();
-			// this.setAnchorLocation()
 		}
 		if (this.isVulnerable) {
 			if (collidingObject instanceof Toxic) {
@@ -199,7 +192,24 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 	}
 
 	/**
+	 * Get the calculated direction of the {@link Bullet}s from the {@link Player}
+	 * @return The calculated direction of the {@link Bullet}s from the {@link Player}
+	 */
+	public double getBulletDirection() {
+		return bulletDirection;
+	}
+
+	/**
+	 * Sets the bullet direction of the {@link Bullet}s from the {@link Player}
+	 * @param bulletDirection The bullet direction of the {@link Bullet}s from the {@link Player}
+	 */
+	public void setBulletDirection(double bulletDirection) {
+		this.bulletDirection = bulletDirection;
+	}
+	
+	/**
 	 * Sets score of the player
+	 * 
 	 * @param score the new score
 	 */
 	public void setScore(int score) {
@@ -208,6 +218,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Gets the current direction of where the player is looking to in degrees
+	 * 
 	 * @return the direction where the player looks to in degrees
 	 */
 	public double getDirectionPlayer() {
@@ -216,6 +227,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Gets if the player is currently shooting his gun
+	 * 
 	 * @return true is shooting otherwise false
 	 */
 	public boolean isShooting() {
@@ -224,6 +236,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Gets if the player is currently holding the key
+	 * 
 	 * @return true is player has key otherwise false
 	 */
 	public boolean isPlayerHasKey() {
@@ -232,7 +245,8 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Sets if the player has the key
-	 * @param playerHasKey 
+	 * 
+	 * @param playerHasKey
 	 */
 	public void setPlayerHasKey(boolean playerHasKey) {
 		this.playerHasKey = playerHasKey;
@@ -240,6 +254,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Gets the current weapon level of the player
+	 * 
 	 * @return current weapon level of the player
 	 */
 	public int getWeaponLevel() {
@@ -248,6 +263,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Sets new weapon level of the player
+	 * 
 	 * @param weaponLevel new weapon level
 	 */
 	public void setWeaponLevel(int weaponLevel) {
@@ -256,6 +272,7 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Gets the current score of the player
+	 * 
 	 * @return The current score of the player
 	 */
 	public int getScore() {
@@ -264,10 +281,10 @@ public class Player extends Character implements KeyListener, MouseMovedListener
 
 	/**
 	 * Sets if the player is vulnerable for damage
+	 * 
 	 * @param vulnerable true is vulnerable, false is invulnerable
 	 */
 	public void setVulnerable(boolean vulnerable) {
 		this.isVulnerable = vulnerable;
 	}
-
 }

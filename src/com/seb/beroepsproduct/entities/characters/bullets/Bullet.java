@@ -28,7 +28,7 @@ public class Bullet extends DynamicCircleEntity implements TimerContainer, Colli
 	 * @param shooter         The {@link Character} that has shot the {@link Bullet}
 	 * @param initialLocation The start location of the {@link Bullet}
 	 * @param speed           The speed of the {@link Bullet}
-	 * @param bulletOffset	  The offset of the bullet from the previous one
+	 * @param bulletOffset	  The offset of the {@link Bullet} from the previous one
 	 */
 	public Bullet(Character shooter, Coordinate2D initialLocation, double speed, int bulletOffset) {
 		super(initialLocation);
