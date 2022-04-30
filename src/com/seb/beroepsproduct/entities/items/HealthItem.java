@@ -28,7 +28,10 @@ public class HealthItem extends Item {
 	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {
-			this.player.setHealth(player.getMaxHealth());
+			var newHealth = player.getHealth() + 1;
+			if (newHealth <= player.getMaxHealth()) {
+				this.player.setHealth(newHealth);
+			}
 			setVisible(false);
 		}
 

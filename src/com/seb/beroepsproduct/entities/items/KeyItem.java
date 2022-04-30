@@ -25,12 +25,6 @@ public class KeyItem extends Item {
 	}
 
 	@Override
-	public void setupTimers() {
-		var itemTimer = new ItemTimer(this, 60000);
-		addTimer(itemTimer);
-	}
-
-	@Override
 	public void onCollision(Collider collidingObject) {
 		if (collisionCheckPlayer(collidingObject)) {
 			player.setPlayerHasKey(true);
