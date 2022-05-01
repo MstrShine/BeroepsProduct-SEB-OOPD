@@ -73,9 +73,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Sets up all the sprites that will be used on this scene
-	 * first call will setup the player and then sets up the {@link Obstacle}s and {@link Enemy} list
-	 * if called for second, third etc. only the obstacle and enemy lists will be set 
+	 * Sets up all the sprites that will be used on this scene first call will setup
+	 * the player and then sets up the {@link Obstacle}s and {@link Enemy} list if
+	 * called for second, third etc. only the obstacle and enemy lists will be set
 	 */
 	@Override
 	public void setupEntities() {
@@ -125,8 +125,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Sets up the entity spawners for the {@link HealthDisplay} and {@link BulletShooter} for {@link Player}
-	 * and all the {@link BulletShooter}s and {@link ItemDropper}s for the enemies
+	 * Sets up the entity spawners for the {@link HealthDisplay} and
+	 * {@link BulletShooter} for {@link Player} and all the {@link BulletShooter}s
+	 * and {@link ItemDropper}s for the enemies
 	 */
 	@Override
 	public void setupEntitySpawners() {
@@ -176,8 +177,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Picks location for {@link Obstacle}s, so no {@link Obstacle}s are not placed where the {@link Player}
-	 * is located
+	 * Picks location for {@link Obstacle}s, so no {@link Obstacle}s are not placed
+	 * where the {@link Player} is located
 	 * 
 	 * @param player Current {@link Player}
 	 * @return Coordinates for {@link Obstacle}
@@ -215,8 +216,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Picks location for spawning {@link Enemy}, while checking if {@link Enemy} is not placed on
-	 * location of {@link Obstacle} and {@link Player}
+	 * Picks location for spawning {@link Enemy}, while checking if {@link Enemy} is
+	 * not placed on location of {@link Obstacle} and {@link Player}
 	 * 
 	 * @param player Current {@link Player}
 	 * @return Coordinates for spawning the {@link Enemy}
@@ -249,8 +250,8 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 	}
 
 	/**
-	 * Fills the {@link Enemy} array with enemies, always one {@link Zombie} and the rest are
-	 * {@link Fireball}s. Every 3 levels adds one {@link Enemy} in total
+	 * Fills the {@link Enemy} array with random enemies. Every 3 levels adds one
+	 * {@link Enemy} in total
 	 */
 	private void fillEnemyArray() {
 
@@ -258,9 +259,9 @@ public class GameScreen extends DynamicScene implements EntitySpawnerContainer {
 
 		enemies.clear();
 		var nEnemies = 3 + Math.floor(level / 3); // every three levels a new enemy
-		System.out.println("" + nEnemies);
 		for (int i = 0; i < nEnemies; i++) {
-			if (i == 0) { // one zombie, rest fireballs
+			var randomNr = Math.random();
+			if (randomNr < 0.5) { 
 				var enemy = new Zombie(pickEnemyLocation(player1), player1, enemyHealth, this);
 				enemies.add(enemy);
 			} else {
